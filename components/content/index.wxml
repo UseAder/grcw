@@ -3,7 +3,7 @@
         <view bindtap="swithNav" class="content-scroll-item {{currentTab==0?'active':''}}" data-current="0">创业法宝
      <view class="scroll-item-line" wx:if="{{currentTab==0}}"></view>
         </view>
-        <view bindtap="swithNav" class="content-scroll-item {{currentTab==1?'active':''}}" data-current="1">开办公司
+        <view bindtap="swithNav" class="content-scroll-item {{currentTab==1?'active':''}}" data-current="1">开办公司的
        <view class="scroll-item-line" wx:if="{{currentTab==1}}"></view>
         </view>
         <view bindtap="swithNav" class="content-scroll-item {{currentTab==2?'active':''}}" data-current="2">企业管理
