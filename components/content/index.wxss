@@ -1,0 +1,122 @@
+.content {
+    background-color: #fff;
+    margin-top: 18px;
+}
+
+.content .content-scroll-list {
+    width: 100%;
+    height: 30px;
+    line-height: 15px;
+    white-space: nowrap;
+}
+
+.content .content-scroll-list .content-scroll-item {
+    width: 25%;
+    height: 100%;
+    display: inline-block;
+    font-size: 30rpx;
+    color: #5a5e66;
+    text-align: center;
+}
+
+.content .content-scroll-list .content-scroll-item .scroll-item-text {
+    height: 13px;
+}
+
+.content .content-scroll-list .content-scroll-item .scroll-item-line {
+    width: 111rpx;
+
+    margin: 8px auto;
+    height:6rpx;
+background:rgba(73,158,247,1);
+border-radius:3rpx;
+}
+.content .content-scroll-list .active {
+    color: #499EF7;
+}
+.content .content-swiper {
+    height: 525px;padding: 0 25rpx;
+}
+.content .content-swiper .content-swiper-item .content-item-top{
+  display: flex;justify-content: space-between;
+}
+.content-item-bottom{
+  display: flex;justify-content: space-between;
+}
+
+ .content-top-con{
+width:346rpx;
+height:240rpx;
+background:#F8F8F8;
+padding: 40rpx 20rpx;
+box-sizing: border-box;
+margin-top: 15rpx;
+border-radius:10rpx;
+position: relative;
+}
+
+ .content-bottom-con{
+width:160rpx;
+height:240rpx;
+background:#F8F8F8;
+box-sizing: border-box;
+margin-top: 15rpx;
+border-radius:8rpx;
+position: relative;
+}
+.content-bottom-link{
+  display: flex;flex-direction: column;align-items: center;
+}
+.top-con-name{
+  font-weight:bold;line-height: 1;
+}
+.bottom-con-name{
+  font-size:26rpx; font-weight:bold;line-height: 1;color: #666;margin-top: 32rpx;
+}
+.top-con-des{
+  font-size:22rpx;color: #888C98;
+  margin: 9rpx 0;
+}
+.bottom-con-des{
+ font-size:20rpx;color: #888C98;
+  margin: 16rpx 0;
+}
+.top-con-mon{
+  background:rgba(233,89,92,1);
+border:1rpx solid rgba(246,67,77,1);
+height:31rpx;
+line-height:31rpx;
+border-radius:6rpx;
+padding: 0 10rpx;
+font-size:22rpx;
+color:#fff;
+}
+.content-top-con .top-con-image {
+  position: absolute;
+  bottom: 31rpx;right: 48rpx;
+  width:104rpx;
+height:104rpx;
+}
+.bottom-con-image {
+width:71rpx;
+height:69rpx;
+margin-top: 30rpx;
+}
+
+.content .content-swiper .content-swiper-item .content-item-line {
+    border-bottom: 1px solid #e1e5ec;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    height: 26px;
+}
+
+.content-item-line .item-line-text {
+    position: relative;
+    padding-top: 18px;
+    background-color: #fff;
+    width: 80px;
+    font-size: 12px;
+    color: #b4bccc;
+    margin: 0 auto;
+}

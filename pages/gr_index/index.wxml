@@ -1,0 +1,46 @@
+<view class="index_container">
+  <view class="search">
+    <swiper autoplay="true" class="banner" duration="1000" interval="3000" indicatordots='false'>
+      <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+        <navigator>
+          <image backgroundSize="cover" src="{{item.img_url}}"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+    <view class="input">
+      <icon size="18" type="search"></icon>
+      <input bindblur="searchSubmit" bindfocus="searchStatus" bindinput="inputKeyword" class="search_input" placeholder="请输入商标或公司名称" value="{{search}}" placeholder-style='color:#B5B4B4'></input>
+    </view>
+    <view class="clearfix"></view>
+  </view>
+  <view class="menu">
+    <view class="publish">
+      <navigator hover-class='none' bindtap="tonavigate" class="item" data-category="1" data-check="{{item.cs_channel_url}}" wx:for="{{channel}}" wx:for-index="index" wx:for-item="item" wx:key>
+        <image src="{{item.function_url}}"></image>
+        <text>{{item.function_title}}</text>
+      </navigator>
+    </view>
+  </view>
+  <view class="news">
+    <view class="notice">
+      <view class="tit">
+        <text class="red">果</text>
+        <text class="green">然</text>
+        <text class="normal">快报</text>
+      </view>
+      <swiper autoplay="true" duration="1000" interval='5000' circular>
+        <swiper-item wx:for="{{newsRecommendList}}" wx:key="newsRecommendList">
+          <navigator class="new_item" url="../newlist/news">
+            <view>
+              <text class="cheap">{{item.cs_news_tag}}</text>
+            </view>
+            <text class="news_desc j_text">{{item.cs_news_title}}</text>
+          </navigator>
+        </swiper-item>
+      </swiper>
+      <navigator class="more" url="../newlist/news"><text>更多</text></navigator>
+    </view>
+  </view>
+
+  <content copenCompany="{{copenCompany}}"></content>
+</view>

@@ -1,0 +1,59 @@
+{
+  "pages": [              
+
+                "pages/gr_index/index",
+                
+      "pages/gr_ucenter/index",
+    "pages/order/order",
+     
+        
+        "pages/gr_mall/index",
+        
+    "pages/gr_data/index",
+
+        "pages/shop-cart/index",
+    
+    "pages/my/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "优狐测试",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7F8389",
+    "selectedColor": "#FF9900",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    
+    "list": [
+      {
+        "pagePath": "pages/gr_index/index",
+        "iconPath": "images/gr_01.png",
+        "selectedIconPath": "images/gr_02.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/gr_mall/index",
+        "iconPath": "images/gr_03.png",
+        "selectedIconPath": "images/gr_04.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/gr_data/index",
+        "iconPath": "images/gr_05.png",
+        "selectedIconPath": "images/gr_06.png",
+        "text": "数据"
+      },
+      {
+        "pagePath": "pages/gr_ucenter/index",
+        "iconPath": "images/gr_07.png",
+        "selectedIconPath": "images/gr_08.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

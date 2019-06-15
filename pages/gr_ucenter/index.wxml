@@ -1,0 +1,88 @@
+<!-- <import src="../../../template/showToast.wxml"></import>
+<template is="showToast" data="{{showToast:showToast}}"></template> -->
+<view class="mycenter">
+    <view class="container">
+        <view class="profile-info"  bindtap="loginByWeixin" >
+            <image class="avatar" src="../../images/personal/head_icon.png"></image>
+            <view class="info">
+                <text class="name">{{name}}</text>
+                <text class="level" wx:if="{{userInfo.userName}}">{{userInfo.userName}}</text>
+                <button bindgetuserinfo="userInfoHandler" class="uesrinfo" openType="getUserInfo"></button>
+            </view>
+        </view>
+        <view class="user-menu">
+            <view bindtap="myorder" class="item">
+                <navigator class="a" hover-class='none' >
+                    <image src="../../images/personal/order.png" mode='widthFix'></image>
+                    <text class="txt">我的订单</text>
+                </navigator>
+            </view>
+            <view class="item no-border">
+                <navigator class="a" hover-class='none'>
+                    <image src="../../images/personal/return_goods.png" mode='widthFix'></image>
+                    <text class="txt">退货/售后</text>
+                    <view class="contacts_container">
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                        <view class="contacts">
+                            <contact-button sessionFrom="{{webapp}}" size="30" type="default-light"></contact-button>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+            <view bindtap="addressmanager" class="item">
+                <navigator class="a" hover-class='none'>
+                    <image src="../../images/personal/address.png" mode='widthFix'></image>
+                    <text class="txt">地址管理</text>
+                </navigator>
+            </view>
+      
+            <view bindtap="tax" class="item item-bottom">
+                <navigator class="a" hover-class='none'>
+                    <image src="../../images/personal/cart.png" mode='widthFix'></image>
+                    <text class="txt">购物车</text>
+                </navigator>
+            </view>
+           
+        </view>
+        <view bindtap="call" class="company_logo">
+            <image src="../../images/personal/company_logo.png" mode='widthFix'></image>
+        </view>
+        <view class="attr-pop" wx:if="{{logindialog}}">
+            <view bindtap="closePopupTap" class="popup-mask"></view>
+            <view class="popup-contents">
+                <view class="login">
+                    <image class="login_logo" src="../../images/personal/login_logo.png"></image>
+                    <view class="login_account">
+                        <image class="account_logo" src="../../images/personal/login_account.png"></image>
+                        <input bindinput="inputAccount" placeholder="请输入果然VIP账号" value="{{account}}"></input>
+                    </view>
+                    <view class="pwd_account">
+                        <image class="account_logo" src="../../images/personal/login_pwd.png"></image>
+                        <input bindinput="inputPassword" placeholder="请输入密码" value="{{password}}"></input>
+                    </view>
+                    <view bindtap="company_login" class="bt">登录</view>
+                </view>
+            </view>
+            <view bindtap="close_login" class="close_container">
+                <image class="close" src="../../images/personal/close.png"></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,58 @@
+<view class="content">
+    <scroll-view class="content-scroll-list" scrollX="true">
+        <view bindtap="swithNav" class="content-scroll-item {{currentTab==0?'active':''}}" data-current="0">创业法宝
+     <view class="scroll-item-line" wx:if="{{currentTab==0}}"></view>
+        </view>
+        <view bindtap="swithNav" class="content-scroll-item {{currentTab==1?'active':''}}" data-current="1">开办公司
+       <view class="scroll-item-line" wx:if="{{currentTab==1}}"></view>
+        </view>
+        <view bindtap="swithNav" class="content-scroll-item {{currentTab==2?'active':''}}" data-current="2">企业管理
+       <view class="scroll-item-line" wx:if="{{currentTab==2}}"></view>
+        </view>
+        <view bindtap="swithNav" class="content-scroll-item {{currentTab==3?'active':''}}" data-current="3">热门服务
+       <view class="scroll-item-line" wx:if="{{currentTab==3}}"></view>
+        </view>
+    </scroll-view>
+    <swiper  style="height:600rpx" bindchange="switchTab" class="content-swiper" current="{{currentTab}}">
+        <swiper-item class="content-swiper-item" wx:for="{{copenCompany}}" wx:key>
+            <view class="content-item-top">
+                <view class="content-top-con" wx:for="{{item.cs_copenCompany_tab_list1}}" wx:key>
+                    <view bindtap="goLink" class="content-top-link" >
+                        <view class="top-con-name">{{item.name}}</view>
+                        <view class="top-con-des">{{filter.changeDes(item.description)[0]}}</view>
+                        <text class="top-con-mon">{{filter.changeDes(item.description)[1]}}</text>
+                        <image class="top-con-image" src="{{item.picUrl}}"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="content-item-bottom">
+                <view class="content-bottom-con" wx:for="{{item.cs_copenCompany_tab_list2}}" wx:key>
+                    <view bindtap="goLink"  class="content-bottom-link"> 
+                        <text class="bottom-con-name">{{item.name}}</text>
+                        <text class="bottom-con-des">{{item.description}}</text>
+                        <image mode="widthFix" class="bottom-con-image" src="{{item.picUrl}}"></image>
+                    </view>
+                </view>
+                
+            </view>
+            <view class="content-item-line">
+                <view class="item-line-text">我是有底线的</view>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>
+<wxs module="filter">
+module.exports = ({
+    bigContent: (function(array) {
+        return (array.slice(0, 4))
+    }),
+    smallContent: (function(array) {
+        return (array.slice(4, 8))
+    }),
+    changeDes: (function(con) {
+        if (con) {
+            return (con.split(';'))
+        }
+    }),
+});
+</wxs>

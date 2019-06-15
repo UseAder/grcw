@@ -1,0 +1,161 @@
+<!-- <import src="../../../template/showToast.wxml"></import>
+<template is="showToast" data="{{showToast:showToast}}"></template> -->
+<view class="container">
+    <view class="tab">
+        <view class="menu">
+            <view catchtap="menuChange" class="li {{menuActive=='1'?'active':''}}" data-index="1">
+                <text>全部</text>
+            </view>
+            <view catchtap="menuChange" class="li {{menuActive=='2'?'active':''}}" data-index="2">
+                <text>待付款</text>
+            </view>
+            <view catchtap="menuChange" class="li {{menuActive=='3'?'active':''}}" data-index="3">
+                <text>待发货</text>
+            </view>
+            <view catchtap="menuChange" class="li {{menuActive=='4'?'active':''}}" data-index="4">
+                <text>已发货</text>
+            </view>
+        </view>
+    </view>
+    <view class="pane">
+        <view class="node {{menuActive=='1'?'active':''}}">
+            <view class="orders">
+                <navigator class="order" url="../orderDetail/orderDetail?order_sn={{item.order_sn}}&orderid={{item.id}}" wx:for="{{orderList}}" wx:key="{{item.id}}">
+                    <view class="h">
+                        <view class="l">订单编号：{{item.order_sn}}</view>
+                    </view>
+                    <view class="goods" wx:for="{{item.goodList}}" wx:for-item="gd" wx:key="{{gd.id}}">
+                        <view class="img">
+                            <image src="{{gd.list_pic_url}}"></image>
+                        </view>
+                        <view class="info">
+                            <text class="name">{{gd.goods_name}}</text>
+                            <text class="number">{{gd.goods_specifition_name_value==null?'':gd.goods_specifition_name_value}}</text>
+                        </view>
+                        <view class="status">{{item.order_status_text}}</view>
+                    </view>
+                    <view class="b">
+                        <view class="l">实付：￥{{item.actual_price}}</view>
+                        <view class="r">
+                            <view class="handler">
+                                <view catchtap="cancelOrder" class="cancle" data-orderindex="{{index}}" wx:if="{{item.order_status==0}}">取消订单</view>
+                                <view catchtap="payOrder" class="btn" data-orderindex="{{index}}" wx:if="{{item.handleOption.pay}}">去付款</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="node {{menuActive=='2'?'active':''}}">
+            <view class="orders">
+                <navigator class="order" url="../orderDetail/orderDetail?order_sn={{item.order_sn}}&orderid={{item.id}}" wx:for="{{orderList}}" wx:key="{{item.id}}">
+                    <view class="h">
+                        <view class="l">订单编号：{{item.order_sn}}</view>
+                    </view>
+                    <view class="goods" wx:for="{{item.goodList}}" wx:for-item="gd" wx:key="{{gd.id}}">
+                        <view class="img">
+                            <image src="{{gd.list_pic_url}}"></image>
+                        </view>
+                        <view class="info">
+                            <text class="name">{{gd.goods_name}}</text>
+                            <text class="number">{{gd.goods_specifition_name_value==null?'':gd.goods_specifition_name_value}}</text>
+                        </view>
+                        <view class="status"></view>
+                    </view>
+                    <view class="b">
+                        <view class="l">应付：￥{{item.actual_price}}</view>
+                        <view class="r">
+                            <view class="handler">
+                                <view catchtap="cancelOrder" class="cancle" data-orderindex="{{index}}">取消订单</view>
+                                <view catchtap="payOrder" class="btn" data-orderindex="{{index}}" wx:if="{{item.handleOption.pay}}">去付款</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="node {{menuActive=='3'?'active':''}}">
+            <view class="orders">
+                <navigator class="order" url="../orderDetail/orderDetail?order_sn={{item.order_sn}}&orderid={{item.id}}" wx:for="{{orderList}}" wx:key="{{item.id}}">
+                    <view class="h">
+                        <view class="l">订单编号：{{item.order_sn}}</view>
+                    </view>
+                    <view class="goods" wx:for="{{item.goodList}}" wx:for-item="gd" wx:key="{{gd.id}}">
+                        <view class="img">
+                            <image src="{{gd.list_pic_url}}"></image>
+                        </view>
+                        <view class="info">
+                            <text class="name">{{gd.goods_name}}</text>
+                            <text class="number">{{gd.goods_specifition_name_value==null?'':gd.goods_specifition_name_value}}</text>
+                        </view>
+                        <view class="status"></view>
+                    </view>
+                    <view class="b">
+                        <view class="l">已付：￥{{item.actual_price}}</view>
+                        <view class="r">
+                            <view class="handler">
+                                <view catchtap="tip" class="remind" data-order-index="{{index}}">提醒发货</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="node {{menuActive=='4'?'active':''}}">
+            <view class="orders">
+                <navigator class="order" url="../orderDetail/orderDetail?order_sn={{item.order_sn}}&orderid={{item.id}}" wx:for="{{orderList}}" wx:key="{{item.id}}">
+                    <view class="h">
+                        <view class="l">订单编号：{{item.order_sn}}</view>
+                    </view>
+                    <view class="goods" wx:for="{{item.goodList}}" wx:for-item="gd" wx:key="{{gd.id}}">
+                        <view class="img">
+                            <image src="{{gd.list_pic_url}}"></image>
+                        </view>
+                        <view class="info">
+                            <text class="name">{{gd.goods_name}}</text>
+                            <text class="number">{{gd.goods_specifition_name_value==null?'':gd.goods_specifition_name_value}}</text>
+                        </view>
+                        <view class="status"></view>
+                    </view>
+                    <view class="b">
+                        <view class="l">实付：￥{{item.actual_price}}</view>
+                        <view class="r">
+                            <view class="handler">
+                                <view catchtap="catchtransport" class="cancle" data-order-index="{{index}}">物流跟踪</view>
+                                <view catchtap="besure" class="btn" data-order-index="{{index}}">确认收货</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="node {{menuActive=='5'?'active':''}}">
+            <view class="orders">
+                <navigator class="order" url="../orderDetail/orderDetail?order_sn={{item.order_sn}}&orderid={{item.id}}" wx:for="{{orderList}}" wx:key="{{item.id}}">
+                    <view class="h">
+                        <view class="l">订单编号：{{item.order_sn}}</view>
+                    </view>
+                    <view class="goods" wx:for="{{item.goodList}}" wx:for-item="gd" wx:key="{{gd.id}}">
+                        <view class="img">
+                            <image src="{{gd.list_pic_url}}"></image>
+                        </view>
+                        <view class="info">
+                            <text class="name">{{gd.goods_name}}</text>
+                            <text class="number">{{gd.goods_specifition_name_value==null?'':gd.goods_specifition_name_value}}</text>
+                        </view>
+                        <view class="status"></view>
+                    </view>
+                    <view class="b">
+                        <view class="l">实付：￥{{item.actual_price}}</view>
+                        <view class="r">
+                            <view class="handler">
+                                <view catchtap="toComment" class="remind" data-order-index="{{index}}">评价</view>
+                            </view>
+                        </view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+        <view class="pulltip">{{bottomTip}}</view>
+    </view>
+</view>

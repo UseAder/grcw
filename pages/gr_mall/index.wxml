@@ -1,0 +1,32 @@
+<view class="content-container">
+  <scroll-view class="classify-container" scroll-y="true" scroll-with-animation="true">
+    <view class="classify J-flex_sba {{classifyViewId==classify.id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" wx:key="id" data-id="b{{classify.id}}" data-index="{{classify.id}}" bindtap="tapClassify">
+      <view class="name {{classifyViewId==classify.id?'active':''}}">{{classify.name}}</view>
+    </view>
+  </scroll-view>
+  <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true">
+    <block wx:for="{{goodsList}}" wx:key='index'>
+      <view id="b{{item.id}}" class="goodsList-height" hidden='{{item.id!=classifyViewId}}'>
+        <view class="image">
+          <image src="{{item.goods_url}}">
+          </image>
+        </view>
+         <view class="content-title-line">
+                  <text></text>
+                    {{item.name}}
+                    <text></text>
+            </view>
+        <view class='flex-goods'>
+          <view class="goods" wx:for="{{item.goods}}" wx:key="id" wx:for-item="item" data-id='{{item.id}}'>
+            <navigator hover-class='none' url='/pages/emptyStart/index'>
+              <image class="pic" src="{{item.pic}}">
+              </image>
+              <view class="name ellipsis">{{item.name}}</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- <view style='height:{{height-300}}rpx;' wx:if='{{number<15}}'></view> -->
+  </scroll-view>
+</view>

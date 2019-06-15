@@ -1,0 +1,208 @@
+/* @import "../../../template/showToast.wxss"; */
+
+page {
+    height: 100%;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+.orders {
+    height: auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+.order {
+    margin-top: 20rpx;
+    background: #fff;
+}
+
+.order .h {
+    height: 83.3rpx;
+    line-height: 83.3rpx;
+    margin-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    border-bottom: 1px solid #EEEEEE;
+    font-size: 30rpx;
+    color: #0B0B0B;
+}
+
+.order .h .l {
+    float: left;
+}
+
+.order .h .r {
+    float: right;
+    color: #b4282d;
+    font-size: 24rpx;
+}
+
+.order .goods {
+    display: flex;
+    align-items: center;
+    height: 199rpx;
+    margin-left: 31.25rpx;
+}
+
+.order .goods .img {
+    height: 145.83rpx;
+    width: 145.83rpx;
+    background: #f4f4f4;
+}
+
+.order .goods .img image {
+    height: 145.83rpx;
+    width: 145.83rpx;
+}
+
+.order .goods .info {
+    height: 145.83rpx;
+    flex: 1;
+    padding-left: 20rpx;
+}
+
+.order .goods .name {
+    margin-top: 30rpx;
+    display: block;
+    height: 44rpx;
+    line-height: 44rpx;
+    color: #0B0B0B;
+    font-size: 30rpx;
+}
+
+.order .goods .number {
+    display: block;
+    height: 37rpx;
+    line-height: 37rpx;
+    color: #666;
+    margin-top: 16rpx;
+    font-size: 25rpx;
+}
+
+.order .goods .status {
+    width: 130rpx;
+    color: #b4282d;
+    padding-right: 5rpx;
+    font-size: 25rpx;
+}
+
+.order .b {
+    height: 120rpx;
+    line-height: 120rpx;
+    margin-left: 31.25rpx;
+    padding-right: 31.25rpx;
+    border-top: 1px solid #EEEEEE;
+    font-size: 30rpx;
+    color: #333;
+}
+
+.order .b .l {
+    float: left;
+}
+
+.order .b .r {
+    float: right;
+    height: 100%;
+}
+
+.order .b .btn {
+    width: 160rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border: 1px solid #B60F13;
+    font-size: 28rpx;
+    color: #B60F13;
+    background: white;
+}
+
+.order .b .remind {
+    width: 160rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border: 1px solid #757575;
+    font-size: 28rpx;
+    border-radius: 0px;
+    color: #0B0B0B;
+    background: white;
+}
+
+.order .b .cancle {
+    width: 160rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    border: 1px solid #757575;
+    font-size: 28rpx;
+    border-radius: 0px;
+    color: #0B0B0B;
+    margin-right: 30rpx;
+    background: white;
+}
+
+.handler {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+}
+
+
+.tab {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.tab .menu {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    background: #FAFAFA;
+}
+
+.tab .menu .li {
+    display: inline-block;
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+    color: #a9fff3;
+    box-sizing: border-box;
+}
+
+.tab .menu .li text {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 30px;
+    color: #0B0B0B;
+}
+
+.tab .menu .li.active text {
+    line-height: 30px;
+    border-bottom: 2rpx solid #B60F13;
+    color: #B60F13;
+}
+
+.tab .pane {
+    height: 100%;
+    overflow: auto;
+    background: #fff;
+}
+
+.tab .pane .node {
+    position: relative;
+    display: none;
+}
+
+.tab .pane .node.active {
+    display: block;
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+}

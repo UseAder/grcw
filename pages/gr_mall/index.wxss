@@ -1,0 +1,129 @@
+/* pages/classify/index.wxss */
+
+.content-container {
+  display: -webkit-flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-right: 1rpx solid #EDEDED;
+}
+
+.classify-container {
+  width: 180rpx;
+  height: 100vh;
+  box-sizing: border-box;
+  border-right: 1rpx solid #EDEDED;
+}
+
+.classify-container .classify {
+  padding: 30rpx 0rpx;
+  text-align: center;
+}
+
+.classify-container .classify.active {
+  background: #fff;
+  /* border-top:1rpx solid #EFEFEF;
+  border-bottom:1rpx solid #EFEFEF; */
+}
+
+.classify-container .classify .name {
+  display: inline-block;
+  font-size: 28rpx;
+  color: #101010;
+  line-height: 1.2;
+  width: 100%;
+  pointer-events: none;
+  font-weight: 400;
+
+  box-sizing: border-box;
+}
+
+.classify-container .classify .name.active {
+  color: #FF9900;
+}
+
+.goods-container {
+  flex: 1;
+  background: #fff;
+  min-height: 100%;
+  padding: 22rpx;
+  box-sizing: border-box;
+}
+
+.goodsList-height {
+  height: 100%;
+}
+
+.scroll-lock {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.goods-container .image {
+  width: 530rpx;
+  height: 192rpx;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+
+.flex-goods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10rpx;
+}
+
+.flex-goods::after {
+  content: '';
+  width: 92rpx;
+}
+
+.goods {
+  width: 92rpx;
+  margin-bottom: 10px;
+}
+
+.goods:nth-child(3n+2) {
+  margin: 0 20%;
+}
+
+.goods-container .goods .pic {
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+}
+
+.goods-container .goods .name {
+  font-size: 26rpx;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  line-height: 36rpx;
+  padding: 6rpx 0;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  align-content: center
+}
+
+
+
+.content-title-line {
+   text-align: center;
+    font-size: 22rpx;
+    display: flex;align-items: center;
+    justify-content: center;
+    color: #101010;
+    margin: 40rpx 0 40rpx 0;
+   
+}
+.content-title-line text { margin: 0 12rpx;
+  display: inline-block;
+   width:39rpx;
+  height:2rpx;
+background:#F3F3F3;
+}
+
