@@ -1,0 +1,10 @@
+<view class="title">
+  {{news.title}}
+</view>
+<view class="info">
+    <text>发布时间：{{news.add_time}} </text>
+</view>
+<import src="../../lib/wxParse/wxParse.wxml"></import>
+<view class="detail">
+    <template is="wxParse" data="{{wxParseData:newsDetail.nodes}}"></template>
+</view>

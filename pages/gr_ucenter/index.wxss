@@ -3,7 +3,7 @@
 page {
     height: 100%;
     width: 100%;
-    background: #F2F4F7;
+    background:#F2F4F7;
 }
 
 .mycenter {
@@ -11,15 +11,17 @@ page {
 }
 
 .uesrinfo {
-    width: 100px;
-    height: 280rpx;
-    background: transparent;
-    position: absolute;
-    overflow-x: hidden;
+   width:100%;
+height:280rpx;
+background:transparent;
+position:absolute;
+overflow-x:hidden;
+left:0;
+
 }
 
 .container {
-    background: #f4f4f4;
+    background: #f5f5f5;
     height: auto;
     overflow: hidden;
     width: 100%;
@@ -63,7 +65,6 @@ button::after {
     line-height: 85rpx;
     color: #fff;
     font-size: 37.5rpx;
-    margin-bottom: 10rpx;
 }
 
 .profile-info .level {
@@ -71,7 +72,7 @@ button::after {
     height: 30rpx;
     line-height: 30rpx;
     margin-bottom: 10rpx;
-    color: #7f7f7f;
+    color: #B5B4B4;
     font-size: 30rpx;
 }
 
@@ -83,7 +84,7 @@ button::after {
 
 .user-menu .item {
     width: 100%;
-    height:100rpx;background: #fff;
+    height:100rpx;background: #fff;margin-bottom: 10rpx;
 }
 
 .user-menu .item .a {
@@ -161,142 +162,27 @@ button::after {
 
 .company_logo {
     display: flex;
-    height: 100%;
+    position: fixed;width:100%;
     flex-direction: row;
-    margin-top: 70px;
-    bottom: 40px;
+    bottom: 113rpx;
     justify-content: center;
 }
 
-.company_logo image {
-    width: 95px;
-    height: 40px;
-    margin: 0 auto;
+.company_logo .zxun{
+  overflow: hidden;
+ width:300rpx;
+height:60rpx;
+display: flex;justify-content: center;align-items: center;
+background:rgba(255,255,255,1);
+text-align: center;
+box-shadow:0px 5rpx 0px 0px rgba(0, 0, 0, 0.04);
+border-radius:30rpx;
+position: relative;
 }
-
-.attr-pop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 4;
+.zxun image{
+width:39rpx;
+height:37rpx;margin-right: 12rpx;
 }
-
-.popup-mask {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0,0,0,0.5);
-    height: 100%;
-    z-index: 5;
-}
-
-.popup-contents {
-    position: fixed;
-    margin: 0 auto;
-    width: 311px;
-    height: 283px;
-    background-color: #fff;
-    z-index: 6;
-    overflow-x: hidden;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    margin-top: 80px;
-    bottom: 0px;
-    overflow-y: hidden;
-}
-
-.popup-contents .login {
-    display: flex;
-    flex-direction: column;
-}
-
-.popup-contents .login .login_logo {
-    width: 57px;
-    height: 42px;
-    margin: 0 auto;
-    margin-top: 18px;
-}
-
-.login_account {
-    margin: 0 auto;
-    width: 271px;
-    height: 41px;
-    border-bottom: 1px solid #B5B5B5;
-    border-left: 1px solid #B5B5B5;
-    border-right: 1px solid #B5B5B5;
-    border-top: 1px solid #B5B5B5;
-    line-height: 41px;
-    display: flex;
-    margin-top: 23px;
-    flex-direction: row;
-    align-items: center;
-}
-
-.pwd_account {
-    margin: 0 auto;
-    width: 271px;
-    height: 41px;
-    border-bottom: 1px solid #B5B5B5;
-    border-left: 1px solid #B5B5B5;
-    border-right: 1px solid #B5B5B5;
-    border-top: 1px solid #B5B5B5;
-    line-height: 41px;
-    display: flex;
-    margin-top: 15px;
-    flex-direction: row;
-    align-items: center;
-}
-
-.login_account input {
-    margin-left: 10px;
-    color: #333333;
-}
-
-.pwd_account input {
-    margin-left: 10px;
-    color: #333333;
-}
-
-.account_logo {
-    width: 20px;
-    height: 22px;
-    margin-left: 5px;
-}
-
-.bt {
-    width: 186px;
-    height: 39px;
-    background: #FF9900;
-    margin: 0 auto;
-    margin-top: 40px;
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    align-content: center;
-    line-height: 39px;
-    border-radius: 3px;
-}
-
-.close_container {
-    width: 100%;
-    margin-top: 380px;
-    align-content: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.close {
-    width: 33px;
-    height: 33px;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    z-index: 999;
-    position: relative;
+.zxun-contact-button{
+  position: absolute;top: 0;right: 0;opacity: 0;
 }

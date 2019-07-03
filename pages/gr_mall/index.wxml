@@ -1,32 +1,42 @@
 <view class="content-container">
   <scroll-view class="classify-container" scroll-y="true" scroll-with-animation="true">
-    <view class="classify J-flex_sba {{classifyViewId==classify.id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" wx:key="id" data-id="b{{classify.id}}" data-index="{{classify.id}}" bindtap="tapClassify">
-      <view class="name {{classifyViewId==classify.id?'active':''}}">{{classify.name}}</view>
+    <view class="classify J-flex_sba {{classifyViewId==classify.function_id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" wx:key data-id="b{{classify.function_id}}" data-index="{{classify.function_id}}" bindtap="tapClassify">
+      <view class="name {{classifyViewId==classify.function_id?'active':''}}">{{classify.function_title}}</view>
     </view>
   </scroll-view>
   <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true">
     <block wx:for="{{goodsList}}" wx:key='index'>
-      <view id="b{{item.id}}" class="goodsList-height" hidden='{{item.id!=classifyViewId}}'>
+      <view id="b{{item.function_id}}" class="goodsList-height" hidden='{{item.function_id!=classifyViewId}}'>
         <view class="image">
-          <image src="{{item.goods_url}}">
+          <image src="{{item.function_img}}">
           </image>
         </view>
          <view class="content-title-line">
                   <text></text>
-                    {{item.name}}
+                    {{item.function_title}}
                     <text></text>
             </view>
         <view class='flex-goods'>
-          <view class="goods" wx:for="{{item.goods}}" wx:key="id" wx:for-item="item" data-id='{{item.id}}'>
-            <navigator hover-class='none' url='/pages/emptyStart/index'>
-              <image class="pic" src="{{item.pic}}">
+         
+         
+          
+           <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
+              <image class="pic" src="{{item.goods_brand}}">
               </image>
-              <view class="name ellipsis">{{item.name}}</view>
-            </navigator>
+              <view class="name ellipsis">{{item.goods_name}}</view>
+          </view>
+          <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
+              <image class="pic" src="{{item.goods_brand}}">
+              </image>
+              <view class="name ellipsis">{{item.goods_name}}</view>
+          </view>
+          <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
+              <image class="pic" src="{{item.goods_brand}}">
+              </image>
+              <view class="name ellipsis">{{item.goods_name}}</view>
           </view>
         </view>
       </view>
     </block>
-    <!-- <view style='height:{{height-300}}rpx;' wx:if='{{number<15}}'></view> -->
   </scroll-view>
 </view>

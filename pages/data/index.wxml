@@ -1,0 +1,310 @@
+<!-- pages/data/index/index.wxml -->
+<view class="container">
+  <!-- 纳税/社保/资金 -->
+  <block wx:if="{{switcherCurrent==0}}">
+    <!-- 顶部切换 -->
+    <view class="top-switch-back">
+      <view class="top-switch-top-back"></view>
+      <view class="top-switcher">
+        <block wx:for="{{switcherTitle}}" wx:for-index="idx" wx:key="">
+          <view data-idx="{{idx}}" class="top-switcher-title {{idx==switcherCurrent?'active':''}}" bindtap="switcher_action">
+            <view>{{item}}</view>
+            <view class="bottom-line"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 数据图表 -->
+    <view class="data-chart">
+      <view class="data-chart-head">
+        <view>
+          <block wx:if="{{switcherCurrent==0 || switcherCurrent==1}}">
+            <view class="title" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+          <block wx:else>
+            <view class="unit" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+        </view>
+        <view class="date-picker">
+          <picker end="{{end_date}}" value="{{picker_date}}" mode="date" fields="month" class="date" selectable="false" bindchange="picked">
+            {{picker_date_str}}
+          </picker>
+          <image src="/images/data/bottom_arrow.png" mode="aspectFit" style="width: 12rpx;height: 8rpx;"></image>
+        </view>
+      </view>
+      <!-- chart -->
+      <view class="chart">
+        <view class="pie">
+          <ec-canvas id="pie" canvas-id="pie" ec="{{ec}}" bind:init="echartInit"></ec-canvas>
+        </view>
+        <view class="mark">
+          <block wx:for="{{chartTitles}}" wx:for-index="idx" wx:key="">
+            <view class="mark-li {{idx != chartTitles.length-1 ? 'bottom':''}}">
+              <view class="mark-dot" style="background-color: {{colors[idx]}}"></view>
+              <view class="">{{item}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!-- 数据明细 -->
+    <view class="data-detail">
+      <view class="title">数据明细</view>
+      <view wx:for="{{switcherCurrent==0?infos.nashui.rows:switcherCurrent==1?infos.shebao.rows:infos.zijin.rows}}" class="detail-li">
+        <view class="title">{{item.name}}</view>
+        <view class="fee">{{item.value}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{switcherCurrent==1}}">
+    <!-- 顶部切换 -->
+    <view class="top-switch-back">
+      <view class="top-switch-top-back"></view>
+      <view class="top-switcher">
+        <block wx:for="{{switcherTitle}}" wx:for-index="idx" wx:key="">
+          <view data-idx="{{idx}}" class="top-switcher-title {{idx==switcherCurrent?'active':''}}" bindtap="switcher_action">
+            <view>{{item}}</view>
+            <view class="bottom-line"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 数据图表 -->
+    <view class="data-chart">
+      <view class="data-chart-head">
+        <view>
+          <block wx:if="{{switcherCurrent==0 || switcherCurrent==1}}">
+            <view class="title" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+          <block wx:else>
+            <view class="unit" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+        </view>
+        <view class="date-picker">
+          <picker end="{{end_date}}" value="{{picker_date}}" mode="date" fields="month" class="date" selectable="false" bindchange="picked">
+            {{picker_date_str}}
+          </picker>
+          <image src="/images/data/bottom_arrow.png" mode="aspectFit" style="width: 12rpx;height: 8rpx;"></image>
+        </view>
+      </view>
+      <!-- chart -->
+      <view class="chart">
+        <view class="pie">
+          <ec-canvas id="pie" canvas-id="pie" ec="{{ec}}" bind:init="echartInit"></ec-canvas>
+        </view>
+        <view class="mark">
+          <block wx:for="{{chartTitles}}" wx:for-index="idx" wx:key="">
+            <view class="mark-li {{idx != chartTitles.length-1 ? 'bottom':''}}">
+              <view class="mark-dot" style="background-color: {{colors[idx]}}"></view>
+              <view class="">{{item}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!-- 数据明细 -->
+    <view class="data-detail">
+      <view class="title">数据明细</view>
+      <view wx:for="{{switcherCurrent==0?infos.nashui.rows:switcherCurrent==1?infos.shebao.rows:infos.zijin.rows}}" class="detail-li">
+        <view class="title">{{item.name}}</view>
+        <view class="fee">{{item.value}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{switcherCurrent==2}}">
+    <!-- 顶部切换 -->
+    <view class="top-switch-back">
+      <view class="top-switch-top-back"></view>
+      <view class="top-switcher">
+        <block wx:for="{{switcherTitle}}" wx:for-index="idx" wx:key="">
+          <view data-idx="{{idx}}" class="top-switcher-title {{idx==switcherCurrent?'active':''}}" bindtap="switcher_action">
+            <view>{{item}}</view>
+            <view class="bottom-line"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 数据图表 -->
+    <view class="data-chart">
+      <view class="data-chart-head">
+        <view>
+          <block wx:if="{{switcherCurrent==0 || switcherCurrent==1}}">
+            <view class="title" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+          <block wx:else>
+            <view class="unit" selectable="false">
+              {{dataChartHeadTitles[switcherCurrent]}}
+            </view>
+          </block>
+        </view>
+        <view class="date-picker">
+          <picker end="{{end_date}}" value="{{picker_date}}" mode="date" fields="month" class="date" selectable="false" bindchange="picked">
+            {{picker_date_str}}
+          </picker>
+          <image src="/images/data/bottom_arrow.png" mode="aspectFit" style="width: 12rpx;height: 8rpx;"></image>
+        </view>
+      </view>
+      <!-- chart -->
+      <view class="chart">
+        <view class="pie">
+          <ec-canvas id="pie" canvas-id="pie" ec="{{ec}}" bind:init="echartInit"></ec-canvas>
+        </view>
+        <view class="mark">
+          <block wx:for="{{chartTitles}}" wx:for-index="idx" wx:key="">
+            <view class="mark-li {{idx != chartTitles.length-1 ? 'bottom':''}}">
+              <view class="mark-dot" style="background-color: {{colors[idx]}}"></view>
+              <view class="">{{item}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <!-- 数据明细 -->
+    <view class="data-detail">
+      <view class="title">数据明细</view>
+      <view wx:for="{{switcherCurrent==0?infos.nashui.rows:switcherCurrent==1?infos.shebao.rows:infos.zijin.rows}}" class="detail-li">
+        <view class="title">{{item.name}}</view>
+        <view class="fee">{{item.value}}</view>
+      </view>
+    </view>
+  </block>
+  <!-- 资产负债表 -->
+  <block wx:elif="{{switcherCurrent==3}}">
+    <scroll-view scroll-y="{{true}}" class="container" bind:scroll="onscrolling">
+      <!-- 顶部切换 -->
+      <view class="top-switch-back">
+        <view class="top-switch-top-back"></view>
+        <view class="top-switcher">
+          <block wx:for="{{switcherTitle}}" wx:for-index="idx" wx:key="">
+            <view data-idx="{{idx}}" class="top-switcher-title {{idx==switcherCurrent?'active':''}}" bindtap="switcher_action">
+              <view>{{item}}</view>
+              <view class="bottom-line"></view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="debt">
+        <navigator url="/pages/dataAnalysis/index?id=4">跳转</navigator>
+        <view class="date">
+          <picker end="{{end_date}}" value="{{picker_date}}" mode="date" fields="month" class="date" selectable="false" bindchange="picked">
+            {{picker_date_str}}
+          </picker>
+          <image src="/images/data/bottom_arrow.png" />
+        </view>
+        <block wx:for="{{infos.fuzhai.rows}}" wx:for-index="idx" wx:key="">
+          <view data-idx="{{idx}}" class="section {{item.showDetail?'':'bottom-radius'}}" bind:tap="debt_section_action">
+            <view class="title">
+              <view class="left">{{item.name}}</view>
+              <image class="right {{item.showDetail?'rotate-180':''}}" src="/resources/imgs/can-launch-icon.png"></image>
+            </view>
+            <view class="fee">
+              <view class="left">{{item.qichu}}</view>
+              <view class="right">{{item.qimo}}</view>
+            </view>
+            <view class="type">
+              <view class="left">年初</view>
+              <view class="right">期末</view>
+            </view>
+          </view>
+          <block wx:if="{{item.showDetail}}">
+            <block wx:for="{{item.rows}}" wx:key="" wx:for-index="detail_index" wx:for-item="detail_item">
+              <block wx:if="{{detail_index==0}}">
+                <view class="section-sepline">
+                  <block wx:for="{{50}}">
+                    <image src="/resources/imgs/data-debt-separrow.png" />
+                  </block>
+                </view>
+              </block>
+              <view class="section-detail {{detail_index==detail_item.detail.length-1?'bottom-radius':''}}">
+                <view class="title">
+                  <view class="left">{{detail_item.name}}</view>
+                </view>
+                <view class="fee">
+                  <view class="left">{{detail_item.qichu}}</view>
+                  <view class="right">{{detail_item.qimo}}</view>
+                </view>
+                <view class="type">
+                  <view class="left">年初</view>
+                  <view class="right">期末</view>
+                </view>
+              </view>
+              <block wx:if="{{detail_index!=detail_item.detail.length-1}}">
+                <view class="sepline">
+                  <view></view>
+                </view>
+              </block>
+            </block>
+          </block>
+        </block>
+      </view>
+    </scroll-view>
+  </block>
+  <!-- 收入利润表 -->
+  <view class="income" wx:if="{{switcherCurrent==4}}">
+    <!-- 顶部切换 -->
+    <view class="top-switch-back">
+      <view class="top-switch-top-back"></view>
+      <view class="top-switcher">
+        <block wx:for="{{switcherTitle}}" wx:for-index="idx" wx:key="">
+          <view data-idx="{{idx}}" class="top-switcher-title {{idx==switcherCurrent?'active':''}}" bindtap="switcher_action">
+            <view>{{item}}</view>
+            <view class="bottom-line"></view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="date">
+      <picker end="{{end_date}}" value="{{picker_date}}" mode="date" fields="month" selectable="false" bindchange="picked">
+        {{picker_date_str}}
+      </picker>
+      <image src="/images/data/bottom_arrow.png" />
+    </view>
+    <view class="income-back">
+      <view wx:for="{{infos.lirun.rows}}" wx:for-index="idx0" wx:for-item="item0" wx:key="" class="{{idx0!=infos.lirun.rows.length-1?'border-bottom':''}}">
+        <view class="income-title">
+          <view class="row title {{idx0!=infos.lirun.rows.length-1?'border-bottom':''}}">
+            <view class="left">{{item0.name}}</view>
+            <view class="right">{{item0.value}}</view>
+          </view>
+        </view>
+        <view wx:for="{{item0.rows}}" wx:for-index="idx1" wx:for-item="item1" wx:key="" class="income-canshow">
+          <view class="row {{idx1!=item0.rows.length-1||item1.show?'border-bottom':''}}" data-idx="{{idx0}}-{{idx1}}">
+            <view class="left">{{item1.name}}</view>
+            <view class="right">{{item1.value}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{showTop}}">
+  <view class="betop" data-idx="{{topInfo.idx}}" style="top:-{{topNeedMove?betopMoveHeight:0}}px" bind:tap="debt_section_action">
+    <view class="title">
+      <view class="left">{{topInfo.name}}</view>
+      <image class="right {{topInfo.showDetail?'rotate-180':''}}" src="/resources/imgs/can-launch-icon.png"></image>
+    </view>
+    <view class="fee">
+      <view class="left">{{topInfo.left.fee}}</view>
+      <view class="right">{{topInfo.right.fee}}</view>
+    </view>
+    <view class="type">
+      <view class="left">{{topInfo.left.name}}</view>
+      <view class="right">{{topInfo.right.name}}</view>
+    </view>
+    <view class="betop-sepline">
+      <block wx:for="{{50}}">
+        <image src="/resources/imgs/data-debt-separrow.png" />
+      </block>
+    </view>
+  </view>
+</block>

@@ -15,7 +15,7 @@
   </view>
   <view class="menu">
     <view class="publish">
-      <navigator hover-class='none' bindtap="tonavigate" class="item" data-category="1" data-check="{{item.cs_channel_url}}" wx:for="{{channel}}" wx:for-index="index" wx:for-item="item" wx:key>
+      <navigator url="/pages/gr_mall/index?id={{item.function_id}}" hover-class='none' open-type="reLaunch"  class="item" data-category="1" data-check="{{item.cs_channel_url}}" wx:for="{{channel}}" wx:for-index="index" wx:for-item="item" wx:key>
         <image src="{{item.function_url}}"></image>
         <text>{{item.function_title}}</text>
       </navigator>
@@ -29,18 +29,61 @@
         <text class="normal">快报</text>
       </view>
       <swiper autoplay="true" duration="1000" interval='5000' circular>
-        <swiper-item wx:for="{{newsRecommendList}}" wx:key="newsRecommendList">
-          <navigator class="new_item" url="../newlist/news">
+        <swiper-item wx:for="{{news}}" wx:key="newsRecommendList">
+          <navigator hover-class='none' class="new_item" url="../newlist/news">
             <view>
-              <text class="cheap">{{item.cs_news_tag}}</text>
+                          <text class="cheap">快报</text>
+
             </view>
-            <text class="news_desc j_text">{{item.cs_news_title}}</text>
+            <text class="news_desc j_text">{{item.title}}</text>
           </navigator>
         </swiper-item>
       </swiper>
-      <navigator class="more" url="../newlist/news"><text>更多</text></navigator>
+      <navigator class="more" url="/pages/newlist/news" hover-class="none">
+        <text>更多</text>
+      </navigator>
     </view>
   </view>
-
-  <content copenCompany="{{copenCompany}}"></content>
+  <view class=" content">
+    <scroll-view class="content-scroll-list" scrollX="true">
+      <view bindtap="swithNav" class="content-scroll-item {{currentTab==index?'active':''}}" data-current="{{index}}" wx:for="{{copenCompany}}" data-index="{{index}}" wx:key>{{item.type_name}}
+        <view class="scroll-item-line" wx:if="{{currentTab==index}}"></view>
+      </view>
+    </scroll-view>
+    <swiper style="height:{{swiper_height + 0}}rpx;min-height:290rpx" bindchange="switchTab" class="content-swiper" current="{{currentTab}}">
+      <swiper-item class="content-swiper-item " wx:for="{{copenCompany}}" wx:key>
+        <view class="content-item-top column-list{{index}}">
+          <view class="content-top-con" wx:for="{{item.list}}" wx:key>
+          <block> </block>
+            <view bindtap="goLink " class="content-top-link ">
+              <view class="top-con-name ">{{item.list_name}}</view>
+              <view class="top-con-des ">{{item.list_title}}</view>
+              <text class="top-con-mon ">{{item.list_remarks}}</text>
+              <image class="top-con-image " src="{{item.list_icon}} "></image>
+            </view>
+          </view>
+           <view class="content-top-con content-top-con-kong" wx:if="{{item.list==''}}"></view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- <view class="shangbiao"> -->
+  <view class="scroll_box">
+  <scroll-view scroll-x style="width:auto;overflow:hidden;" class="scroll-view_x content-item-bottom">
+    <view class="content-bottom-con" wx:for="{{brand}}" wx:key>
+      <view bindtap="goLink" class="content-bottom-link">
+        <text class="bottom-con-name">热门商标</text>
+        <text class="bottom-con-des">{{item.tra_title}}</text>
+        <image mode="widthFix" class="bottom-con-image" src="{{item.tra_logo}}"></image>
+      </view>
+    </view>
+  </scroll-view>
+  </view>
 </view>
+<!-- <content  class='content{{currentTab}}' bind:CurrentTab="CurrentTab" copenCompany="{{copenCompany}}"  swiper_height="{{swiper_height}}"></content> -->
+
+<!-- -->
+<!-- <view class="content-item-line">
+                <view class="item-line-text">我是有底线的</view>
+            </view> -->
+<!-- </view> -->

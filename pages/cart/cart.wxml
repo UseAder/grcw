@@ -1,0 +1,52 @@
+<view class='shoppingCart'>
+  <view wx:if="{{cartList.length > 0}}">
+    <view class='list'>
+      <checkbox-group bindchange="checkboxChange">
+        <block wx:for="{{cartList}}" wx:key>
+          <view class='item acea-row row-between-wrapper'>
+            <checkbox value="{{item.cart_id}}" checked="{{item.checked}}" />
+            <view class='picTxt acea-row row-between-wrapper'>
+              <view catchtap="subDel" data-id='{{item.cart_id}}' data-index='{{item.index}}' class='shanchu iconfont icon-shan_chu'></view>
+              <view class='pictrue' data-id="{{item.cart_id}}" bindtap='goDetails'>
+                <image src='{{item.goods_brand}}'></image>
+              </view>
+              <view class='text' data-id="{{item.cart_id}}" bindtap='goDetails'>
+                <view class='line1 title'>{{item.goods_name}}</view>
+                
+                <view class='money' data-id="{{item.id}}" bindtap='goDetails'>￥{{item.goods_discount}}</view>
+              </view>
+              <view class='stepper carnum acea-row row-center-wrapper'>
+                <!-- 减号 -->
+                <view class="sign reduce iconfont icon-jian {{item.numSub ? 'disabled' : ''}}" catchtap="subCart" data-index="{{index}}"></view>
+                <view class='number'>{{item.cart_num}}</view>
+                <!-- 加号 -->
+                <view class="sign plus iconfont icon-jia {{item.numAdd ?'disabled' : ''}}" catchtap="addCart" data-index="{{index}}"></view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </checkbox-group>
+    </view>
+  </view>
+  <view class='noCart' wx:if="{{cartList.length == 0}}">
+    <navigator url='/pages/gr_mall/index' open-type="reLaunch" hover-class='none' class='pictrue'>
+      <image src='/images/noCart-a8fe3f12e5.png'></image>
+       <text>去添加点什么吧</text>
+    </navigator>
+  </view>
+  <view style='height:120rpx;'></view>
+  <view class='footer acea-row row-between-wrapper' wx:if="{{cartList.length > 0}}">
+    <view>
+      <checkbox-group bindchange="checkboxAllChange" class='J-flex_sba'>
+        <checkbox value="all" checked="{{isAllSelect}}" />
+        <text class='checkAll'>全选 ({{cartCount}})</text>
+      </checkbox-group>
+    </view>
+    <view class='money acea-row row-middle'>
+      <text class='font-color'>￥{{selectCountPrice}}</text>
+      <form bindsubmit="subOrder" report-submit='true'>
+        <button class='placeOrder bg-color' formType="submit">下单</button>
+      </form>
+    </view>
+  </view>
+</view>

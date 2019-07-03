@@ -1,208 +1,172 @@
-/* @import "../../../template/showToast.wxss"; */
+/* pages/my/order/order.wxss */
 
-page {
-    height: 100%;
-    width: 100%;
-    background: #f4f4f4;
+.none{
+  height:46rpx;
+}
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  height: 70rpx;
+  line-height: 50rpx;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 9999;
+  top:0;
+  background: #fff;
 }
 
-.orders {
-    height: auto;
-    width: 100%;
-    overflow: hidden;
+.swiper-tab-item {
+  width: 20%;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 50rpx;
 }
 
-.order {
-    margin-top: 20rpx;
-    background: #fff;
+.active {
+  color: #da031d;
 }
 
-.order .h {
-    height: 83.3rpx;
-    line-height: 83.3rpx;
-    margin-left: 31.25rpx;
-    padding-right: 31.25rpx;
-    border-bottom: 1px solid #EEEEEE;
-    font-size: 30rpx;
-    color: #0B0B0B;
+.swiper-tab-item.active text {
+  padding-bottom: 24rpx;
+  border-bottom: 4rpx solid #da031d;
 }
 
-.order .h .l {
-    float: left;
+.swiper-item {
+  background: #f5f5f5;
+  margin-top: 24rpx;
 }
 
-.order .h .r {
-    float: right;
-    color: #b4282d;
-    font-size: 24rpx;
+.order-detail {
+  width: 100%;
+  background: #fff;
+  margin-top: 24rpx;
+  display: flex;
+  flex-direction: column;
 }
 
-.order .goods {
-    display: flex;
-    align-items: center;
-    height: 199rpx;
-    margin-left: 31.25rpx;
+.order-number {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40rpx;
+  padding-top: 32rpx;
+  padding-left: 26rpx;
 }
 
-.order .goods .img {
-    height: 145.83rpx;
-    width: 145.83rpx;
-    background: #f4f4f4;
+.order-status {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(218, 3, 29, 1);
+  line-height: 42rpx;
+  position: relative;
+  top: -40rpx;
+  left: 610rpx;
 }
 
-.order .goods .img image {
-    height: 145.83rpx;
-    width: 145.83rpx;
+.line1 {
+  width: 680rpx;
+  height: 3rpx;
+  background: #ddd;
+  position: relative;
+  top: -20rpx;
+  left: 26rpx;
 }
 
-.order .goods .info {
-    height: 145.83rpx;
-    flex: 1;
-    padding-left: 20rpx;
+.order-img {
+  width: 152rpx;
+  height: 152rpx;
+  padding-left: 34rpx;
 }
 
-.order .goods .name {
-    margin-top: 30rpx;
-    display: block;
-    height: 44rpx;
-    line-height: 44rpx;
-    color: #0B0B0B;
-    font-size: 30rpx;
+.order-name {
+  width: 382rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40rpx;
+  position: relative;
+  top: -120rpx;
+  left: 218rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.order .goods .number {
-    display: block;
-    height: 37rpx;
-    line-height: 37rpx;
-    color: #666;
-    margin-top: 16rpx;
-    font-size: 25rpx;
+.order-quantity {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(153, 153, 153, 1);
+  line-height: 36rpx;
+  position: relative;
+  top: -100rpx;
+  left: 218rpx;
 }
 
-.order .goods .status {
-    width: 130rpx;
-    color: #b4282d;
-    padding-right: 5rpx;
-    font-size: 25rpx;
+.line2 {
+  width: 680rpx;
+  height: 3rpx;
+  background: #ddd;
+  position: relative;
+  top: -50rpx;
+  left: 26rpx;
 }
 
-.order .b {
-    height: 120rpx;
-    line-height: 120rpx;
-    margin-left: 31.25rpx;
-    padding-right: 31.25rpx;
-    border-top: 1px solid #EEEEEE;
-    font-size: 30rpx;
-    color: #333;
+.payable {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 36rpx;
+  position: relative;
+  top: -20rpx;
+  left: 548rpx;
+}
+.button{
+  width: 100%;display: flex;  justify-content: flex-end;margin-bottom: 35rpx;margin-top: 5rpx;
+}
+.cancel-btn {
+  /* border:0; */
+  width: 170rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+  border: 1rpx solid #AEAEAE;
+  border-radius:6rpx;
+  background: #fff;
+  position: relative;
+
+  align-items: center;
 }
 
-.order .b .l {
-    float: left;
+.pay-btn {
+  width: 170rpx;
+   height: 68rpx;
+  line-height: 68rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #da031d;
+  border: 1rpx solid #da031d;
+  border-radius:6rpx;
+  background: #fff;
+  position: relative;
+  text-align: center;
+margin-right: 46rpx;
+margin-left: 24rpx;
 }
+.goodsInfoList{
+  min-height:229rpx;
 
-.order .b .r {
-    float: right;
-    height: 100%;
-}
-
-.order .b .btn {
-    width: 160rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
-    border: 1px solid #B60F13;
-    font-size: 28rpx;
-    color: #B60F13;
-    background: white;
-}
-
-.order .b .remind {
-    width: 160rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
-    border: 1px solid #757575;
-    font-size: 28rpx;
-    border-radius: 0px;
-    color: #0B0B0B;
-    background: white;
-}
-
-.order .b .cancle {
-    width: 160rpx;
-    height: 70rpx;
-    line-height: 70rpx;
-    text-align: center;
-    border: 1px solid #757575;
-    font-size: 28rpx;
-    border-radius: 0px;
-    color: #0B0B0B;
-    margin-right: 30rpx;
-    background: white;
-}
-
-.handler {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    align-items: center;
-}
-
-
-.tab {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-}
-
-.tab .menu {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 40px;
-    background: #FAFAFA;
-}
-
-.tab .menu .li {
-    display: inline-block;
-    width: 25%;
-    text-align: center;
-    cursor: pointer;
-    color: #a9fff3;
-    box-sizing: border-box;
-}
-
-.tab .menu .li text {
-    display: inline-block;
-    font-size: 14px;
-    line-height: 30px;
-    color: #0B0B0B;
-}
-
-.tab .menu .li.active text {
-    line-height: 30px;
-    border-bottom: 2rpx solid #B60F13;
-    color: #B60F13;
-}
-
-.tab .pane {
-    height: 100%;
-    overflow: auto;
-    background: #fff;
-}
-
-.tab .pane .node {
-    position: relative;
-    display: none;
-}
-
-.tab .pane .node.active {
-    display: block;
-    animation-name: fadeIn;
-    animation-duration: 0.5s;
-    animation-fill-mode: both;
 }

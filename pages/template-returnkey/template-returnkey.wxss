@@ -1,0 +1,18 @@
+.fh_jiantou{
+  height: 128rpx;color: #000;display: flex;align-items: center;font-size:37rpx;
+  justify-content: space-between;padding-top: 20rpx;box-sizing:border-box;
+  position:fixed;top: 0;z-index: 6;background: #fff;
+width:100%;
+
+}
+.fh_jiantou-padding{
+   height: 128rpx;
+}
+.fh_jiantou:after{
+    content: '';
+    width: 50rpx;
+
+  }
+.fh_jiantou .icon-fh_jiantou{
+font-size:50rpx;
+}

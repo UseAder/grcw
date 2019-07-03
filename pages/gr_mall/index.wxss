@@ -76,22 +76,22 @@
 
 .flex-goods::after {
   content: '';
-  width: 92rpx;
+  width: 130rpx;
 }
 
 .goods {
-  width: 92rpx;
+  width: 130rpx;
   margin-bottom: 10px;
 }
 
 .goods:nth-child(3n+2) {
-  margin: 0 20%;
+  margin: 0 
 }
 
 .goods-container .goods .pic {
-  width: 92rpx;
-  height: 92rpx;
-  border-radius: 50%;
+  width: 130rpx;
+  height: 119rpx;
+  border-radius: 3rpx;
 }
 
 .goods-container .goods .name {
@@ -107,6 +107,7 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   align-content: center
+  ;text-align: center;
 }
 
 

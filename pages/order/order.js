@@ -1,169 +1,149 @@
-// var t = require("../../../utils/util.js"), e = require("../../../config/api.js"), r = require("../../../template/showToast");
-
+var app = getApp();
+const util = require('../../utils/util.js');
+const api = require('../../config/api.js');
 Page({
-    data: {
-        orderList: [],
-        pageNum: 1,
-        pageSize: 10,
-        totalPage: 0,
-        bottomTip: "正在加载中……",
-        menuActive: 1,
-        unpayList: [],
-        unPost: [],
-        hasPost: [],
-        unComment: [],
-        current: 1
-    },
-    onLoad: function() {
-      wx.login({
-        success: function (res) {
-          if (res.code) {
-            //登录远程服务器
-            console.log(res)
-            resolve(res);
-          } else {
-            reject(res);
-          }
-        },
-        fail: function (err) {
-          reject(err);
-        }
-      });
-        wx.showLoading({
-            title: "加载中...",
-            success: function() {}
-        }), this.getOrderList(-1);
-    },
-    menuChange: function(t) {
-        var e = t.currentTarget.dataset.index;
-        e != this.data.menuActive && (this.setData({
-            menuActive: e,
-            current: e,
-            pageNum: 1,
-            unpayList: [],
-            unPost: [],
-            hasPost: [],
-            unComment: [],
-            orderList: [],
-            bottomTip: "正在加载中……"
-        }), 1 == e ? this.getOrderList(-1) : 2 == e ? this.getOrderList(0) : 3 == e ? this.getOrderList(201) : 4 == e ? this.getOrderList(300) : 5 == e && this.getOrderList(301));
-    },
-    getOrderList: function(r) {
-        var a = this;
-        t.request(e.OrderList, {
-            page: a.data.pageNum,
-            size: a.data.pageSize,
-            order_status: r
-        }).then(function(t) {
-            0 === t.errno && (console.log(t.data), a.setData({
-                orderList: a.data.orderList.concat(t.data.data),
-                totalPage: t.data.totalPages
-            }), wx.hideLoading(), a.data.pageNum >= a.data.totalPage ? a.setData({
-                bottomTip: "没有更多结果了"
-            }) : a.setData({
-                bottomTip: "正在加载中…"
-            }));
-        });
-    },
-    payOrder: function(t) {
-        var e = this, r = t.currentTarget.dataset.orderindex, a = e.data.orderList[r].actual_price, o = e.data.orderList[r].order_sn, s = e.data.orderList[r].id;
-        wx.redirectTo({
-            url: "/pages/pay/pay?actual_price=" + a + "&order_sn=" + o + "&orderid=" + s
-        });
-    },
-    onReady: function() {},
-    onShow: function() {
-        var t = this;
-        5 == this.data.current && (t.setData({
-            pageNum: 1,
-            orderList: [],
-            bottomTip: "正在加载中……"
-        }), this.getOrderList(301));
-    },
-    onHide: function() {},
-    onUnload: function() {},
-    onReachBottom: function() {
-        this.data.pageNum >= this.data.totalPage || (this.setData({
-            pageNum: this.data.pageNum + 1
-        }), 1 == this.data.current ? this.getOrderList(-1) : 2 == this.data.current ? this.getOrderList(0) : 3 == this.data.current ? this.getOrderList(201) : 4 == this.data.current ? this.getOrderList(300) : 5 == this.data.current && this.getOrderList(301));
-    },
-    cancelOrder: function(r) {
-        var a = this, o = r.currentTarget.dataset.orderindex, s = a.data.orderList[o].order_status, i = a.data.orderList[o].order_sn, n = "";
-        switch (s) {
-          case 300:
-            console.log("已发货，不能取消"), n = "订单已发货";
-            break;
+  data: {
+    orderNav: [
+      { status: 0, type: 5, title: '全部' },
+      { status: 1, type: 0, title: '待付款' },
+      { status: 2, type: 1, title: '待发货' },
+      { status: 3, type: 2, title: '已发货' },
+      { status: 4, type: 3, title: '已完成' },
+    ],
+    loading: false,//是否加载中
+    loadend: false,//是否加载完毕
+    loadTitle: '加载更多',//提示语
+    status: 0,//当前所在滑块的index
+    orderStatus: 5,//订单状态
+    aheight: 0,
+    orderList: []
+  },
 
-          case 301:
-            console.log("已收货，不能取消"), n = "订单已收货";
-            break;
+  onLoad: function () {
+    // 页面初始化 options为页面跳转所带来的参数
+  },
 
-          case 101:
-            console.log("已经取消"), n = "订单已取消";
-            break;
+  toGoodsDetails: function (e) {
+    var id = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: '/pages/goods-details/index?id=' + id });
+  },
+  goQuestionnaire: function (e) {
+    var order_num = e.currentTarget.dataset.order_num;
+    wx.navigateTo({ url: '/pages/questionnaire/questionnaire?order_num=' + order_num });
+  },
+  /**
+   * 取消订单
+   * 
+  */
+  cancelOrder: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    if (!order_id) return app.Tips({ title: '缺少订单号无法取消订单' });
+    var that = this;
+    util.request(api.OrderDelete + order_id, {}, "DELETE"
+    ).then(function (res) {
+      if (res.code == 200)
+        app.Tips({ title: '删除成功', icon: 'success' }, function () {
+          that.getOrderList()
+        });
+    })
+  },
+  /**
+   * 确认收货
+   * 
+  */
+  confirmOrder: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    if (!order_id) return app.Tips({ title: '缺少订单号无法确认订单' });
+    var that = this;
+    util.request(api.OrderConfirm, { id: order_id }
+    ).then(function (res) {
+      if (res.code == 200)
+        app.Tips({ title: '已确认收货', icon: 'success' }, function () {
+          that.getOrderList()
+        });
+    })
+  },
 
-          case 102:
-            console.log("已经删除"), n = "订单已删除";
-            break;
+  /**
+   * 查看物流
+  */
+  viewLogistics: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
+    wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+  },
+  /**
+  * 再来一单
+ */
+  anotherOrder: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
+    wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+  },
 
-          case 401:
-            console.log("已经退款"), n = "订单已退款";
-            break;
+  /**
+   * 去订单详情  立即付款
+  */
+  goOrderDetails: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
+    wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+  },
+  /**
+   * 切换类型
+  */
+  statusClick: function (e) {
 
-          case 402:
-            console.log("已经退款退货"), n = "订单已退货";
-        }
-        if ("" != n) return console.log(n), t.showErrorToast(n), !1;
-        console.log("可以取消订单的情况"), wx.showModal({
-            title: "",
-            content: "确定要取消此订单？",
-            success: function(r) {
-                r.confirm && (console.log("用户点击确定"), t.request(e.OrderCancel, {
-                    order_sn: i
-                }).then(function(t) {
-                    console.log(t.errno), 0 === t.errno && (console.log(t.data), wx.showToast({
-                        title: "已取消订单",
-                        icon: "success",
-                        duration: 2e3
-                    }), a.setData({
-                        pageNum: 1,
-                        orderList: []
-                    }), 1 == a.data.current ? a.getOrderList(-1) : a.getOrderList(0));
-                }));
-            }
+    var orderStatus = e.currentTarget.dataset.type;
+    var status = e.currentTarget.dataset.status;
+    if (status == this.data.status) return;
+    this.setData({ status: status, orderStatus: orderStatus });
+    // this.setData({ orderStatus: status, loadend: false, page: 1, orderList: [] });
+    // this.getOrderList();
+  },
+  //切换
+  swiperTab: function (e) {
+    let that = this;
+    var orderNav = that.data.orderNav
+    that.setData({
+      status: e.detail.current,
+      orderStatus: orderNav[e.detail.current].type
+    })
+  },
+  /**
+   * 获取订单列表
+  */
+  getOrderList: function () {
+    var that = this;
+    util.request(api.GetOrder, { uid: wx.getStorageSync('uid')}
+    ).then(function (res) {
+      if (res.code == 200) {
+        that.setData({
+          orderList: res.data
         });
-    },
-    tip: function(t) {
-        r.showToast({
-            title: "已通知对方尽快发货",
-            mask: !1
+        that.setData({
+          aheight: that.data.orderList.length * 539
         });
-    },
-    besure: function(r) {
-        var a = this, o = r.currentTarget.dataset.orderIndex, s = a.data.orderList[o].order_sn;
-        t.request(e.SureOrder, {
-            order_sn: s
-        }).then(function(t) {
-            console.log(t.errno), 0 === t.errno && (console.log(t.data), wx.showToast({
-                title: "已确认收货",
-                icon: "success",
-                duration: 2e3
-            }), a.setData({
-                pageNum: 1,
-                orderList: []
-            }), 1 == a.data.current ? a.getOrderList(-1) : a.getOrderList(300));
-        });
-    },
-    toComment: function(t) {
-        var e = this, r = t.currentTarget.dataset.orderIndex, a = e.data.orderList[r].goodList[0].goods_id, o = e.data.orderList[r].order_sn;
-        wx.navigateTo({
-            url: "../../commentPost/commentPost?typeId=0&valueId=" + a + "&order_sn=" + o
-        });
-    },
-    catchtransport: function(t) {
-        var e = this, r = t.currentTarget.dataset.orderIndex, a = e.data.orderList[r].shipping_no, o = e.data.orderList[r].code;
-        wx.navigateTo({
-            url: "../logistic/logistic?code=" + o + "&logisticCode=" + a
-        });
-    }
-});
+      }
+    })
+  },
+
+  /**
+   * 删除订单
+  */
+  delOrder: function (e) {
+    var order_id = e.currentTarget.dataset.order_id;
+    var index = e.currentTarget.dataset.index, that = this;
+    app.baseGet(app.U({ c: 'user_api', a: 'user_remove_order', q: { uni: order_id } }), function (res) {
+      that.data.orderList.splice(index, 1);
+      that.setData({ orderList: that.data.orderList, 'orderData.unpaid_count': that.data.orderData.unpaid_count - 1 });
+      return app.Tips({ title: '删除成功', icon: 'success' });
+    });
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getOrderList();
+  }
+})

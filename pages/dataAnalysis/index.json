@@ -1,0 +1,6 @@
+{
+  "navigationBarBackgroundColor": "#1B88EE",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+"navigationBarTitleText": "数据分析"
+}

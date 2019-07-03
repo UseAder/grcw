@@ -1,20 +1,22 @@
 {
-  "pages": [              
-
-                "pages/gr_index/index",
-                
-      "pages/gr_ucenter/index",
-    "pages/order/order",
-     
+  "pages": [
+        "pages/dataAnalysis/index",
         
-        "pages/gr_mall/index",
+          "pages/data/index",
+          
+        "pages/gr_data/index",
         
-    "pages/gr_data/index",
-
-        "pages/shop-cart/index",
-    
-    "pages/my/index/index",
-    "pages/logs/logs"
+    "pages/gr_index/index",
+    "pages/gr_ucenter/index",
+    "pages/cart/cart",
+    "pages/shopping/checkout",
+    "pages/gr_mall/index",
+    "pages/address-select/index",
+    "pages/address-add/index",
+    "pages/goods/goods",
+    "pages/newlist/news",
+    "pages/newsdetail/news",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,7 +29,6 @@
     "selectedColor": "#FF9900",
     "borderStyle": "white",
     "backgroundColor": "#fff",
-    
     "list": [
       {
         "pagePath": "pages/gr_index/index",

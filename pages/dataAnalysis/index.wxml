@@ -1,0 +1,199 @@
+<view class=" content">
+  <navigator url="/pages/data/index">跳转</navigator>
+  <scroll-view class="content-scroll-list" scroll-x="true" scroll-with-animation="true">
+    <view class="content-scroll-item {{classifyViewId==classify.id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" wx:key="id" data-id="b{{classify.id}}" data-index="{{classify.id}}" bindtap="swithNav">
+      <view class="name {{classifyViewId==classify.id?'active':''}}">{{classify.name}}</view>
+    </view>
+  </scroll-view>
+</view>
+<view class="content-view">
+  <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true">
+    <block wx:for="{{categories}}" wx:key='index'>
+      <view id="b{{item.id}}" class="goodsList-height" hidden='{{item.id!=classifyViewId}}'>
+        {{item.name}}
+        <view class="debt">
+          <view class="date">
+            <picker fields="month" class="date" selectable="false" bindchange="picked">
+              RQ选择 </picker>
+            <image src="/images/data/bottom_arrow.png" />
+          </view>
+          <!-- 利润表 -->
+          <!-- <view class='view-list'>
+            <view class='profit-list-title J-flex-b'>
+              <view class='title'>一、营业收入</view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+            <view class='J-flex-b'>
+              <view>减：营业成本</view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+            <view class='profit-item-title'>
+              <view class='J-flex-b'>
+                <view class='title'>税金及附加</view>
+                <view>本月</view>
+                <view>本年</view>
+              </view>
+              <view class='item-list'>
+                <view class='J-flex-b'>
+                  <view class='title'>消费税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>营业税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>城市维护建设税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>资源税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>土地增值税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>城镇土地使用税、房产税、 车船税、印花税</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>教育附加、矿产资源 补偿费、排污费</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+              </view>
+            </view>
+            <view class='profit-item-title'>
+              <view class='J-flex-b'>
+                <view class='title'>销售费用</view>
+                <view>本月</view>
+                <view>本年</view>
+              </view>
+              <view class='item-list'>
+                <view class='J-flex-b'>
+                  <view class='title'>商品维护费</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>广告费和业务宣传费</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+              </view>
+            </view>
+            <view class='profit-list-title J-flex-b'>
+              <view class='title'>二、营业利润 (亏损以"-"填列)
+              </view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+            <view class='profit-item-title'>
+              <view class='J-flex-b'>
+                <view class='title'>销售费用</view>
+                <view>本月</view>
+                <view>本年</view>
+              </view>
+              <view class='item-list'>
+                <view class='J-flex-b'>
+                  <view class='title'>商品维护费</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+                <view class='J-flex-b'>
+                  <view class='title'>广告费和业务宣传费</view>
+                  <view>本月</view>
+                  <view>本年</view>
+                </view>
+              </view>
+            </view>
+            <view class='profit-list-title J-flex-b'>
+              <view class='title'>二、营业利润 (亏损以"-"填列)
+              </view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+            <view class='profit-list-title J-flex-b'>
+              <view class='title'>三、利润总额</view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+            <view class='profit-list-title J-flex-b'>
+              <view class='title'>四、净利润</view>
+              <view>本月</view>
+              <view>本年</view>
+            </view>
+
+          </view> -->
+          <!-- 利润表 -->
+          <!-- 资产负债表 -->
+          <view class='list_box' wx:for='{{dataName.zcfzZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
+            <view class='list'>
+              <view class='list_name_box all' catchtap='listTap' data-parentindex='{{parentIndex}}'>
+                <view class='data-title data-data'>
+                  <view class="left">{{parentItem.name}}</view>
+                  <image src='/images/data/bottom_arrow.png' class='icon_down {{parentItem.show&&"icon_down_rotate"}}' wx:if="{{parentItem.children&&parentItem.children.length>0}}"></image>
+                </view>
+                <view class='data-fee data-data'>
+                  <view class="left">{{parentItem.cols[0]}}</view>
+                  <view class="right">{{parentItem.cols[1]}}</view>
+                </view>
+                <view class="data-type data-data">
+                  <view class="left">年初</view>
+                  <view class="right">期末</view>
+                </view>
+              </view>
+              <view class='list_item_box' wx:if='{{parentItem.show}}'>
+                <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
+                  <view class='list_name_box item'>
+                    <view class='data-title data-data'>
+                      <view class="left">{{item.name}}</view>
+                      <image src='/images/data/bottom_arrow.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{(item.cols[0]!='0.00'||item.cols[1]!='0.00')&&item.ziChildren}}"></image>
+                    </view>
+                    <view class='data-fee data-data'>
+                      <view class="left">{{item.cols[0]}}</view>
+                      <view class="right">{{item.cols[1]}}</view>
+                    </view>
+                    <view class="data-type data-data">
+                      <view class="left">年初</view>
+                      <view class="right">期末</view>
+                    </view>
+                  </view>
+                  <view class='other_box' wx:if='{{item.show}}'>
+
+                    <view class='list_item' wx:for='{{item.ziChildren}}' wx:key='this' catchtap='listItemTap' data-ziIndex='{{index}}' data-index='{{index}}' data-parentindex='{{parentIndex}}' data-childIndex='{{childIndex}}' wx:for-item='ziItem' wx:for-index='childIndex'
+                      wx:if="{{ziItem.cols[0]!='0.00'||ziItem.cols[1]!='0.00'}}">
+                      <view class='list_name_box ziItem'>
+                        <view class='data-title data-data'>
+                          <view class="left">{{ziItem.name}}</view>
+                        </view>
+                        <view class='data-fee data-data'>
+                          <view class="left">{{ziItem.cols[0]}}</view>
+                          <view class="right">{{ziItem.cols[1]}}</view>
+                        </view>
+                        <view class="data-type data-data">
+                          <view class="left">年初</view>
+                          <view class="right">期末</view>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

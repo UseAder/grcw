@@ -1,0 +1,8 @@
+<template name="template-returnkey">
+  <!-- 主容器 -->
+  <view class='fh_jiantou'>
+    <icon bindtap='goBack' data-index='1' class='iconfont icon-fh_jiantou'></icon>
+    <view class='title'>{{navigationBarTitleText}}</view>
+  </view>
+  <view class='fh_jiantou-padding'></view>
+</template>

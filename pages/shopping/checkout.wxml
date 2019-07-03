@@ -1,0 +1,68 @@
+<view class="container">
+  <view class="address-box">
+    <view class='J-Envelope-border'></view>
+    <view class="address-item" bindtap="selectAddress" wx:if="{{checkedAddress.ad_id!=undefined}}">
+      <view class="left">
+        <view class="l">
+          <text class="name">收货人: {{checkedAddress.ad_name}}</text>
+          <text class="mobile">{{checkedAddress.ad_phone}}</text>
+        </view>
+        <view class="m">
+          <text class="address">{{checkedAddress.ad_city+checkedAddress.ad_address}}</text>
+        </view>
+      </view>
+
+      <view class="right">
+        <text class='iconfont icon-youjiantou-copy'></text>
+      </view>
+    </view>
+    <view class="address-item address-empty"  bindtap="selectAddress"  wx:if="{{!checkedAddress.ad_id}}">
+      <view class="m">
+        还没有收货地址，去添加
+      </view>
+      <view class="right">
+        <text class='iconfont icon-youjiantou-copy'></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="order-box">
+    <view class="order-item">
+      <view class="l">
+        <text class="name">商品合计</text>
+      </view>
+      <view class="r te">
+        <text class="txt">￥{{total}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="goods-items">
+    <view class='goods-items-title'>
+      包裹1
+    </view>
+    <view class="item" wx:for="{{checkedGoodsList}}" wx:key>
+      <view class="img">
+        <image src="{{item.goods_brand}}"></image>
+      </view>
+      <view class="info">
+        <view class="t ">
+          <text class="name">{{item.goods_name}}</text>
+
+        </view>
+        <view class="m"></view>
+        <view class="b">
+          <text>¥{{item.goods_discount}}</text>
+          <text class="number">x{{item.cart_num}}</text>
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="order-total">
+    <view class="l">
+      <view>实付：￥{{total}}</view>
+    </view>
+    <view class="r" bindtap="submitOrder">立即购买</view>
+  </view>
+</view>

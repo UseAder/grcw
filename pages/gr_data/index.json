@@ -1,3 +1,4 @@
 {
-  "usingComponents": {}
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "果然数据"
 }
