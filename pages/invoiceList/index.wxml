@@ -1,0 +1,22 @@
+
+<wxs src="../../wxs/subutil.wxs" module="tools" />
+<view class='list_item'>
+  <view class='list_name_box item' wx:for="{{invoiceList}}" data-index='{{index}}' bindtap='goInvoiceDetaile' wx:key>
+    <view class='data-title data-data'>
+      <view class="left">{{item.gfdwmc}}</view>
+      <view class="right">{{tools.sub(item.kprq)}}</view>
+    </view>
+     <view class="data-type data-data">
+      <view class="left">价税合计</view>
+      <view class="center">税额</view>
+      <view class="right">金额</view>
+    </view>
+    <view class='data-fee data-data'>
+      <view class="left">{{item.jshj}}</view>
+      <view class="center">{{item.sehj}}</view>
+
+      <view class="right">{{item.jehj}}</view>
+    </view>
+   
+  </view>
+</view>

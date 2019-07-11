@@ -10,7 +10,7 @@ Page({
     yzmyz:'',//判断是否与输入验证码验证
     codename: '获取验证码',
     disabled: false, //验证码发送状态
-    zymConfirm: true,//验证成功状态
+    zymConfirm: false,//验证成功状态
     qyInformation:{//该企业信息
       login_time:"",
       nsrsbh:"1460652757116",

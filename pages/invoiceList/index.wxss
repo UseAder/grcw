@@ -1,0 +1,37 @@
+page{
+  background:#f2f4f7;
+
+}
+.list_item{
+  border-top: 1rpx solid #efefef; 
+
+}
+.list_name_box{
+  background: #fff;
+  display: flex;
+  /* margin: 0 25rpx; */
+  padding:36rpx;
+   margin-bottom:25rpx;
+  font-size: 32rpx;
+  box-sizing: border-box;
+  flex-direction: column;
+  /*  */
+}
+
+.list_name_box .data-data{
+  display: flex;justify-content: space-between;
+}
+.list_name_box .data-fee view,.list_name_box .data-type view{
+   flex:1
+}
+
+.list_name_box.item .data-data.data-title{
+  font-size:31rpx;color:#304057;
+}
+.list_name_box .data-data.data-fee{
+  font-size:26rpx;color:#304057;margin-top: 12rpx;
+}
+.list_name_box .data-data.data-type{
+  font-size:25rpx;color:#A7B0BE;margin-top:22rpx;
+
+}

@@ -2,10 +2,23 @@ page {
   background: #f2f4f7;
 }
 
+.pie {
+    width: 316rpx;
+    height: 316rpx;
+}
 .content {
   background: #1b88ee;
+  position: fixed;top: 0;width: 100%;z-index: 999
 }
-
+.gz-content{
+  text-align: center;
+height:101rpx;
+font-size:72rpx;
+font-family:PingFangSC-Medium;
+font-weight:500;
+color:rgba(27,136,238,1);
+line-height:101rpx;
+}
 .content .content-scroll-list {
   margin: 0 auto;
   width: 94%;
@@ -55,7 +68,9 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
   flex-flow: wrap;
 }
 .content-view{
-  padding-top: 83rpx;
+ padding-top:160rpx;
+
+
 }
 
 
@@ -72,10 +87,13 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
   /* border-radius:18rpx; */
   padding:36rpx;
   font-size: 32rpx;
-  height:208rpx;
+  /* height:208rpx; */
   box-sizing: border-box;
   flex-direction: column;
   /*  */
+}
+.list_name_box.marginT{
+  margin-top: 0;
 }
 .list_name_box.item{
   padding-left:66rpx;
@@ -186,7 +204,7 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 .data-chart {
     background-color: #ffffff;
     border-radius: 18rpx;
-    margin: 32rpx 28rpx 38rpx 28rpx;
+    margin: 0 28rpx 38rpx 28rpx;
     padding: 26rpx 32rpx;
 }
 
@@ -201,6 +219,10 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 .pie {
     width: 316rpx;
     height: 316rpx;
+    /* background: #fff;
+     width: 316px;
+    height:316px;
+    transform: scale(0.5) */
 }
 
 .data-chart-head {
@@ -324,23 +346,31 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 10rpx auto;
+    margin-bottom: 20rpx;
     width: 207rpx;
     height: 62rpx;
     border-radius: 31rpx;
     background-color: white;
-    padding: 0 34rpx;
+
     font-size: 25rpx;
-    margin-top: 36rpx;
 }
 
-.income>.date>image,
+/* .income>.date>image,
 .debt>.date>image {
     width: 13rpx;
     height: 7rpx;
     margin-left: 2rpx;
-}
+} */
+.data_time .ss {
+   display: flex;align-items: center;
+} 
+.data_time image {
+    width: 13rpx;
+    height: 7rpx;
+    margin-left:7rpx;
 
+} 
 .debt>.section {
     padding: 36rpx 38rpx;
     background-color: white;

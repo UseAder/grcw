@@ -1,0 +1,110 @@
+<!--pages/my/order/order.wxml-->
+<view class="none"></view>
+<view class="container">
+  <view class="swiper-tab">
+    <view class="swiper-tab-item {{status==index?'active ':''}}" wx:for="{{mxzData}}" data-status="{{index}}" bindtap="statusClick" wx:key>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+</view>
+<swiper current="{{status}}" duration="300" bindchange="swiperTab" class="swiper-item" style="height:{{aheight}}rpx">
+  <!-- 全部 -->
+  <swiper-item wx:for="{{mxzData}}" wx:for-item='item' wx:key>
+    <view class='list_box' wx:for="{{item.children}}" wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
+      <view class='list'>
+        <view class='list_name_box all'>
+          <view class='data-title data-data'>
+            <view class="left">科目：{{parentItem.kmmc}}</view>
+          </view>
+          <view class='item'>
+            <view class='data-fee data-data'>
+              <view class="left flex d">
+                <view>摘要</view>
+                <view>期初余额</view>
+              </view>
+              <view class="cente d">借方</view>
+              <view class="right d">{{parentItem.jf0}}</view>
+            </view>
+            <view class="data-type data-data">
+              <view class="left flex d">
+                <view>方向</view>
+                <block wx:if='{{item.kmlx=="1"||item.kmlx=="5"}}'>
+                  <view>借</view>
+                </block>
+                <block wx:else>
+                  <view>贷</view>
+                </block>
+              </view>
+              <view class="center d">贷方</view>
+
+              <view class="right d">{{parentItem.df0}}</view>
+            </view>
+
+          </view>
+          <view class='item'>
+            <view class='data-fee data-data'>
+              <view class="left flex d">
+                <view>摘要</view>
+                <view>本月合计</view>
+              </view>
+              <view class="cente d">借方</view>
+              <view class="right d">{{parentItem.bqJf}}</view>
+            </view>
+            <view class="data-type data-data">
+              <view class="left flex d">
+                <view>方向</view>
+                <block wx:if='{{item.kmlx=="1"||item.kmlx=="5"}}'>
+                  <view>借</view>
+                </block>
+                <block wx:else>
+                  <view>贷</view>
+                </block>
+              </view>
+              <view class="center d">贷方</view>
+
+              <view class="right d">{{parentItem.bqDf}}</view>
+            </view>
+            <view class="data-yue data-data">
+              <view class="left flex d"></view>
+              <view class="center d">余额</view>
+
+              <view class="right d">{{parentItem.qmDf?parentItem.qmDf:parentItem.qmJf}}</view>
+            </view>
+          </view>
+          <!-- <view class='data-fee data-data'>
+            <view class="left">{{parentItem.bqDf}}</view>
+            <view class="center">{{parentItem.bqJf}}</view>
+
+            <view class="right">{{parentItem.qmDf?parentItem.qmDf:parentItem.qmJf}}</view>
+          </view>
+          <view class="data-type data-data">
+            <view class="left">借方</view>
+            <view class="center">贷方</view>
+
+            <view class="right">余额</view>
+          </view> -->
+        </view>
+
+      </view>
+      <!-- <view class="order-detail" wx:for="{{item.children}}" wx:key="index">
+    <view class='mxz-item'>
+    <view class='mxz-item-title'>科目：{{item.kmmc}}</view>
+    <view calss='mxz-item-top'>
+      <view>借方</view>      <view>货方</view>      <view>余额</view>
+
+
+    </view>
+    </view> -->
+      <!-- <view class="order-number">订单编号：{{item.bqDf}}</view>
+      <view class="order-status">{{item.bqJf}}</view> -->
+      <!-- <view class="line1"></view> -->
+      <!-- <view class='goodsInfoList'>
+        <view wx:for="{{item.goodsinfo}}" wx:key="index" bindtap="toGoodsDetails" data-id="{{item.goods_id}}">
+          <image src="{{item.goods_pic}}" class="order-img"></image>
+          <view class="order-name">{{item.goods_name}}</view>
+          <view class="order-quantity">{{item.goods_speci}}</view>
+        </view>
+      </view> -->
+    </view>
+  </swiper-item>
+</swiper>

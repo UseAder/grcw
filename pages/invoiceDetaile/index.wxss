@@ -1,0 +1,29 @@
+.details {
+  padding-top: 20rpx;
+}
+
+.logo {
+  width: 200rpx;
+  margin: 0 auto;
+}
+
+.item {
+  line-height: 66rpx;
+  padding: 0 28rpx;
+}
+
+.item text {
+  margin-right: 10rpx;
+}
+
+.jiaozhi {
+  color: #a7b0be;
+}
+
+.left {
+  min-width: 250rpx;
+}
+
+.border-t {
+  border-top: 1rpx solid #efefef;
+}

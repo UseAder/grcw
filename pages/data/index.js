@@ -490,7 +490,9 @@ Page({
 })
 
 function initChart(canvas, width, height) {
-    const chart = echarts.init(canvas, null, {
+    const chart = echarts.init(canvas, null,
+    
+     {
         width: width,
         height: height
     });

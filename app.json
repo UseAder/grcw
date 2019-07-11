@@ -1,12 +1,22 @@
 {
   "pages": [
-        "pages/dataAnalysis/index",
+                        "pages/dataAnalysis/index",
+                        
+            "pages/gr_index/index",
+            
+                    
+            "pages/mxzlist/index",
+            
+                
         
+            
+            "pages/invoiceDetaile/index",
+                    "pages/invoiceList/index",
+                    
           "pages/data/index",
           
         "pages/gr_data/index",
         
-    "pages/gr_index/index",
     "pages/gr_ucenter/index",
     "pages/cart/cart",
     "pages/shopping/checkout",

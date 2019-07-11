@@ -39,11 +39,15 @@ module.exports = {
 
 
 
-  DataQySelectByGsid: NewApiRootUrlGUORAN + 'data/qy/selectByGsid', //
-
+  DataQySelectByGsid: NewApiRootUrlGUORAN + 'data/qy/selectByGsid', //查询所有代账公司下的企业列表
   DataQySelectByNsrsbh: NewApiRootUrlGUORAN + 'data/qy/selectByNsrsbh', //根据纳税人识别号查询企业信息
-  DataQyselectFullKjbb: NewApiRootUrlGUORAN + 'info/tax/selectFullKjbb', //企业id查找会计报表
+  DataTaxSelectTaxReportByNsrsbh: NewApiRootUrlGUORAN + 'data/tax/selectTaxReportByNsrsbh', //根据纳税人识别号查询企业信息
 
+
+  DataQyselectFullKjbb: NewApiRootUrlGUORAN + 'info/tax/selectFullKjbb', //企业id查找会计报表
+  DataQyselectFullmxb: NewApiRootUrlGUORAN + 'info/kmye/selectBalanceSheet', //查询科目余额信息 明细表
+  DataQyzcpzSelectSbxx: NewApiRootUrlGUORAN + 'info/zcpz/selectSbxx', //社保信息
+  // DataQyselectFullmxb: NewApiRootUrlGUORAN + 'info/gssb/selectPersonalTaxSheet', //查询个税申报明细
   // : NewApiRootUrl + '', //
   // : NewApiRootUrl + '', //
   // : NewApiRootUrl + '', //

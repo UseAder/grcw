@@ -12,6 +12,9 @@ Component({
 
     ec: {
       type: Object
+    },
+    tuData: {//这是新增的参数
+      type: Object
     }
   },
 
@@ -57,7 +60,7 @@ Component({
           this.chart = callback(canvas, res.width, res.height);
         }
         else if (this.data.ec && typeof this.data.ec.onInit === 'function') {
-          this.chart = this.data.ec.onInit(canvas, res.width, res.height);
+          this.chart = this.data.ec.onInit(canvas, res.width, res.height, this.data.tuData);
         }
         else {
           this.triggerEvent('init', {
