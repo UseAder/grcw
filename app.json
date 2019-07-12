@@ -1,22 +1,12 @@
 {
   "pages": [
-                        "pages/dataAnalysis/index",
-                        
-            "pages/gr_index/index",
-            
-                    
-            "pages/mxzlist/index",
-            
-                
-        
-            
-            "pages/invoiceDetaile/index",
-                    "pages/invoiceList/index",
-                    
-          "pages/data/index",
-          
-        "pages/gr_data/index",
-        
+    "pages/gr_index/index",
+    "pages/gr_data/index",
+    "pages/dataAnalysis/index",
+    "pages/mxzlist/index",
+    "pages/invoiceDetaile/index",
+    "pages/invoiceList/index",
+    "pages/data/index",
     "pages/gr_ucenter/index",
     "pages/cart/cart",
     "pages/shopping/checkout",
@@ -31,7 +21,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "优狐测试",
+    "navigationBarTitleText": "果然财务",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

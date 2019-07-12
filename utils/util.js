@@ -83,19 +83,12 @@ function requestGUOran(url, data = {}, method = "GET") {
       method: method,
       header: {
         'Content-Type': 'application/json',
-        'appCode':'6a537e1f938a4e5d8edbeabb106f40b2'
+        'appCode': '6a537e1f938a4e5d8edbeabb106f40b2'
       },
       success: function (res) {
         if (res.statusCode == 200) {
-          // console.log(res)
-          // if (res.data.msg == "未登录") {
-          //   //需要登录后才可以操作
-          //   wx.navigateTo({
-          //     url: '/pages/authorize/authorize',
-          //   })
-          // } else {
-            resolve(res.data);
-          // }
+          console.log(res)
+          //   resolve(res.data);
         } else {
           reject(res.errMsg);
         }
@@ -123,7 +116,20 @@ function checkSession() {
     })
   });
 }
+function checkLogin() {
+  return new Promise(function (resolve, reject) {
+    if (wx.getStorageSync('userInfo') && wx.getStorageSync('openid')) {
+      checkSession().then(() => {
+        resolve(true);
+      }).catch(() => {
+        reject(false);
+      });
 
+    } else {
+      reject(false);
+    }
+  });
+}
 
 function redirect(url) {
   //判断页面是否需要登录
@@ -250,6 +256,7 @@ module.exports = {
   redirect,
   showErrorToast,
   checkSession,
+  checkLogin,
   get_wxml,
   Tips,
   SplitArray

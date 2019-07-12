@@ -30,6 +30,9 @@ function loginByWeixin() {
               wx.setStorageSync('openid', res.data.openid);
               wx.setStorageSync('userInfo', res.data);
               wx.setStorageSync('uid', res.data.uid);
+              app.globalData.userInfo = wx.getStorageSync('userInfo');
+              app.globalData.openid = wx.getStorageSync('openid');
+              app.globalData.uid = wx.getStorageSync('uid');
               resolve(res);
             } else {
               reject(res);
@@ -85,9 +88,9 @@ function getUserInfo() {
             if (res.confirm) {
               console.log('用户点击确定')
               //去到设置中心界面
-              wx.navigateTo({
-                url: '/pages/gr_ucenter/index',
-              })
+              // wx.navigateTo({
+              //   url: '/pages/gr_ucenter/index',
+              // })
             } else if (res.cancel) {
               console.log('用户点击取消')
               reject(err);
@@ -103,6 +106,5 @@ function getUserInfo() {
 module.exports = {
   loginByWeixin,
   getUserInfo,
-  login,
-  
-}
+  login
+  }

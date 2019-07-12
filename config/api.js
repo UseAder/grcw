@@ -1,7 +1,7 @@
 var NewApiRootUrl = 'https://gr.ufcoux.com/Really/public/index.php/api/'
-var NewApiRootUrlGUORAN = 'http://openapi.yunzhangfang.com/open/api/';
+var NewApiRootUrlGUORAN = 'https://openapi.yunzhangfang.com/open/api/';
 // var NewApiRootUrl = 'http://192.168.124.15/Really/public/index.php/api/';
-var UploadFileUrl = 'https://image.poempz.com/';
+// var UploadFileUrl = 'https://image.poempz.com/';
 
 module.exports = {
   WxLogin: NewApiRootUrl + 'Login/', //微信换取code

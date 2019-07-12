@@ -1,5 +1,6 @@
 var util = require('./utils/util.js');
 var api = require('./config/api.js');
+const wxh = require('./utils/wxh.js');
 
 App({
   onLaunch: function () {
@@ -25,15 +26,27 @@ App({
         showCancel: false
       })
     })
+    this.globalData.zymConfirm = wx.getStorageSync('zymConfirm');
+    var dataTime = wx.getStorageSync('dataTime')
+    if (dataTime && Number(dataTime) >= 0){
+      wxh.time(null, dataTime)
+    }
+    util.checkLogin().then(res => {
+      console.log('app login');
+      this.globalData.openid = wx.getStorageSync('openid');
+      this.globalData.userInfo = wx.getStorageSync('userInfo');
+    }).catch(() => {
+    });
   },
 
   globalData: {
     userInfo: {
-      nickName: 'Hi,游客',
-      userName: '点击去登录',
-      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+      username: 'Hi,游客',
+      photo: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
     },
-    uid:null,
+    openid:'',//1后端
+    uid:'',
+    zymConfirm:false,//验证码成功或失效
   },
    /*
  * 信息提示 + 跳转

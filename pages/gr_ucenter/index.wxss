@@ -147,7 +147,8 @@ button::after {
 .contacts {
     width: 120rpx;
     opacity: 0;
-    height: 100rpx;
+    padding: 15rpx 0;box-sizing:border-box;
+    height: 100rpx; 
     position: relative;
     float: left;
 }

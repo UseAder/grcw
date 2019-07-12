@@ -51,7 +51,6 @@ Page({
         cart_num: res.number
       }]
       var checkedAddress = res.address
-      // checkedAddress.ad_city.split('&')
       that.setData({
         checkedGoodsList: goods,
         total: res.total,
@@ -64,7 +63,7 @@ Page({
     var that = this
     util.request(api.OrderIndexAll, {
       cid: cidArray,
-      uid:1
+      uid: wx.getStorageSync('uid'),
     }, "POST").then(function(res) {
       that.setData({
         checkedGoodsList: res.goods,

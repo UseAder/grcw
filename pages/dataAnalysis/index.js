@@ -96,56 +96,34 @@ Page({
       total: 0.00
     },
 
-    classifyViewId: 1,
+    classifyViewId: 6,
     jxfbList: [],
     categories: [{
-      name: "老板看账",
-      id: 1,
-      pic: "/images/data/data1.png"
+      function_title: "老板看账",
+      function_id: 6,
     }, {
-      name: "纳税申报",
-      id: 2,
-      pic: "/images/data/data2.png"
+        function_title: "纳税申报",
+        function_id: 7,
     }, {
-      name: "现金流量",
-      id: 3,
-      pic: "/images/data/data3.png"
+        function_title: "现金流量",
+        function_id: 8,
     }, {
-      name: "资产负债",
-      id: 4,
-      pic: "/images/data/data4.png"
+        function_title: "资产负债",
+        function_id: 9,
     }, {
-      name: "明细账",
-      id: 5,
-      pic: "/images/data/data5.png"
+        function_title: "明细账",
+        function_id: 10,
     }, {
-      name: "利润率",
-      id: 6,
-      pic: "/images/data/data6.png"
+        function_title: "利润率",
+        function_id: 11,
     }, {
-      name: "发票清单",
-      id: 7,
-      pic: "/images/data/data7.png"
+        function_title: "发票清单",
+        function_id: 12,
     }, {
-      name: "工资",
-      id: 8,
-      pic: "/images/data/data8.png"
+        function_title: "工资",
+        function_id: 13,
     }], //类别
     dataQyselectFullKjbb: [], //会计报表
-  },
-
-  //初始化图表
-  initChart: function () {
-    this.echartsComponnet.init((canvas, width, height) => {
-      // 初始化图表
-      const Chart = echarts.init(canvas, null, {
-        width: width,
-        height: height
-      });
-      Chart.setOption(this.getOption());
-      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-      return Chart;
-    });
   },
   // 日期时间改变 重新搜索数据
   bindDateChange: function (e) {
@@ -161,11 +139,15 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
     // 第一步 获取纳税人识别号
     var that = this
+    // that.setData({
+    //   'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh')
+    // })
+    console.log(wx.getStorageSync('dataCategories'))
     that.setData({
-      'qySelectByNsrsbhData.nsrsbh': options.nsrsbh || '91330103MA27X5AC26'
+      'qySelectByNsrsbhData.nsrsbh':'91330103MA27X5AC26'
     })
     that.endDate()// 获取当前时间作为时间picker的结束时间
  // 第二步 通过纳税人识别号获取企业信息91330109MA2CDE721G
@@ -230,10 +212,6 @@ Page({
         'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1], 
         'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
       })
-      console.log(that.data.ec.onInit())
-      // ec: {
-      //   onInit: initChart
-      // },
     },
     
   // 第三步 1.通过纳税人识别号获取--纳税申报表()

@@ -25,16 +25,8 @@
               </image>
               <view class="name ellipsis">{{item.goods_name}}</view>
           </view>
-          <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
-              <image class="pic" src="{{item.goods_brand}}">
-              </image>
-              <view class="name ellipsis">{{item.goods_name}}</view>
-          </view>
-          <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
-              <image class="pic" src="{{item.goods_brand}}">
-              </image>
-              <view class="name ellipsis">{{item.goods_name}}</view>
-          </view>
+         
+        
         </view>
       </view>
     </block>

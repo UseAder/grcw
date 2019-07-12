@@ -186,7 +186,7 @@ Page({
     var that = this;
     util.request(api.Cart, { uid: wx.getStorageSync('uid'), page: 1 }, 'POST').then(function (res) {
       if (!res.data) return
-      var valid = res.data.arrt;
+      var valid = res.data;
       if (valid.length > 0) {
         for (var index in valid) {
           valid[index].checked = false;

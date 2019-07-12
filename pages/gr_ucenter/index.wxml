@@ -1,6 +1,6 @@
-<!-- <import src="../../../template/showToast.wxml"></import>
-<template is="showToast" data="{{showToast:showToast}}"></template> -->
+  <button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
 <view class="mycenter">
+
   <view class="container">
     <view class="profile-info">
 
@@ -10,10 +10,10 @@
 
         <text class="name" wx:if="{{userInfo.username}}">{{userInfo.username}}</text>
         <view wx:else>
-          <text class="name">{{name}}</text>
-          <text class="level">请点击授权</text>
+         <text class="name">{{userInfo.username}}</text>
+      <text class="level" wx:if="{{userInfo.username=='Hi,游客'}}">点击去登录</text>
         </view>
-        <button bindgetuserinfo="userInfoHandler" class="uesrinfo" openType="getUserInfo"></button>
+  
       </view>
     </view>
     <view class="user-menu">

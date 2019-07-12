@@ -1,7 +1,7 @@
 <view class=" content">
   <scroll-view class="content-scroll-list" scroll-x="true" scroll-with-animation="true">
-    <view class="content-scroll-item {{classifyViewId==classify.id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" data-id="b{{classify.id}}" data-index="{{classify.id}}" bindtap="swithNav" wx:key>
-      <view class="name {{classifyViewId==classify.id?'active':''}}">{{classify.name}}</view>
+    <view class="content-scroll-item {{classifyViewId==classify.function_id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" data-id="b{{classify.function_id}}" data-index="{{classify.function_id}}" bindtap="swithNav" wx:key>
+      <view class="name {{classifyViewId==classify.function_id?'active':''}}">{{classify.function_title}}</view>
     </view>
   </scroll-view>
 </view>

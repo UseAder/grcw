@@ -2,9 +2,15 @@ var app = getApp();
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 var t = require("../../lib/wxParse/wxParse.js")
+var user = require('../../services/user.js');
+
 Page({
 
   data: {
+    userInfo: {
+      username: app.globalData.userInfo.username,
+      photo: app.globalData.userInfo.photo
+    },
     id: 0,
     goods: {},
     gallery: [],
@@ -83,11 +89,14 @@ Page({
   },
   getCartLength: function () {
     var that=this
-    util.request(api.Cart, { uid: wx.getStorageSync('uid'), page: 1 }, 'POST').then(function          (res) { 
+   
+    util.request(api.Cart, { uid: wx.getStorageSync('uid'), page: 1 }, 'POST').then(function          (res) {
+      that.setData({
+        cartCount: 0
+      });
       if (!res.data) return
-      if (res.data.count)
         that.setData({
-          cartCount: res.data.count||0
+          cartCount: res.data.length||0
         });
     })
   },
@@ -125,10 +134,27 @@ Page({
     });
     this.getGoodsInfo()
   },
+  /**
+   * 调用微信登录
+   */
+  userInfoHandler: function () {
+    var that = this
+    user.loginByWeixin().then((res) => {
+      console.log(res.data)
+      if (res.code == 200) {
+        that.setData({
+          userInfo: res.data
+        })
+      }
+    })
+  },
   onShow:function(){
-    this.getCartLength()
-    this.setData({
-      cartCount: 0
-    });
+    var that = this
+    if (app.globalData.openid) {
+      that.setData({
+        userInfo: app.globalData.userInfo,
+      })
+    }
+    that.getCartLength()
   }
 });

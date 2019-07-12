@@ -1,5 +1,4 @@
-<import src="../../template/showToast.wxml"></import>
-<template is="showToast" data="{{showToast:showToast}}"></template>
+  <button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
 <import src="../../lib/wxParse/wxParse.wxml"></import>
 <scroll-view class="container" scrollY="true">
     <view>
