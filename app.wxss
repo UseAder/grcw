@@ -33,7 +33,9 @@ page{
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
+.j-bold{
+ font-weight: bold!important; 
+}
 @keyframes load
         {   
             from {transform: rotate(0deg);}

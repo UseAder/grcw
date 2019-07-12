@@ -75,17 +75,19 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 
 
 /* 测试 */
-
+.list_box{
+  margin:0 25rpx;background: #ffffff;border-radius:18rpx;
+}
 .list_name_box.all{
-  margin-top: 36rpx;font-weight: bold;
+  margin-bottom: 25rpx;font-weight: bold;
 }
 .list_name_box{
   background: #fff;
-  /* border-bottom: 1px solid #efefef; */
+  border-bottom:#F1F1F1 2rpx solid;
   display: flex;
   margin: 0 25rpx;
   /* border-radius:18rpx; */
-  padding:36rpx;
+  padding:36rpx 0;
   font-size: 32rpx;
   /* height:208rpx; */
   box-sizing: border-box;
@@ -138,7 +140,9 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 .icon_down_rotate{
   transform:rotate(180deg);
 }
-
+.icon_down_rotate1{
+  transform:rotate(270deg);
+}
 .view-list{
   background: #fff;
   display: flex;
@@ -548,3 +552,24 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
     padding-bottom: 33rpx;
     border-bottom: #F2F4F7 1rpx solid;
 }
+
+.bg-none{
+  display:flex;                  
+align-items: center; flex-direction: column;color: #ffffff;font-size: 36rpx;margin-top: 30%
+}
+ .bg-none image { 
+  width:400rpx;
+  
+  }
+   .bg-none .title{
+     margin: 25rpx;
+   }
+
+.mxb_list{
+  height: 100rpx;line-height: 100rpx;display: flex;justify-content: space-between;font-weight: bold;align-items: center;background: #fff;margin: 0 20rpx;border-bottom:#F1F1F1 2rpx solid;
+}
+  .list_box_mxz{background: #fff;margin: 0 20rpx;border-radius: 18rpx;}
+
+  .list_box_mxz .list:last-child .mxb_list{
+    border-bottom:#fff 2rpx solid;
+  }

@@ -48,6 +48,9 @@ module.exports = {
   DataQyselectFullmxb: NewApiRootUrlGUORAN + 'info/kmye/selectBalanceSheet', //查询科目余额信息 明细表
   DataQyzcpzSelectSbxx: NewApiRootUrlGUORAN + 'info/zcpz/selectSbxx', //社保信息
   // DataQyselectFullmxb: NewApiRootUrlGUORAN + 'info/gssb/selectPersonalTaxSheet', //查询个税申报明细
+   DataQyselectSalesInvoice: NewApiRootUrlGUORAN + 'info/invoice/selectSalesInvoice', //查询销项发票明细
+   DataQyselectEntryInvoice: NewApiRootUrlGUORAN + 'info/invoice/selectEntryInvoice', //查询进项发票明细
+  DataQyselectPersonalTaxSheet: NewApiRootUrlGUORAN + 'info/gssb/selectPersonalTaxSheet', //查询个税申报明细 工资
   // : NewApiRootUrl + '', //
   // : NewApiRootUrl + '', //
   // : NewApiRootUrl + '', //
