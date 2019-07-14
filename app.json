@@ -1,7 +1,8 @@
 {
   "pages": [
+        "pages/gr_data/index",
+        
     "pages/gr_index/index",
-    "pages/gr_data/index",
     "pages/dataAnalysis/index",
     "pages/mxzlist/index",
     "pages/invoiceDetaile/index",

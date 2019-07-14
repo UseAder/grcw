@@ -25,7 +25,7 @@
   <view class='data-home' wx:else>
     <image src='/images/data/data_hg.png' mode='widthFix'></image>
     <view class='data-Categories J-flex-w '>
-      <navigator url='/pages/dataAnalysis/index?classifyViewId={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
+      <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
         <view class='images'>
           <image src='{{item.function_url}}'></image>
         </view>

@@ -1,19 +1,22 @@
-  <button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
+<button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
 <view class="mycenter">
 
   <view class="container">
+    <view class='info-bg'>
+      <image src='/images/personal/personal_bg_meitu_1.jpg'></image>
+    </view>
     <view class="profile-info">
 
       <image wx:if="{{userInfo.photo}}" class="avatar" src="{{userInfo.photo}}"></image>
       <image wx:else class="avatar" src="/images/personal/head_icon.png"></image>
       <view class="info">
-
         <text class="name" wx:if="{{userInfo.username}}">{{userInfo.username}}</text>
-        <view wx:else>
-         <text class="name">{{userInfo.username}}</text>
-      <text class="level" wx:if="{{userInfo.username=='Hi,游客'}}">点击去登录</text>
-        </view>
-  
+                  <text class="level" wx:if="{{userInfo.username=='Hi,游客'}}">点击去登录</text>
+
+        <!-- <view wx:else>
+          <text class="name">{{userInfo.username}}</text>
+        </view> -->
+
       </view>
     </view>
     <view class="user-menu">
@@ -69,9 +72,9 @@
     </view>
     <view class="company_logo">
       <view class='zxun'>
-          <image src="/images/personal/kefu.png"></image>
-          
-          欢迎咨询
+        <image src="/images/personal/kefu.png"></image>
+
+        欢迎咨询
         <view class='zxun-contact-button'>
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
@@ -79,7 +82,7 @@
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
         </view>
-        
+
       </view>
       <!-- <image src="/images/personal/company_logo.png" mode='widthFix'></image> -->
     </view>

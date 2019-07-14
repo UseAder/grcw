@@ -87,8 +87,7 @@ function requestGUOran(url, data = {}, method = "GET") {
       },
       success: function (res) {
         if (res.statusCode == 200) {
-          console.log(res)
-          //   resolve(res.data);
+            resolve(res.data);
         } else {
           reject(res.errMsg);
         }

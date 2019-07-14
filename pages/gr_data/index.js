@@ -22,35 +22,35 @@ Page({
 
     dataCategories: [{
       function_title: "老板看账",
-      id: 1,
+      function_id: 6,
       function_url: "/images/data/data1.png"
     }, {
       function_title: "纳税申报",
-      id: 2,
+        function_id: 7,
       function_url: "/images/data/data2.png"
     }, {
       function_title: "现金流量",
-      id: 3,
+        function_id: 8,
       function_url: "/images/data/data3.png"
     }, {
       function_title: "资产负债",
-      id: 4,
+        function_id: 9,
       function_url: "/images/data/data4.png"
     }, {
       function_title: "明细账",
-      id: 5,
+        function_id: 10,
       function_url: "/images/data/data5.png"
     }, {
       function_title: "利润率",
-      id: 6,
+        function_id: 11,
       function_url: "/images/data/data6.png"
     }, {
       function_title: "发票清单",
-      id: 7,
+        function_id: 12,
       function_url: "/images/data/data7.png"
     }, {
       function_title: "工资",
-      id: 8,
+        function_id: 13,
       function_url: "/images/data/data8.png"
     },], //类别
   },
@@ -157,9 +157,7 @@ Page({
           'dataCategories': res.data.type,
           'zymConfirm': true
         })
-       
-        console.log(111)
-        var data = new Date().getTime() + 30000
+        var data = new Date().getTime() + 72000000
         app.globalData.zymConfirm = true
         wx.setStorageSync('dataCategories', that.data.dataCategories);
         wx.setStorageSync('nsrsbh', that.data.qyInformation.nsrsbh);

@@ -7,7 +7,7 @@ page {
     height: 316rpx;
 }
 .content {
-  background: #1b88ee;
+  background: #FF9900;
   position: fixed;top: 0;width: 100%;z-index: 999
 }
 .gz-content{
@@ -21,7 +21,7 @@ line-height:101rpx;
 }
 .content .content-scroll-list {
   margin: 0 auto;
-  width: 94%;
+  width: 710rpx;
   border-radius: 18rpx;
   height: 100rpx;
   line-height: 100rpx;
@@ -46,13 +46,13 @@ line-height:101rpx;
 }
 
 .content .content-scroll-list .active {
-  color: #1B88EE;
+  color: #FF9900;
   position: relative;
 }
 
 .content .content-scroll-list .active::before{content:"";width:34rpx;
 height:4rpx;
-background:rgba(27,136,238,1);
+background:#FF9900;
 border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right: 0;left: 0;}
 
 .content .content-swiper {
@@ -101,7 +101,8 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
   padding-left:66rpx;
 }
 .list_name_box.ziItem{
-  background: #E5EFF9; padding-left:100rpx; 
+  background: #E5EFF9; padding-left:100rpx; padding-right:10px;
+
 }
 
 .list_name_box .data-data{
@@ -163,7 +164,7 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 /* 荏苒 */
 
 .top-switch-top-back {
-    background-color: #1B88EE;
+    background-color: #FF9900;
     width: 100vw;
     height: 120rpx;
 }
@@ -182,7 +183,7 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 }
 
 .top-switcher-title.active {
-    color: #1B88EE;
+    color: #FF9900;
 }
 
 .bottom-line {
@@ -195,7 +196,7 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 }
 
 .top-switcher-title.active>.bottom-line {
-    background-color: #1B88EE;
+    background-color: #FF9900;
 }
 
 .top-switcher-title {
@@ -291,7 +292,7 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
 }
 
 .fee-count>.total-fee {
-    color: #1B88EE;
+    color: #FF9900;
     margin: 36rpx 0 54rpx 0;
     font-size: 72rpx;
     font-weight: bold;

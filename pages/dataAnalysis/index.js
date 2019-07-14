@@ -29,7 +29,7 @@ function initChart(canvas, width, height, data) {
       }
     },
     backgroundColor: "#ffffff",
-    color: ["#7C8DFF", "#FDE683"],
+    color: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
     series: [{
       name: '123',
       type: 'pie',
@@ -57,13 +57,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    qySelectByNsrsbhData:{//企业信息
+    qySelectByNsrsbhData: {//企业信息
       nsrsbh: '',
-      qyid:'',
-      kjnd:'',
-      kjqj:''
+      qyid: '',
+      kjnd: '',
+      kjqj: ''
     },
-    dataTime:{
+    dataTime: {
       start_date: '2018-09',
       end_date: '',
     },
@@ -81,53 +81,52 @@ Page({
       }]
     },
     { name: '负债和所有者权益(或股东权益)', data: [{ value: 10, name: '负债合计' }, { value: 4, name: '所有者权益(或股东权益)' }] },
-
     { name: '纳税', data: [{ value: 10 }, { value: 7 }] },
     ],
     chartsWidth: 0,
-    dataName: {}, //资产负债表表·余额表·利润表  明细账
-    dataInvoiceList: { //发票清单 销项发票·进项发票·费用发票 
+    scrollLeft:0,//设置横向滚动条位置
+    dataName: {}, //资产负债表表·余额表·利润表  明细账   数据
+    laobanData:{},
+    dataInvoiceList: { //发票清单 销项发票·进项发票·费用发票  数据
       xxfpData: {},
       jxfpData: {}
     },
-    dataWages: [], //工资
-    dataNssb: {
+    dataWages: [], //工资  数据
+    dataNssb: { //纳税申报 数据
       list: [],
       total: 0.00
     },
-
     classifyViewId: 6,
-    jxfbList: [],
     categories: [{
       function_title: "老板看账",
       function_id: 6,
     }, {
-        function_title: "纳税申报",
-        function_id: 7,
+      function_title: "纳税申报",
+      function_id: 7,
     }, {
-        function_title: "现金流量",
-        function_id: 8,
+      function_title: "现金流量",
+      function_id: 8,
     }, {
-        function_title: "资产负债",
-        function_id: 9,
+      function_title: "资产负债",
+      function_id: 9,
     }, {
-        function_title: "明细账",
-        function_id: 10,
+      function_title: "明细账",
+      function_id: 10,
     }, {
-        function_title: "利润率",
-        function_id: 11,
+      function_title: "利润率",
+      function_id: 11,
     }, {
-        function_title: "发票清单",
-        function_id: 12,
+      function_title: "发票清单",
+      function_id: 12,
     }, {
-        function_title: "工资",
-        function_id: 13,
+      function_title: "工资",
+      function_id: 13,
     }], //类别
     dataQyselectFullKjbb: [], //会计报表
   },
   // 日期时间改变 重新搜索数据
   bindDateChange: function (e) {
-    var that=this
+    var that = this
     console.log('picker发送选择改变，携带值为', e.detail.value)
     var picker_date = e.detail.value.split('-')
     that.setData({
@@ -139,38 +138,46 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
+  onLoad: function (options) {
     // 第一步 获取纳税人识别号
     var that = this
-    // that.setData({
-    //   'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh')
-    // })
     console.log(wx.getStorageSync('dataCategories'))
     that.setData({
-      'qySelectByNsrsbhData.nsrsbh':'91330103MA27X5AC26'
+      'qySelectByNsrsbhData.nsrsbh': '91330103MA27X5AC26',
+      //  'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh')
+      // categories:wx.getStorageSync('dataCategories'),
+      classifyViewId: options.classifyViewId
     })
+    var currentIndex = options.currentIndex
+    if (currentIndex > 3) {
+      that.setData({
+        scrollLeft:(currentIndex-3) * 177.5
+      });
+    }
     that.endDate()// 获取当前时间作为时间picker的结束时间
- // 第二步 通过纳税人识别号获取企业信息91330109MA2CDE721G
-    if (that.data.qySelectByNsrsbhData.nsrsbh){
+    // 第二步 通过纳税人识别号获取企业信息91330109MA2CDE721G
+    if (that.data.qySelectByNsrsbhData.nsrsbh) {
       that.dataQySelectByNsrsbh()
     }
     // that.onReadyWxCharts()
   },
   //onload中 获取当前时间作为时间picker的结束时间
-  endDate:function(){
-    var that=this
+  endDate: function () {
+    var that = this
     var timestamp = Date.parse(new Date());
     var date = new Date(timestamp);
     //获取年份  
     var Y = date.getFullYear();
     //获取月份  
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth()) : date.getMonth() );
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth()) : date.getMonth());
     // var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(); 
     that.setData({
       'dataTime.end_date': Y + '-' + M,
       'qySelectByNsrsbhData.kjnd': Y,
       'qySelectByNsrsbhData.kjqj': M
     })
+    this.echartsComponnet = this.selectComponent('#mychart-dom-pie');
+
   },
   // 第二步 通过纳税人识别号获取企业信息
   dataQySelectByNsrsbh: function () {
@@ -179,10 +186,11 @@ Page({
       nsrsbh: that.data.qySelectByNsrsbhData.nsrsbh
     }, "GET"
     ).then(function (res) {
-      if (res.code == 0)
       that.setData({
         'qySelectByNsrsbhData.qyid': res.result[0].qyid,
-          dataName: utilAata.DataName
+        dataName: utilAata.DataName,
+        laobanData: utilAata.LaobanData
+
       })
       // 第三步 1.通过纳税人识别号获取纳税申报
       that.dataList()
@@ -190,7 +198,8 @@ Page({
   },
   // 第三步 数据加载集合
   dataList: function () {
-    var that=this
+    console.log(2)
+    var that = this
     that.DataTaxSelectTaxReportByNsrsbh()//纳税申报表
     that.DataQyselectFullKjbb()//会计报表
     that.DataQyselectFullmxb()//明细表
@@ -199,21 +208,21 @@ Page({
     // that.DataQyzcpzSelectSbxx() //社保信息 暂时不用
   },
   //canvas 老板看帐
-    LaoBanKz:function(){
-      var that=this
-      console.log(that.data.dataName.zcfzZmkName[1].cols[1])
+  LaoBanKz: function () {
+    var that = this
+    // console.log(that.data.dataName.zcfzZmkName[1].cols[1])
 
-      console.log(that.data.dataName.zcfzZmkName[0].children[0].cols[1])
-      console.log(that.data.dataName.zcfzZmkName[0].children[1].cols[1])
+    // console.log(that.data.dataName.zcfzZmkName[0].children[0].cols[1])
+    // console.log(that.data.dataName.zcfzZmkName[0].children[1].cols[1])
 
-      console.log(that.data.lbkzList[0].data[1])
-      that.setData({
-        'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1],             'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
-        'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1], 
-        'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
-      })
-    },
-    
+    // console.log(that.data.lbkzList[0].data[1])
+    that.setData({
+      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1], 'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
+      'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1],
+      'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
+    })
+  },
+
   // 第三步 1.通过纳税人识别号获取--纳税申报表()
   DataTaxSelectTaxReportByNsrsbh: function () {
     var that = this
@@ -264,6 +273,14 @@ Page({
           }
         }
       }
+      var laobanDataZcfz = that.data.laobanData.zcfzZmkName
+      for (var j in laobanDataZcfz) {
+        for (var item in zbzList) {
+          if (laobanDataZcfz[j].name == zbzList[item].rowName) {
+            laobanDataZcfz[j].cols = Object.values(zbzList[item].cols)
+          }
+        }
+      }
       var lrbList = res.result[0].zbzList[1].rowList
       var lrbZmkName = that.data.dataName.lrbZmkName
       for (var j in lrbZmkName) {
@@ -281,6 +298,15 @@ Page({
                 if (lrbZmkName[j].children[c].ziChildren[i].cols[0] == 0 && lrbZmkName[j].children[c].ziChildren[i].cols[1] == 0) { }
               }
             }
+          }
+        }
+      }
+
+      var laobanDataLrb = that.data.laobanData.lrbZmkName
+      for (var j in laobanDataLrb) {
+        for (var item in lrbList) {
+          if (laobanDataLrb[j].name == lrbList[item].rowName) {
+            laobanDataLrb[j].cols = Object.values(lrbList[item].cols)
           }
         }
       }
@@ -304,18 +330,18 @@ Page({
           }
         }
       }
-      // console.log(that.data.dataName.zcfzZmkName[0].children[0].cols)
-    
       that.setData({
         "dataName.zcfzZmkName": zcfzZmkName,
         "dataName.lrbZmkName": lrbZmkName,
-        "dataName.xjllZmkName": xjllZmkName
+        "dataName.xjllZmkName": xjllZmkName,
+        "laobanData.zcfzZmkName": laobanDataZcfz,
+        "laobanData.lrbZmkName": laobanDataLrb
       })
-
+      console.log(that.data.laobanData)
       that.LaoBanKz()//老板看账
     })
   },
-   // 第三步 3.明细账
+  // 第三步 3.明细账
   DataQyselectFullmxb: function () {
     var that = this
     util.requestGUOran(api.DataQyselectFullmxb, {
@@ -402,7 +428,7 @@ Page({
     })
   },
   onReadyWxCharts: function () {
-    
+
   },
   /**
    * 资产负债表折叠效果
@@ -532,8 +558,8 @@ Page({
   },
   // 跳转发票清单
   goDataAnalysis: function (e) {
-    var loadJudge = e.currentTarget.dataset.loadjudge,that=this;
-    app.Tips('/pages/invoiceList/index?loadJudge=' + loadJudge + '&qySelectByNsrsbhData=' + JSON.stringify(that.data.qySelectByNsrsbhData) )
+    var loadJudge = e.currentTarget.dataset.loadjudge, that = this;
+    app.Tips('/pages/invoiceList/index?loadJudge=' + loadJudge + '&qySelectByNsrsbhData=' + JSON.stringify(that.data.qySelectByNsrsbhData))
   },
   // 跳转明细
   goMxzlist: function (e) {

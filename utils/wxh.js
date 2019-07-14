@@ -30,11 +30,11 @@ var time = function (timeStamp,dataTime) {
     // });
     totalSecond--;
     wx.setStorageSync('dataTime', totalSecond);
-    console.log(totalSecond)
+    // console.log(totalSecond)
     if (totalSecond <= 0) {
       clearInterval(interval);
       wx.showToast({
-        title: '请重新验证',
+        title: '数据服务已到期，请重新验证',
         icon: 'none',
         duration: 1000,
         mask: true,
