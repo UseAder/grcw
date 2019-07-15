@@ -1,5 +1,7 @@
 var api = require('../config/api.js');
 // var user = require('../services/user.js');
+import * as echarts from '../components/ec-canvas/echarts';
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -9,6 +11,59 @@ const formatTime = date => {
   const second = date.getSeconds()
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+}
+
+function initChart(echartsComponnet,data) {
+  var that = this
+  console.log(echartsComponnet)
+  echartsComponnet.init((canvas, width, height) => {
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height
+    });
+    canvas.setChart(chart);
+    var option = {
+      title: {
+        show: 'true',
+        x: 'center',
+        y: height / 2 - 23,
+        text: '累计金额',
+        subtext: '25444.22',
+        textStyle: {
+          baseline: 'top',
+          color: '#717882',
+          fontSize: 13,
+        },
+        subtextStyle: {
+          baseline: 'top',
+          color: '#000000',
+          fontSize: 18,
+          fontWeight: 'bold'
+        }
+      },
+      backgroundColor: "#ffffff",
+      color: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
+      series: [{
+        name: '123',
+        type: 'pie',
+        itemStyle: {
+          normal: {
+            label: {
+              show: false
+            },
+            labelLine: {
+              show: false
+            }
+          }
+        },
+        radius: ['55%', '100%'],
+        data: data
+      }]
+    };
+
+    chart.setOption(option);
+    return chart;
+  })
 }
 /** 
  * 时间戳转化为年 月 日 时 分 秒 
@@ -258,7 +313,8 @@ module.exports = {
   checkLogin,
   get_wxml,
   Tips,
-  SplitArray
+  SplitArray, 
+  initChart
 }
 
 

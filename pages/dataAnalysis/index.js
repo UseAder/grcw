@@ -68,7 +68,9 @@ Page({
       end_date: '',
     },
     ec: {
-      onInit: initChart
+      // onInit: initChart
+            onInit: null
+
     },
     colors: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
     lbkzList: [{
@@ -159,6 +161,13 @@ Page({
     if (that.data.qySelectByNsrsbhData.nsrsbh) {
       that.dataQySelectByNsrsbh()
     }
+    that.echartsComponnet = that.selectComponent('#mychart-dom-pie');
+    console.log(that.echartsComponnet)
+    that.setData({
+      'ec.onInit': util.initChart(that.echartsComponnet, that.data.lbkzList)
+
+    })
+    console.log(that.ec.onInit)
     // that.onReadyWxCharts()
   },
   //onload中 获取当前时间作为时间picker的结束时间
