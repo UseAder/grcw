@@ -1,5 +1,5 @@
 <view class="page">
-  <view class='data-loge' wx:if="{{!zymConfirm}}">
+  <!-- <view class='data-loge' wx:if="{{!zymConfirm}}">
     <view class="page__hd">
       <image mode='widthFix' class="hdImage" src="/images/personal/login_logo.png" style='width:200rpx;'></image>
     </view>
@@ -13,16 +13,17 @@
       </view>
       <view class="weui-btn-area">
         <button class="weui-btn " bindtap="save">登录</button>
-        <!-- <button class="weui-btn " bindtap="ceshi">查看演示（暂无演示）</button> -->
+        <button class="weui-btn " bindtap="ceshi">查看演示（暂无演示）</button>
        
       </view>
     </view>
     <view class="weui-footer">
       <view class="weui-footer__text">提示：此模块涉及业务隐私，查看请进行验证。登入后2小时有效</view>
     </view>
-  </view>
+  </view> -->
 <!-- 数据展示页 -->
-  <view class='data-home' wx:else>
+  <!-- <view class='data-home' wx:else> -->
+  <!-- <view class='data-home-login'>登录</view> -->
     <image src='/images/data/data_hg.png' mode='widthFix'></image>
     <view class='data-Categories J-flex-w '>
       <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
@@ -38,4 +39,7 @@
       <image src='/images/data/data_bg.png' mode='widthFix'></image>
     </view>
   </view>
-</view>
+<!-- </view> -->
+
+<userInfo-window window='{{window}}' bind:onColse="onColse">
+</userInfo-window>

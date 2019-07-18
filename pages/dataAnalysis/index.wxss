@@ -1,7 +1,13 @@
 page {
   background: #f2f4f7;
 }
+.hidden{
+  display:none
+}
+.show{
+    display:block
 
+}
 .pie {
     width: 316rpx;
     height: 316rpx;

@@ -71,10 +71,10 @@
 
 .line1 {
   width: 680rpx;
-  height: 3rpx;
+  height: 2rpx;
   background: #ddd;
   position: relative;
-  top: -20rpx;
+  /* top: -20rpx; */
   left: 26rpx;
 }
 
@@ -85,18 +85,20 @@
 }
 
 .order-name {
-  width: 382rpx;
   font-size: 28rpx;
   font-family: PingFangSC-Regular;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
   line-height: 40rpx;
   position: relative;
-  top: -120rpx;
-  left: 218rpx;
+ flex: 1;
+ display: flex;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding-right:34rpx;
+justify-content: space-between;
+padding-left: 25rpx;
 }
 
 .order-quantity {
@@ -106,8 +108,7 @@
   color: rgba(153, 153, 153, 1);
   line-height: 36rpx;
   position: relative;
-  top: -100rpx;
-  left: 218rpx;
+  
 }
 
 .line2 {
@@ -115,7 +116,7 @@
   height: 3rpx;
   background: #ddd;
   position: relative;
-  top: -50rpx;
+  /* top: -50rpx; */
   left: 26rpx;
 }
 
@@ -124,9 +125,9 @@
   font-family: PingFangSC-Regular;
   font-weight: 500;
   color: rgba(51, 51, 51, 1);
-  line-height: 36rpx;
   position: relative;
-  top: -20rpx;
+  /* top: -20rpx; */
+line-height:73rpx;
   left: 548rpx;
 }
 .button{
@@ -167,6 +168,10 @@ margin-right: 46rpx;
 margin-left: 24rpx;
 }
 .goodsInfoList{
-  min-height:229rpx;
+  min-height:192rpx;
 
 }
+
+.goodsInfoList .item{
+display: flex;justify-content: space-between;
+margin: 20rpx 10rpx;}

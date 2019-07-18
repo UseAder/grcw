@@ -17,7 +17,8 @@
 
   <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true">
     <view id="b6" class="goodsList-height" hidden='{{6!=classifyViewId}}'>
-      <view class="data-chart" wx:for="{{lbkzList}}" wx:key>
+      <!-- <view class="data-chart" wx:for="{{lbkzList}}" wx:key> -->
+      <view class="data-chart" wx:for="{{lbkzList}}" wx:key> 
         <view class="data-chart-head">
           <view>
             <view class="title">
@@ -29,8 +30,11 @@
         </view>
         <view class="chart">
           <view class="pie">
-            <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas>
-            <image wx:else src="{{radarImg}}" style="width: 260px; height: 180px;" />
+                   <!-- <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ ec }}" ></ec-canvas> -->
+
+            <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ ec }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas>
+             <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ eca }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas>
+            <!-- <image wx:else src="{{radarImg}}" style="width: 260px; height: 180px;" /> -->
           </view>
           <view class="mark">
             <view class="mark-li {{idx!=chartTitles.length-1?'bottom':''}}" wx:for="{{item.data}}" wx:for-index="idx" wx:key>

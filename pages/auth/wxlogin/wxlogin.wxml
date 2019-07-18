@@ -1,0 +1,17 @@
+<!--pages/auth/wxlogin/wxlogin.wxml-->
+<view class='wxlogin'>
+
+
+<image src="/images/gr_02.png" class='logo'></image>
+<view class='slogon'>果然财务</view>
+<!-- <image src='../../../static/images/denglu_07.png' class='hot_product'/> -->
+
+<view class='wxlogin_container'>
+<view class='wxlogin_inner'>
+<!-- <image src='../../../static/images/denglu_11.png'></image> -->
+<text>微信授权</text>
+</view>
+  <button open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt">授权登录 </button> 
+</view>
+
+</view>

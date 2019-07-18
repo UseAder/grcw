@@ -97,6 +97,8 @@ const formatNumber = n => {
 /**
  * 封封微信的的request
  */
+let isRefreshing = true;
+
 function request(url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
     wx.request({
@@ -107,12 +109,51 @@ function request(url, data = {}, method = "GET") {
         'Content-Type': 'application/json',
         },
       success: function (res) {
+        console.log(res)
         if (res.statusCode == 200) {
+          console.log(res.data)
           if (res.data.msg == "未登录") {
+            console.log(res.data)
+            console.log(res.data.msg)
             //需要登录后才可以操作
-            wx.navigateTo({
-              url: '/pages/authorize/authorize',
-            })  
+            let code = null;
+            return login().then((res) => {
+              code = res.code;
+              return getUserInfo();
+            }).then((userInfo) => {
+              //登录远程服务器
+              request(api.WxLogin, { code: code }, 'POST').then(res => {
+                console.log(555)
+                var user = {}
+                user.openid = res.openid
+                user.username = userInfo.userInfo.nickName
+                user.photo = userInfo.userInfo.avatarUrl
+                //微信用户登录
+                request(api.WxLoginlogin, user, 'POST').then(res => {
+                  if (res.code === 200) {
+                    //存储用户信息
+                    //存储用户信息
+                    // 刷新token的函数,这需要添加一个开关，防止重复请求
+                    if (isRefreshing) {
+                    wx.setStorageSync('openid', res.data.openid);
+                    wx.setStorageSync('userInfo', res.data);
+                    wx.setStorageSync('uid', res.data.uid);
+                      getApp().globalData.userInfo = wx.getStorageSync('userInfo');
+                      getApp().globalData.openid = wx.getStorageSync('openid');
+                      getApp().globalData.uid = wx.getStorageSync('uid');
+                    resolve(request(url, data, method));
+                    }
+                    isRefreshing = false;
+                  } else {
+                    reject(res);
+                  }
+                })
+              }).catch((err) => {
+                reject(err);
+              });
+            }).catch((err) => {
+              reject(err);
+            })
           } else {
             resolve(res.data);
           }
@@ -302,6 +343,61 @@ const SplitArray = function (list, sp) {
   }
   return sp;
 }
+/**
+ * 第二步 调用微信登录
+ */
+function login() {
+  return new Promise(function (resolve, reject) {
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          //登录远程服务器
+          console.log(res)
+          resolve(res);
+        } else {
+          reject(res);
+        }
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    });
+  });
+}
+
+/**
+ * 第三步 调用微信登录
+ */
+function getUserInfo() {
+  return new Promise(function (resolve, reject) {
+    wx.getUserInfo({
+      withCredentials: true,
+      success: function (res) {
+        console.log(res)
+        resolve(res);
+      },
+      fail: function (err) {
+        wx.showModal({
+          title: '授权提示',
+          content: '小程序需要您的授权才能正常使用,请在个人中心点击登录授权',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+              //去到设置中心界面
+              wx.navigateTo({
+                url: '/pages/auth/wxlogin/wxlogin',
+              })             
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+              reject(err);
+            }
+          }
+        })
+      }
+    })
+  });
+}
+
 module.exports = {
   formatTime,
   formatTimeTwo,
@@ -310,7 +406,9 @@ module.exports = {
   redirect,
   showErrorToast,
   checkSession,
-  checkLogin,
+   checkLogin,
+  getUserInfo,
+  login,
   get_wxml,
   Tips,
   SplitArray, 

@@ -33,13 +33,14 @@ App({
         content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
       })
     }
-    // this.globalData.zymConfirm = wx.getStorageSync('zymConfirm');
+    this.globalData.zymConfirm = wx.getStorageSync('zymConfirm');
     var dataTime = wx.getStorageSync('dataTime')
     if (dataTime && Number(dataTime) >= 0){
       wxh.time(null, dataTime)
     }
     util.checkLogin().then(res => {
       console.log('app login');
+      this.globalData.uid = wx.getStorageSync('uid');
       this.globalData.openid = wx.getStorageSync('openid');
       this.globalData.userInfo = wx.getStorageSync('userInfo');
     }).catch(() => {
@@ -53,7 +54,20 @@ App({
     },
     openid:'',//1后端
     uid:'',
-    zymConfirm:true,//验证码成功或失效
+    zymConfirm:false,//验证码成功或失效
+    pieLoad:false,//ec-canvas 数据问题需要
+    pieCanvasHeight:null,
+    lbkzList: [{
+      name: '资产', data: [{
+        value: 10,
+        name: '流动资产合计'
+      }, {
+        value: 10,
+        name: '非流动资产合计'
+      }]
+    },
+    { name: '负债和所有者权益(或股东权益)', data: [{ value: 10, name: '负债合计' }, { value: 10, name: '所有者权益(或股东权益)' }] },
+    { name: '纳税', data: [{ value: 10 }, { value: 7 }] }]
   },
    /*
  * 信息提示 + 跳转

@@ -1,4 +1,7 @@
 {
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "果然数据"
+  "navigationBarTitleText": "果然数据",
+  "usingComponents": {
+    "userInfo-window": "/components/userInfo-window/index"
+  }
 }

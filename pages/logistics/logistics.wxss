@@ -1,0 +1,156 @@
+/* pages/logistics/logistics.wxss */
+
+.top {
+  width: 750rpx;
+  height: 176rpx;
+  position: absolute;
+}
+
+.top-img {
+  width: 130rpx;
+  height: 126rpx;
+  padding-top: 40rpx;
+  padding-left: 30rpx;
+}
+
+.status {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40rpx;
+  position: relative;
+  top: -120rpx;
+  left: 200rpx;
+}
+
+.status text {
+  color: #09af4f;
+}
+
+.company {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 36rpx;
+  position: relative;
+  top: -115rpx;
+  left: 200rpx;
+}
+
+.number {
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 36rpx;
+  position: relative;
+  top: -110rpx;
+  left: 200rpx;
+}
+
+.piece {
+  width: 130rpx;
+  height: 34rpx;
+  color: #fff;
+  background: #2b2b2b;
+  font-size: 22rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  line-height: 32rpx;
+  text-align: center;
+  position: relative;
+  top: -145rpx;
+  left: 30rpx;
+}
+
+.line {
+  width: 750rpx;
+  height: 22rpx;
+  background: #f5f5f5;
+  position: absolute;
+  top: 190rpx;
+}
+
+.track-title {
+  padding-top: 240rpx;
+  padding-left: 50rpx;
+  font-size: 26rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+  line-height: 36rpx;
+}
+
+.tracking {
+  width: 750rpx;
+  padding: 20rpx;
+}
+
+.track-status {
+  margin-left:114rpx;
+margin-right:43rpx;
+
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 36rpx;
+  position: relative;
+  top:-90rpx;
+}
+
+.track-time {
+  font-size: 24rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(153, 153, 153, 1);
+  line-height: 34rpx;
+  position: relative;
+  top:-90rpx;
+  left:114rpx;
+}
+
+.show {
+  color: #09af4f;
+  font-weight: 500;
+}
+
+.track-line {
+  width: 632rpx;
+  height: 3rpx;
+  background: #f2f2f2;
+  margin-left:114rpx;
+  margin-top:-50rpx;
+}
+
+.circle{
+  width:18rpx;
+  height:18rpx;
+  background: #E9E9EB;
+  border-radius:50%;
+  position: relative;
+  top:40rpx;
+  left:65rpx;
+}
+
+.green{
+  width:30rpx;
+  height:30rpx;
+  background:#09AF4F;
+  left:59rpx;
+}
+
+.vLine{
+  width:3rpx;
+  height:100rpx;
+  background: #EFEFEF;
+  position: relative;
+  top:45rpx;
+  left:70rpx;
+}
+
+.hidden{
+  display: none;
+}

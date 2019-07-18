@@ -1,0 +1,94 @@
+/* pages/auth/wxlogin/wxlogin.wxss */
+page{
+height: 100%;
+width: 100%;
+}
+.wxlogin{
+width: 100%;
+text-align: center;
+
+}
+.logo{
+width: 115rpx;
+height: 115rpx;
+left: 0px;
+right: 0px;
+margin: 0 auto;
+margin-top: 110rpx;
+
+
+}
+
+
+.slogon{
+width: 100%;
+text-align: center;
+color: #2c2c2c;
+font-size: 44rpx;
+margin-top: 52rpx;
+font-family: "STSong";
+
+
+
+}
+.hot_product{
+width: 274rpx;
+height: 420rpx;
+margin-top: 106rpx;
+
+}
+
+
+.wxlogin_container{
+width: 590rpx;
+height: 88rpx;
+left: 0px;
+right: 0px;
+margin: 0 auto;
+background: #cccfcf;
+margin-top: 84rpx;
+position: relative;
+
+
+}
+.wxlogin_inner{
+
+width: 590rpx;
+height: 88rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+position: absolute;
+
+
+}
+
+.wxlogin_bt{
+width: 590rpx;
+height: 88rpx;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+position: absolute;
+opacity: 0;
+}
+
+
+.wxlogin_inner image{
+
+width: 54rpx;
+height: 54rpx;
+top: 0px;
+bottom: 0px;
+
+
+}
+.wxlogin_inner text{
+color: #000000;
+font-size: 32rpx;
+margin-left: 10rpx;
+
+
+}

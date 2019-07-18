@@ -10,40 +10,40 @@
 <swiper current="{{status}}" duration="300" bindchange="swiperTab" class="swiper-item" style="height:{{aheight}}rpx">
   <!-- 全部 -->
   <swiper-item wx:for="{{orderNav}}" wx:key>
-    <view class="order-detail" wx:for="{{orderList}}" wx:key="index" wx:if='{{item.status==orderStatus||orderStatus==5}}'>
-      <view class="order-number">订单编号：{{item.order_num}}</view>
-      <view class="order-status">{{item.statusword}}</view>
-      <view class="line1"></view>
+    <view class="order-detail" wx:for="{{orderList}}" wx:key="index" wx:if='{{item.order_status==orderStatus||orderStatus==5}}'>
+      <view class="order-number">订单编号：{{item.order_sn}}</view>
+      <view class="order-status">{{item.status}}</view>
       <view class='goodsInfoList'>
-        <view wx:for="{{item.goodsinfo}}" wx:key="index" bindtap="toGoodsDetails" data-id="{{item.goods_id}}">
-          <image src="{{item.goods_pic}}" class="order-img"></image>
-          <view class="order-name">{{item.goods_name}}</view>
-          <view class="order-quantity">{{item.goods_speci}}</view>
-        </view>
+      <block wx:for="{{item.list}}" wx:key="index" wx:for-item="itemx">
+         <view class='item'  bindtap="toOrderDetails" data-order_sn="{{item.order_sn}}" >
+          <image src="{{itemx.goods_brand}}" class="order-img"></image>
+            <view class="order-name">
+              <view>{{itemx.goods_name}}</view>
+              <view>x{{itemx.goods_num}}</view>
+            </view>
+            <!-- <view class="order-name">{{itemx.goods_name}}</view>
+          <view class="order-quantity"> x{{itemx.goods_num}}</view> -->
 
+        </view>
+      <view class="line1"></view>
+
+      </block>
+     
       </view>
 
-      <view class="line2"></view>
-      <view class="payable">应付：￥{{item.sum}}{{item.status}}</view>
+      <view class="payable" wx:if="{{item.order_status==0}}">应付：¥{{item.pay_price}}</view>
+      <view class="payable" wx:else>已付：¥{{item.pay_price}}</view>
+
       <view class="button">
-        <block wx:if="{{item.status==0}}">
-          <view class="cancel-btn" data-index="{{index}}" data-order_id="{{item.id}}" bindtap='cancelOrder'>取消订单</view>
-          <view class="pay-btn" data-order_id="{{item.order_id}}" data-order_id="{{item.id}}" bindtap='goOrderDetails'>立即付款</view>
+        <block wx:if="{{item.order_status==0}}">
+          <view class="cancel-btn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" bindtap='cancelOrder'>取消订单</view>
+          <view class="pay-btn" data-order_sn="{{item.order_sn}}" data-id="{{item.id}}" bindtap='payOrder'>立即付款</view>
         </block>
-        <block wx:if="{{item.status==1}}">
-          <view class="cancel-btn" data-order_id="{{item.id}}" data-order_num="{{item.order_num}}" bindtap='viewLogistics'>查看物流</view>
+        <block wx:if="{{item.order_status==20}}">
+          <view class="cancel-btn" data-order_id="{{item.id}}" data-loginstics_num="{{item.loginstics_num}}" data-order_loginstics="{{item.order_loginstics}}" bindtap='viewLogistics'>查看物流</view>
+          <view class="pay-btn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" bindtap='confirmOrder'>确认收货</view>
         </block>
-        <block wx:if="{{item.status==2}}">
-          <view class="cancel-btn" data-order_id="{{item.id}}" data-order_num="{{item.order_num}}" bindtap='viewLogistics'>查看物流</view>
-          <view class="pay-btn" data-index="{{index}}" data-order_id="{{item.id}}" bindtap='confirmOrder'>确认收货</view>
-        </block>
-        <!-- <block wx:if="{{item.status==3}}"> -->
-          <!-- <view class="pay-btn font-color1 border-color1" data-order_id="{{item.id}}" bindtap='anotherOrder'>再来一单</view> -->
-          <view class="pay-btn font-color1 border-color1" data-order_num="{{item.id}}" bindtap='goQuestionnaire'>去评价</view>
-        <!-- </block> -->
       </view>
     </view>
-    
   </swiper-item>
-
 </swiper>

@@ -11,7 +11,7 @@ Page({
     page: 1,
     loading: false,//是否加载中
     loadend: false,//是否加载完毕
-    loadTitle: '加载更多',//提示语
+    loadTitle: '暂无数据',//提示语
   },
   onLoad: function () {
     // 页面初始化 

@@ -1,5 +1,5 @@
 var NewApiRootUrl = 'https://gr.ufcoux.com/Really/public/index.php/api/'
-var NewApiRootUrlGUORAN = 'http://openapi.yunzhangfang.com/open/api/';
+var NewApiRootUrlGUORAN = 'https://openapi.yunzhangfang.com/open/api/';
 // var NewApiRootUrl = 'http://192.168.124.15/Really/public/index.php/api/';
 // var UploadFileUrl = 'https://image.poempz.com/';
 
@@ -32,10 +32,18 @@ module.exports = {
 
   OrderGm: NewApiRootUrl + 'Order/order', //单个商品支付流程
   OrderAllGm: NewApiRootUrl + 'Order/order_all', //多个商品支付流程
+  OrderBuyPay: NewApiRootUrl + 'Order/order_sn_pay', //运单支付流程
+  OrderSuccess: NewApiRootUrl + 'Order/up_order', //支付成功
+  OrderDetail: NewApiRootUrl + 'Order/delite', //订单详情(订单id)
+  OrderLogistic: NewApiRootUrl + 'Order/express', //wuliu
+  OrderConfirm: NewApiRootUrl + 'Order/yes_goods', //订单确认收货
+
+
   OrderDan: NewApiRootUrl + 'Order/',//单个商品下单详情页
   OrderIndexAll: NewApiRootUrl + 'Order/index_all',//批量下单详情页
 
   GetOrder: NewApiRootUrl + 'User/order',//用户订单列表
+  OrderDelete: NewApiRootUrl + 'User/false_delete', //取消订单
 
 
 

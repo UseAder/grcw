@@ -3,98 +3,76 @@ const util = require("../../utils/util.js");
 const utilAata = require("../../utils/dataName.js");
 const api = require("../../config/api.js");
 import * as echarts from '../../components/ec-canvas/echarts';
-function initChart(canvas, width, height, data) {
-  const chart = echarts.init(canvas, null, {
+var chart =[]
+var chart1 = []
+function initChart1(canvas, width, height, data) {//这里多加一个参数
+  chart = echarts.init(canvas, null, {
     width: width,
     height: height
-  });
+  })
   canvas.setChart(chart);
   var option = {
-    title: {
-      show: 'true',
-      x: 'center',
-      y: height / 2 - 23,
-      text: '累计金额',
-      subtext: '25444.22',
-      textStyle: {
-        baseline: 'top',
-        color: '#717882',
-        fontSize: 13,
-      },
-      subtextStyle: {
-        baseline: 'top',
-        color: '#000000',
-        fontSize: 18,
-        fontWeight: 'bold'
-      }
-    },
-    backgroundColor: "#ffffff",
-    color: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
-    series: [{
-      name: '123',
-      type: 'pie',
-      itemStyle: {
-        normal: {
-          label: {
-            show: false
-          },
-          labelLine: {
+    series: [
+      {
+        name: '访问来源',
+        type: 'pie',
+        radius: ['60%', '70%'],
+        animationType: 'scale',
+        silent: true,
+        labelLine: {
+          normal: {
             show: false
           }
-        }
-      },
-      radius: ['55%', '100%'],
-      data: data
-    }]
-  };
-
+        },
+        data: data,
+        color: ["#666", "#179B16"]
+      }
+    ]
+  }
   chart.setOption(option);
   return chart;
 }
-
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+
+    lbkzList: [{
+      name: '资产', data: [{
+        value: 10,
+        name: '流动资产合计'
+      }, {
+        value: 10,
+        name: '非流动资产合计'
+      }]
+    },
+    { name: '负债和所有者权益(或股东权益)', data: [{ value: 10, name: '负债合计' }, { value: 10, name: '所有者权益(或股东权益)' }] },
+    { name: '纳税', data: [{ value: 10 }, { value: 7 }] }],
+
     qySelectByNsrsbhData: {//企业信息
       nsrsbh: '',
       qyid: '',
       kjnd: '',
       kjqj: ''
     },
-    dataTime: {
-      start_date: '2018-09',
-      end_date: '',
-    },
-    ec: {
-      // onInit: initChart
-            onInit: null
-
-    },
+    dataTime: {start_date: '2018-09',end_date: ''},//时间
+    // ec: {
+    //   onInit: initChart
+    // },
+    // eca: {
+    //   onInit: initChart
+    // },
     colors: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
-    lbkzList: [{
-      name: '资产', data: [{
-        value: 55,
-        name: '流动资产合计'
-      }, {
-        value: 20,
-        name: '非流动资产合计'
-      }]
-    },
-    { name: '负债和所有者权益(或股东权益)', data: [{ value: 10, name: '负债合计' }, { value: 4, name: '所有者权益(或股东权益)' }] },
-    { name: '纳税', data: [{ value: 10 }, { value: 7 }] },
-    ],
-    chartsWidth: 0,
     scrollLeft:0,//设置横向滚动条位置
-    dataName: {}, //资产负债表表·余额表·利润表  明细账   数据
-    laobanData:{},
-    dataInvoiceList: { //发票清单 销项发票·进项发票·费用发票  数据
+    dataName: {}, //*资产负债表表·余额表·利润表  明细账   数据
+    laobanData:{},//*老板看账
+    dataWages: [], //*工资  数据
+    dataInvoiceList: { //*发票清单 销项发票·进项发票·费用发票  数据
       xxfpData: {},
       jxfpData: {}
     },
-    dataWages: [], //工资  数据
-    dataNssb: { //纳税申报 数据
+    dataNssb: { //*纳税申报 数据
       list: [],
       total: 0.00
     },
@@ -123,8 +101,7 @@ Page({
     }, {
       function_title: "工资",
       function_id: 13,
-    }], //类别
-    dataQyselectFullKjbb: [], //会计报表
+    }]//类别
   },
   // 日期时间改变 重新搜索数据
   bindDateChange: function (e) {
@@ -140,7 +117,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  onShow:function(){
+
+  },
   onLoad: function (options) {
+
     // 第一步 获取纳税人识别号
     var that = this
     console.log(wx.getStorageSync('dataCategories'))
@@ -161,14 +142,105 @@ Page({
     if (that.data.qySelectByNsrsbhData.nsrsbh) {
       that.dataQySelectByNsrsbh()
     }
-    that.echartsComponnet = that.selectComponent('#mychart-dom-pie');
-    console.log(that.echartsComponnet)
-    that.setData({
-      'ec.onInit': util.initChart(that.echartsComponnet, that.data.lbkzList)
+    // this.echartsComponnet1 = this.selectComponent('#mychart-dom-pie0');
+    // this.echartsComponnet2 = this.selectComponent('#mychart-dom-pie1');
+    // this.echartsComponnet3 = this.selectComponent('#mychart-dom-pie2');
+  },
+  getData: function () {
+  	/**
+  	 * 此处模拟操作：
+  	 * 获取数据json
+  	 */
+    /**
+  	 * 此处模拟操作：
+  	 * 循环更新各个图表数据
+  	 */
+    var that=this
+    if (!Chart[0]) {
+      that.init_echarts(1); //初始化图表
+      console.log(1)
+    } else {
+      that.setOptionx(1, app.globalData.pieCanvasHeight); //更新数据
+      console.log(2)
 
-    })
-    console.log(that.ec.onInit)
-    // that.onReadyWxCharts()
+          }
+    if (!Chart[1]) {
+      that.init_echarts(2); //初始化图表
+    } else {
+      that.setOptionx(2, app.globalData.pieCanvasHeight); //更新数据
+    }
+  },
+
+  //初始化图表
+  init_echarts: function (i) {
+    this['echartsComponnet' + i].init((canvas, width, height) => {
+      // 初始化图表
+      Chart[i - 1] = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      });
+        app.globalData.pieCanvasHeight=height
+      this.setOptionx(i, height);
+      // 注意这里一定要返回 chart 实例，否则会影响事件处理等
+      return Chart[i - 1];
+    });
+  },
+  setOptionx: function (i, height) {
+    var that=this
+    console.log(Chart[i - 1])
+    Chart[i - 1].clear();  // 清除
+    console.log(Chart[i - 1])
+
+    Chart[i - 1].setOption(that.getOption(i, height));  //获取新数据
+    // console.log()
+  },
+  getOption: function (i,height) {
+    console.log(2.2)
+    var totlePrice = 0, that = this, lbkzList = that.data.lbkzList[i-1].data
+    for (var j in lbkzList){
+      totlePrice += lbkzList[j].value*1
+    }
+    var option = {
+      title: {
+        show: 'true',
+        x: 'center',
+        y: height / 2 - 23,
+        text: '累计金额',
+        subtext: totlePrice.toFixed(2),
+        textStyle: {
+          baseline: 'top',
+          color: '#717882',
+          fontSize: 13,
+        },
+        subtextStyle: {
+          baseline: 'top',
+          color: '#000000',
+          fontSize: 18,
+          fontWeight: 'bold'
+        }
+      },
+      backgroundColor: "#ffffff",
+      color: that.data.colors,
+      series: [{
+        name: '123',
+        type: 'pie',
+        itemStyle: {
+          normal: {
+            label: {
+              show: false
+            },
+            labelLine: {
+              show: false
+            }
+          }
+        },
+        radius: ['55%', '100%'],
+        data: lbkzList
+
+      }]
+    }
+    console.log(option)
+    return option;
   },
   //onload中 获取当前时间作为时间picker的结束时间
   endDate: function () {
@@ -185,7 +257,7 @@ Page({
       'qySelectByNsrsbhData.kjnd': Y,
       'qySelectByNsrsbhData.kjqj': M
     })
-    this.echartsComponnet = this.selectComponent('#mychart-dom-pie');
+    // this.echartsComponnet = this.selectComponent('#mychart-dom-pie');
 
   },
   // 第二步 通过纳税人识别号获取企业信息
@@ -207,7 +279,6 @@ Page({
   },
   // 第三步 数据加载集合
   dataList: function () {
-    console.log(2)
     var that = this
     that.DataTaxSelectTaxReportByNsrsbh()//纳税申报表
     that.DataQyselectFullKjbb()//会计报表
@@ -219,17 +290,40 @@ Page({
   //canvas 老板看帐
   LaoBanKz: function () {
     var that = this
-    // console.log(that.data.dataName.zcfzZmkName[1].cols[1])
-
-    // console.log(that.data.dataName.zcfzZmkName[0].children[0].cols[1])
-    // console.log(that.data.dataName.zcfzZmkName[0].children[1].cols[1])
-
-    // console.log(that.data.lbkzList[0].data[1])
     that.setData({
-      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1], 'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
+      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1],
+      'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
       'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1],
       'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
     })
+    var option = {
+      series: [
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: ['60%', '70%'],
+          animationType: 'scale',
+          silent: true,
+          labelLine: {
+            normal: {
+              show: false
+            }
+          },
+          data: [{
+            value: 1,
+            name: '流动资产合计'
+          }, {
+            value: 9,
+            name: '非流动资产合计'
+          }],
+          color: ["#666", "#179B16"]
+        }
+      ]
+    }
+    console.log(chart)
+    chart.setOption(option)
+    // app.globalData.lbkzList = that.data.lbkzList
+    console.log(app.globalData.lbkzList)
   },
 
   // 第三步 1.通过纳税人识别号获取--纳税申报表()
@@ -574,5 +668,38 @@ Page({
   goMxzlist: function (e) {
     var kmlx = e.currentTarget.dataset.kmlx
     app.Tips('/pages/mxzlist/index?mxzData=' + JSON.stringify(this.data.dataName.mxbZmkName) + '&kmlx=' + kmlx)
-  }
+  },
+  // onHide:function(){
+  //   this.setData({
+  //     lbkzList:''
+  //   })
+  // },
+  onReady() {
+    // var option = {
+    //   series: [
+    //     {
+    //       name: '访问来源',
+    //       type: 'pie',
+    //       radius: ['60%', '70%'],
+    //       animationType: 'scale',
+    //       silent: true,
+    //       labelLine: {
+    //         normal: {
+    //           show: false
+    //         }
+    //       },
+    //       data: this.data.lbkzList,
+    //       color: ["#666", "#179B16"]
+    //     }
+    //   ]
+    // }
+    // console.log(this.data.lbkzList)
+    // console.log(chart)
+    // chart.setOption(option);
+    // this.setData({
+    //   lbkzList: app.globalData.lbkzList,
+
+    // })
+  },
 })
+

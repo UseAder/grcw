@@ -6,6 +6,7 @@ const wxh = require('../../utils/wxh.js');
 Page({
   data: {
     phone: '', //手机号
+    window: true,
     corporateName: '杭州优狐科技',//公司名称
     code: '', //验证码
     yzmyz: '',//判断是否与输入验证码验证
@@ -53,6 +54,12 @@ Page({
         function_id: 13,
       function_url: "/images/data/data8.png"
     },], //类别
+  },
+  // 关闭个人资料弹框
+  onColse: function () {
+    this.setData({
+      window: true
+    });
   },
   // 获取输入框公司名称 
   getCorporateName: function (e) {
@@ -168,7 +175,7 @@ Page({
   },
   // 导航头部字体。背景 改变
   zymConfirmNav: function () {
-    if (app.globalData.zymConfirm)
+    if (!app.globalData.zymConfirm)
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#ECC935',

@@ -1,31 +1,39 @@
-var app = getApp();
+const pay = require('../../services/pay.js');
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
+var app = getApp();
+
 Page({
   data: {
+    order: {},
     orderNav: [
       { status: 0, type: 5, title: '全部' },
-      { status: 1, type: 0, title: '待付款' },
-      { status: 2, type: 1, title: '待发货' },
-      { status: 3, type: 2, title: '已发货' },
-      { status: 4, type: 3, title: '已完成' },
+      { status: 1, type: 0, title: '未付款'},
+      { status: 2, type: 10, title: '待发货' },
+      { status: 3, type: 20, title: '已发货' },
+      { status: 4, type: 30, title: '已完成' },
+
     ],
-    loading: false,//是否加载中
-    loadend: false,//是否加载完毕
-    loadTitle: '加载更多',//提示语
     status: 0,//当前所在滑块的index
     orderStatus: 5,//订单状态
     aheight: 0,
     orderList: []
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
+    console.log(options)
+    this.setData({
+      status: options.type
+    })
     // 页面初始化 options为页面跳转所带来的参数
   },
 
-  toGoodsDetails: function (e) {
-    var id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: '/pages/goods-details/index?id=' + id });
+  toOrderDetails: function (e) {
+    var order_sn = e.currentTarget.dataset.order_sn, that = this
+    that.setData({
+      'order.order_sn': order_sn
+    })
+    wx.navigateTo({ url: '/pages/orderDetail/orderDetail?order=' + JSON.stringify(that.data.order) });
   },
   goQuestionnaire: function (e) {
     var order_num = e.currentTarget.dataset.order_num;
@@ -36,26 +44,35 @@ Page({
    * 
   */
   cancelOrder: function (e) {
-    var order_id = e.currentTarget.dataset.order_id;
-    if (!order_id) return app.Tips({ title: '缺少订单号无法取消订单' });
+    var order_sn = e.currentTarget.dataset.order_sn;
+    if (!order_sn) return app.Tips({ title: '缺少订单号无法取消订单' });
     var that = this;
-    util.request(api.OrderDelete + order_id, {}, "DELETE"
-    ).then(function (res) {
-      if (res.code == 200)
-        app.Tips({ title: '删除成功', icon: 'success' }, function () {
-          that.getOrderList()
-        });
+    wx.showModal({
+      title: '订单取消',
+      content: '确定要取消此订单？',
+      success: function (res) {
+        if (res.confirm) {
+          util.request(api.OrderDelete, { order_sn: order_sn}, "post"
+          ).then(function (res) {
+            if (res.code == 200)
+              app.Tips({ title: '订单已取消', icon: 'success' }, function () {
+                that.getOrderList()
+              });
+          })
+        }
+      }
     })
+
   },
   /**
    * 确认收货
    * 
   */
   confirmOrder: function (e) {
-    var order_id = e.currentTarget.dataset.order_id;
-    if (!order_id) return app.Tips({ title: '缺少订单号无法确认订单' });
+    var order_sn = e.currentTarget.dataset.order_sn;
+    if (!order_sn) return app.Tips({ title: '缺少订单号无法确认订单' });
     var that = this;
-    util.request(api.OrderConfirm, { id: order_id }
+    util.request(api.OrderConfirm, { order_sn: order_sn },'post'
     ).then(function (res) {
       if (res.code == 200)
         app.Tips({ title: '已确认收货', icon: 'success' }, function () {
@@ -65,12 +82,21 @@ Page({
   },
 
   /**
-   * 查看物流
-  */
+ * 查看物流
+*/
   viewLogistics: function (e) {
-    var order_id = e.currentTarget.dataset.order_id;
-    if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
-    wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+    // var order_loginstics = e.currentTarget.dataset.order_loginstics;
+    // var loginstics_num = e.currentTarget.dataset.loginstics_num;
+    // var order_id = e.currentTarget.dataset.order_id;
+    // if (!order_id) return app.Tips({ title: '缺少订单信息无法查看物流' });
+    // if (!loginstics_num) return app.Tips({ title: '缺少订单信息无法查看物流' });
+    // if (!order_loginstics) return app.Tips({ title: '缺少订单信息无法查看物流' });
+    wx.navigateTo({
+      url: '/pages/logistics/logistics'
+    })
+    // wx.navigateTo({
+    //   url: '/pages/logistics/logistics?oid=' + order_id + '&loginstics_num=' + loginstics_num + '&order_loginstics=' + order_loginstics
+    // })
   },
   /**
   * 再来一单
@@ -84,11 +110,28 @@ Page({
   /**
    * 去订单详情  立即付款
   */
-  goOrderDetails: function (e) {
-    var order_id = e.currentTarget.dataset.order_id;
-    if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
-    wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+  payOrder(e) {
+    console.log()
+    let that = this
+    var order_sn = e.currentTarget.dataset.order_sn;
+    var openid = app.globalData.openid
+    pay.payOrder({ order_sn: order_sn, openid: openid }).then(res => {
+      app.Tips({ title: '付款成功', icon: 'success' }, function () {
+        that.getOrderList()
+      });
+    }).catch(res => {
+      app.Tips({
+        title: '支付失败'
+      });
+    });
   },
+
+
+  // goOrderDetails: function (e) {
+  //   var order_id = e.currentTarget.dataset.order_id;
+  //   if (!order_id) return app.Tips({ title: '缺少订单号无法查看订单详情' });
+  //   wx.navigateTo({ url: '/pages/order_details/index?order_id=' + order_id })
+  // },
   /**
    * 切换类型
   */
@@ -98,8 +141,11 @@ Page({
     var status = e.currentTarget.dataset.status;
     if (status == this.data.status) return;
     this.setData({ status: status, orderStatus: orderStatus });
-    // this.setData({ orderStatus: status, loadend: false, page: 1, orderList: [] });
-    // this.getOrderList();
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
   },
   //切换
   swiperTab: function (e) {
@@ -109,25 +155,27 @@ Page({
       status: e.detail.current,
       orderStatus: orderNav[e.detail.current].type
     })
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
   },
   /**
    * 获取订单列表
   */
   getOrderList: function () {
-    var that = this;
-    util.request(api.GetOrder, { uid: wx.getStorageSync('uid')}
+    var that = this,uid=that.data.uid;
+    util.request(api.GetOrder, { uid: 2}, 'post'
     ).then(function (res) {
-      if (res.code == 200) {
-        that.setData({
-          orderList: res.data
-        });
-        that.setData({
-          aheight: that.data.orderList.length * 539
-        });
-      }
+      that.setData({
+        'orderList': res
+      });
+      that.setData({
+        aheight: that.data.orderList.length * 700
+      });
     })
   },
-
   /**
    * 删除订单
   */
@@ -144,6 +192,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      uid: app.globalData.uid
+    })
     this.getOrderList();
-  }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '酒宫御品',
+      desc: '酒宫御品',
+      path: '/pages/index/index'
+    }
+  },
 })

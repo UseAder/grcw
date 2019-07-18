@@ -1,9 +1,9 @@
 @import '/font/font.wxss';
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
      width: 0;
      height: 0;
      color: transparent;
-}
+} */
 page::after{
     content: '';
     position: fixed;
@@ -91,3 +91,5 @@ justify-content:space-between;
 .wxlogin_bt{
   position: absolute;z-index: 101;height: 100%;width: 100%;opacity: 0;
 }
+
+.mask{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(0,0,0,0.6);z-index:7;}

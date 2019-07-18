@@ -48,7 +48,7 @@ Page({
         goods_discount: res.goods_discount,
         goods_brand: res.goods_brand,
         goods_name: res.goods_name,
-        cart_num: res.number
+        cart_num: that.data.optionsData.number
       }]
       var checkedAddress = res.address
       that.setData({
@@ -75,13 +75,12 @@ Page({
   // 立即购买
   submitOrder: function() {
     var optionsData = this.data.optionsData
-     
     if (!this.data.checkedAddress) return app.Tips({ title: '请选择收货地址' });
     if (optionsData.cid) {
       var cid = JSON.parse(optionsData.cid)
       this.cartPay(cid)
     }
-    if (optionsData.number) {
+    if (optionsData.number) {//单个商品立即购买支付
       this.buynowPay(optionsData)
     }
 
@@ -94,14 +93,14 @@ Page({
       number: optionsData.number,
       uid: wx.getStorageSync('uid'),
       address: that.data.checkedAddress.ad_id,
-      openid: 'oZ6JV47et--iTC6pMr0QdU0q2g7Q',
+      openid: wx.getStorageSync('openid')
     }
-    wx.navigateTo({
-      url: '/pages/cart/cart',
-    })
-    // util.request(api.OrderGm, grderAllGmData, "POST").then(function(res) {
-    //   // that.requestPayment(res);
+    // wx.navigateTo({
+    //   url: '/pages/cart/cart',
     // })
+    util.request(api.OrderGm, grderAllGmData, "POST").then(function(res) {
+      that.requestPayment(res);
+    })
   },
   //购物车支付
   cartPay: function(optionsData) {
@@ -110,7 +109,7 @@ Page({
       cid: optionsData,
       uid: wx.getStorageSync('uid'),
       address: that.data.checkedAddress.ad_id,
-      openid: 'oZ6JV47et--iTC6pMr0QdU0q2g7Q',
+      openid: wx.getStorageSync('openid')
     }
  
     util.request(api.OrderAllGm, grderAllGmData, "POST").then(function(res) {
@@ -125,11 +124,17 @@ Page({
       'package': obj.package,
       'signType': obj.signType,
       'paySign': obj.paySign,
-      'success': function(res) {
-        wx.navigateBack({ delta: 1 });
+      'success': function (res) {
+        util.request(api.OrderSuccess, {order_sn:obj.order_sn}, "POST").then(function (res) {
+          wx.redirectTo({
+            url: '/pages/payResult/payResult?status=true',
+          })
+        });
       },
-      'fail': function(res) {
-        wx.navigateBack({ delta: 1 });
+      'fail': function (res) {
+        wx.redirectTo({
+          url: '/pages/payResult/payResult?status=false&order=' + obj.order_sn
+        })
       }
     })
   },

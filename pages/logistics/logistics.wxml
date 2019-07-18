@@ -1,0 +1,28 @@
+<!--pages/logistics/logistics.wxml-->
+<view class="logistics">
+  <view class="top">
+    <image src="{{logistic.goods_pic}}" class="top-img"></image>
+    <view class="status">物流状态：
+      <text wx:if='{{logistic.State==0}}'>暂无轨迹信息</text>
+      <text wx:elif='{{logistic.State==2}}'>运输中</text>
+      <text wx:elif='{{logistic.State==3}}'>已签收</text>
+      <text wx:else>问题件</text>
+    </view>
+    <view class="company">物流公司：
+      <text>{{logistic.ShipperCode}}</text>
+    </view>
+    <view class="number">物流单号：
+      <text>{{logistic.LogisticCode}}</text>
+    </view>
+    <view class="piece">{{logistic.goods_num}}件商品</view>
+    <view class="line"></view>
+  </view>
+  <view class="track-title">订单跟踪</view>
+  <view class="tracking" wx:for="{{track}}" wx:key="index">
+    <view class="circle {{index==0?'green':''}}"></view>
+    <view class="vLine"></view>
+    <view class="track-status {{index==0?'show':''}}">{{item.AcceptStation}}</view>
+    <view class="track-time {{index==0?'show':''}}">{{item.AcceptTime}}</view>
+    <view class="track-line"></view>
+  </view>
+</view>

@@ -1,0 +1,70 @@
+@import '/app.wxss';
+/*  */
+.coupon-window {
+  width: 512rpx;
+  height: 796rpx;
+  position: fixed;
+  top: 20%;
+  z-index: 99;
+  left: 50%;
+  margin-left: -260rpx;
+  transform: translate3d(0, -200%, 0);
+  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+}
+
+.coupon-window.on {
+  transform: translate3d(0, 0, 0);
+  
+}
+
+.coupon-window .couponWinList{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 512rpx;
+  height: 397rpx;
+  
+}
+.coupon-window .lid {
+ padding-top:24rpx;
+
+  background: #fff;
+  padding-bottom: 34rpx;
+}
+
+.coupon-window .lid .title {
+  line-height: 52rpx;
+  font-size: 30rpx;
+  color: rgba(153, 153, 153, 1);
+  text-align: center;
+}
+
+.coupon-window .lid .bnt {
+  font-size: 32rpx;
+  width:280rpx;
+  height: 82rpx;
+  border-radius: 40rpx;
+  
+   background: linear-gradient(to right, #F6B24E , #FE7F5E);
+
+  text-align: center;
+  line-height: 82rpx;
+  margin: 70rpx auto 0 auto;
+  color: #fff;
+}
+
+.coupon-window .lid-guanbi.iconfont {
+  color:#fff;
+  font-size:47rpx;
+  text-align:center;
+  margin-top:36rpx;
+
+}
+
+.page__hd{
+  display: flex;justify-content: center;
+}
+.page__hd .hdImage {
+    width: 114rpx;
+    height:84rpx;
+
+}

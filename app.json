@@ -1,14 +1,25 @@
 {
   "pages": [
-        "pages/gr_data/index",
+    "pages/gr_data/index",
+    
+                "pages/gr_ucenter/index",
+                "pages/logistics/logistics",
+            "pages/order/order",
+                "pages/auth/wxlogin/wxlogin",
+                
+            "pages/orderDetail/orderDetail",
         
-    "pages/gr_index/index",
+            
+    
+        
+        
+    "pages/payResult/payResult",
     "pages/dataAnalysis/index",
+    "pages/gr_index/index",
     "pages/mxzlist/index",
     "pages/invoiceDetaile/index",
     "pages/invoiceList/index",
     "pages/data/index",
-    "pages/gr_ucenter/index",
     "pages/cart/cart",
     "pages/shopping/checkout",
     "pages/gr_mall/index",
@@ -16,8 +27,7 @@
     "pages/address-add/index",
     "pages/goods/goods",
     "pages/newlist/news",
-    "pages/newsdetail/news",
-    "pages/order/order"
+    "pages/newsdetail/news"
   ],
   "window": {
     "backgroundTextStyle": "light",
