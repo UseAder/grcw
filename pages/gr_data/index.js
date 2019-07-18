@@ -5,8 +5,9 @@ const wxh = require('../../utils/wxh.js');
 
 Page({
   data: {
+    logindialog: false,
+
     phone: '', //手机号
-    window: true,
     corporateName: '杭州优狐科技',//公司名称
     code: '', //验证码
     yzmyz: '',//判断是否与输入验证码验证
@@ -55,12 +56,25 @@ Page({
       function_url: "/images/data/data8.png"
     },], //类别
   },
-  // 关闭个人资料弹框
-  onColse: function () {
+    // 打开登录弹框
+
+  open_login: function () {
     this.setData({
-      window: true
+      logindialog: true
     });
   },
+  // 关闭登录弹框
+  close_login: function () {
+    this.setData({
+      logindialog: false
+    });
+  },
+  // inputAccount: function (e) {
+  //   console.log(e.detail.value)
+    // this.setData({
+    //   account: e.detail.value
+    // });
+  // },
   // 获取输入框公司名称 
   getCorporateName: function (e) {
     this.setData({
@@ -157,6 +171,8 @@ Page({
         });
         that.setData({
           // 'qyInformation.login_time': res.data.login_time,
+          logindialog: false,
+
           'qyInformation.nsrsbh': res.data.nsrsbh,
           'qyInformation.out_time': res.data.out_time,
           'qyInformation.phone': res.data.phone,
@@ -175,7 +191,7 @@ Page({
   },
   // 导航头部字体。背景 改变
   zymConfirmNav: function () {
-    if (!app.globalData.zymConfirm)
+    // if (!app.globalData.zymConfirm)
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
         backgroundColor: '#ECC935',
@@ -185,15 +201,15 @@ Page({
         }
       });
       
-    else
-      wx.setNavigationBarColor({
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
-        animation: {
-          duration: 30,
-          timingFunc: 'linear'
-        }
-      });
+    // else
+    //   wx.setNavigationBarColor({
+    //     frontColor: '#000000',
+    //     backgroundColor: '#ffffff',
+    //     animation: {
+    //       duration: 30,
+    //       timingFunc: 'linear'
+    //     }
+    //   });
   },
   onLoad: function () {
     var that = this

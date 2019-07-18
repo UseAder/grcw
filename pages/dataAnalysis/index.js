@@ -3,10 +3,10 @@ const util = require("../../utils/util.js");
 const utilAata = require("../../utils/dataName.js");
 const api = require("../../config/api.js");
 import * as echarts from '../../components/ec-canvas/echarts';
-var chart =[]
-var chart1 = []
-function initChart1(canvas, width, height, data) {//这里多加一个参数
-  chart = echarts.init(canvas, null, {
+// var chart =[]
+// var chart1 = []
+function initChart(canvas, width, height, data) {//这里多加一个参数
+  var chart = echarts.init(canvas, null, {
     width: width,
     height: height
   })
@@ -57,9 +57,9 @@ Page({
       kjqj: ''
     },
     dataTime: {start_date: '2018-09',end_date: ''},//时间
-    // ec: {
-    //   onInit: initChart
-    // },
+    ec: {
+      onInit: initChart
+    },
     // eca: {
     //   onInit: initChart
     // },
@@ -321,9 +321,9 @@ Page({
       ]
     }
     console.log(chart)
-    chart.setOption(option)
+    // chart.setOption(option)
     // app.globalData.lbkzList = that.data.lbkzList
-    console.log(app.globalData.lbkzList)
+    // console.log(app.globalData.lbkzList)
   },
 
   // 第三步 1.通过纳税人识别号获取--纳税申报表()

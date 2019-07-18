@@ -85,18 +85,11 @@ Page({
  * 查看物流
 */
   viewLogistics: function (e) {
-    // var order_loginstics = e.currentTarget.dataset.order_loginstics;
-    // var loginstics_num = e.currentTarget.dataset.loginstics_num;
-    // var order_id = e.currentTarget.dataset.order_id;
-    // if (!order_id) return app.Tips({ title: '缺少订单信息无法查看物流' });
-    // if (!loginstics_num) return app.Tips({ title: '缺少订单信息无法查看物流' });
-    // if (!order_loginstics) return app.Tips({ title: '缺少订单信息无法查看物流' });
+    var order_sn = e.currentTarget.dataset.order_sn;
+    if (!order_sn) return app.Tips({ title: '缺少订单信息无法查看物流' });
     wx.navigateTo({
-      url: '/pages/logistics/logistics'
+      url: '/pages/logistics/logistics?order_sn=' + order_sn
     })
-    // wx.navigateTo({
-    //   url: '/pages/logistics/logistics?oid=' + order_id + '&loginstics_num=' + loginstics_num + '&order_loginstics=' + order_loginstics
-    // })
   },
   /**
   * 再来一单

@@ -21,25 +21,49 @@
       <view class="weui-footer__text">提示：此模块涉及业务隐私，查看请进行验证。登入后2小时有效</view>
     </view>
   </view> -->
-<!-- 数据展示页 -->
+  <!-- 数据展示页 -->
   <!-- <view class='data-home' wx:else> -->
-  <!-- <view class='data-home-login'>登录</view> -->
-    <image src='/images/data/data_hg.png' mode='widthFix'></image>
-    <view class='data-Categories J-flex-w '>
-      <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
-        <view class='images'>
-          <image src='{{item.function_url}}'></image>
+   <view class='data-home-login' bindtap='open_login' wx:if="{{!zymConfirm}}">未登录</view>
+  <view class='data-home-login' wx:else>已登录</view>  
+  <image src='/images/data/data_hg.png' mode='widthFix'></image>
+  <view class='data-Categories J-flex-w '>
+    <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
+      <view class='images'>
+        <image src='{{item.function_url}}'></image>
+      </view>
+      <view class='title'>
+        {{item.function_title}}
+      </view>
+    </navigator>
+  </view>
+  <view class='data_bg'>
+    <image src='/images/data/data_bg.png' mode='widthFix'></image>
+  </view>
+</view>
+<!-- </view> -->
+<view class="attr-pop" wx:if="{{logindialog}}">
+  <view bindtap="closePopupTap" class="popup-mask"></view>
+  <view class="popup-contents">
+    <view class="login">
+      <image class="login_logo" src="/images/personal/login_logo.png"></image>
+      <view class="login_account">
+        <image class="account_logo"  mode='widthFix' src="/images/personal/login_account.png"></image>
+        <input bindinput="getCorporateName" placeholder="请输入公司名称" value="{{corporateName}}"></input>
+      </view>
+      <view class='pwd-content flex'>
+        <view class="pwd_account">
+          <image class="account_logo" mode='widthFix' src="/images/personal/login_pwd.png"></image>
+          <input value='{{code}}' bindinput='getCodeValue' type="number" placeholder="请输入验证码"></input>
         </view>
-        <view class='title'>
-          {{item.function_title}}
-        </view>
-      </navigator>
-    </view>
-    <view class='data_bg'>
-      <image src='/images/data/data_bg.png' mode='widthFix'></image>
+        <button class="page-vcode-btn" hover-class="button-hover" bindtap="obtainYzm" disabled='{{disabled}}'>{{codename}}</button>
+      </view>
+
+      <view bindtap="save" class="bt">立刻查询</view>
     </view>
   </view>
-<!-- </view> -->
-
-<userInfo-window window='{{window}}' bind:onColse="onColse">
-</userInfo-window>
+  <view bindtap="close_login" class="close_container">
+    <image class="close" src="/images/personal/close.png"></image>
+  </view>
+</view>
+<!-- <userInfo-window window='{{window}}' bind:onColse="onColse">
+</userInfo-window> -->

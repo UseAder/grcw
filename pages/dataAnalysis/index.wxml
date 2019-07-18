@@ -32,8 +32,8 @@
           <view class="pie">
                    <!-- <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ ec }}" ></ec-canvas> -->
 
-            <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ ec }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas>
-             <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ eca }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas>
+            <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" tuData="{{item.data}}"></ec-canvas>
+             <!-- <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ eca }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas> -->
             <!-- <image wx:else src="{{radarImg}}" style="width: 260px; height: 180px;" /> -->
           </view>
           <view class="mark">

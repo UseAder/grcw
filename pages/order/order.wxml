@@ -40,7 +40,7 @@
           <view class="pay-btn" data-order_sn="{{item.order_sn}}" data-id="{{item.id}}" bindtap='payOrder'>立即付款</view>
         </block>
         <block wx:if="{{item.order_status==20}}">
-          <view class="cancel-btn" data-order_id="{{item.id}}" data-loginstics_num="{{item.loginstics_num}}" data-order_loginstics="{{item.order_loginstics}}" bindtap='viewLogistics'>查看物流</view>
+          <view class="cancel-btn" data-order_sn="{{item.order_sn}}" bindtap='viewLogistics'>查看物流</view>
           <view class="pay-btn" data-index="{{index}}" data-order_sn="{{item.order_sn}}" bindtap='confirmOrder'>确认收货</view>
         </block>
       </view>

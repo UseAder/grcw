@@ -7,6 +7,7 @@
 }
 
 .top-img {
+  opacity: 0;
   width: 130rpx;
   height: 126rpx;
   padding-top: 40rpx;
@@ -21,7 +22,7 @@
   line-height: 40rpx;
   position: relative;
   top: -120rpx;
-  left: 200rpx;
+  left: 50rpx;
 }
 
 .status text {
@@ -36,7 +37,7 @@
   line-height: 36rpx;
   position: relative;
   top: -115rpx;
-  left: 200rpx;
+  left: 50rpx;
 }
 
 .number {
@@ -47,10 +48,11 @@
   line-height: 36rpx;
   position: relative;
   top: -110rpx;
-  left: 200rpx;
+  left: 50rpx;
 }
 
-.piece {
+.piece {  opacity: 0;
+
   width: 130rpx;
   height: 34rpx;
   color: #fff;
