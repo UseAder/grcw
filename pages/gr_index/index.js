@@ -71,6 +71,9 @@ Page({
 
     
   },
+  goLink: function (a) {
+    app.Tips('/pages/webview/index'); 
+  },
   heightReady: function () {
     var that = this
     let copenCompany = that.data.copenCompany[that.data.currentTab].list

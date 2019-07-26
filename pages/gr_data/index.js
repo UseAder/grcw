@@ -1,3 +1,4 @@
+
 var app = getApp();
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
@@ -6,9 +7,8 @@ const wxh = require('../../utils/wxh.js');
 Page({
   data: {
     logindialog: false,
-
     phone: '', //手机号
-    corporateName: '杭州优狐科技',//公司名称
+    corporateName: '',//公司名称
     code: '', //验证码
     yzmyz: '',//判断是否与输入验证码验证
     codename: '获取验证码',
@@ -16,12 +16,44 @@ Page({
     zymConfirm: false,//验证成功状态
     qyInformation: {//该企业信息
       login_time: "",
-      nsrsbh: "1460652757116",
+      nsrsbh: "",
       out_time: "",
       phone: "",
       poster: []
     },
-
+    xxx: [{
+      function_title: "老板看账",
+      function_id: 6,
+      function_url: "/images/data/data1.png"
+    }, {
+      function_title: "纳税申报",
+      function_id: 7,
+      function_url: "/images/data/data2.png"
+    }, {
+      function_title: "现金流量",
+      function_id: 8,
+      function_url: "/images/data/data3.png"
+    }, {
+      function_title: "资产负债",
+      function_id: 9,
+      function_url: "/images/data/data4.png"
+    }, {
+      function_title: "明细账",
+      function_id: 10,
+      function_url: "/images/data/data5.png"
+    }, {
+      function_title: "利润率",
+      function_id: 11,
+      function_url: "/images/data/data6.png"
+    }, {
+      function_title: "发票清单",
+      function_id: 12,
+      function_url: "/images/data/data7.png"
+    }, {
+      function_title: "工资",
+      function_id: 13,
+      function_url: "/images/data/data8.png"
+    },],
     dataCategories: [{
       function_title: "老板看账",
       function_id: 6,
@@ -69,6 +101,32 @@ Page({
       logindialog: false
     });
   },
+  delete_login:function(){
+    var that=this
+    wx.showModal({
+      title: '系统提醒',
+      content: '是否退出登录？',
+      success: function (res) {
+        if (res.confirm) {
+          getApp().globalData.zymConfirm = false
+          wx.setStorageSync('zymConfirm', false);
+          that.setData({
+            qyInformation:{},
+            dataCategories: that.data.xxx,
+            corporateName: '',//公司名称
+            phoneText:'',
+            codename: '获取验证码',
+            code: '', //验证码
+          })
+          that.onShow()
+          console.log(1)
+        } else if (res.cancel) {
+          return false;
+        }
+       
+      }
+    })
+  },
   // inputAccount: function (e) {
   //   console.log(e.detail.value)
     // this.setData({
@@ -101,12 +159,13 @@ Page({
       } else if (res.code == 200) {
         app.Tips({
           title: ' 验 证 码 已 发 送 至 手 机 '
-            + res.data,
+            + res.data.phone.substring(0, 3) + '****' + res.data.phone.substring(7),
         });
         that.setData({
-          phone: res.data
-        })
-        util.request(api.LoginMessage, { phone: res.data }, "POST"
+          phone: res.data.phone,
+          phoneText: '正在向手机' + res.data.phone.substring(0, 3) + '****' + res.data.phone.substring(7)+'发送验证消息...'  
+           })
+        util.request(api.LoginMessage, { phone: res.data.phone }, "POST"
         ).then(function (res) {
           that.setData({
             yzmyz: res.yzm
@@ -159,7 +218,8 @@ Page({
     }
     util.request(api.PhoneLogin, {
       yzm: Number(that.data.code),
-      phone: that.data.phone
+      phone: that.data.phone,
+      company: that.data.corporateName
     }, "POST"
     ).then(function (res) {
       app.Tips({
@@ -172,20 +232,23 @@ Page({
         that.setData({
           // 'qyInformation.login_time': res.data.login_time,
           logindialog: false,
-
           'qyInformation.nsrsbh': res.data.nsrsbh,
           'qyInformation.out_time': res.data.out_time,
           'qyInformation.phone': res.data.phone,
+          'qyInformation.corporateName': res.data.company,
           'qyInformation.poster': res.data.poster,
           'dataCategories': res.data.type,
           'zymConfirm': true
         })
-        var data = new Date().getTime() + 72000000
+        
         app.globalData.zymConfirm = true
         wx.setStorageSync('dataCategories', that.data.dataCategories);
         wx.setStorageSync('nsrsbh', that.data.qyInformation.nsrsbh);
         wx.setStorageSync('zymConfirm', app.globalData.zymConfirm );
-        wxh.time(data,null)
+        wx.setStorageSync('corporateName', res.data.company);
+        // wx.setStorageSync('zymConfirm', app.globalData.zymConfirm);
+        // wx.setStorageSync('zymConfirm', app.globalData.zymConfirm);
+        wxh.time(50)
       }
     })
   },
@@ -213,17 +276,44 @@ Page({
   },
   onLoad: function () {
     var that = this
-    
+    console.log(1)
+    console.log(that.data.qyInformation.corporateName)
     },
   onShow: function () {
+    console.log(2)
     var that = this
     that.setData({
       zymConfirm: app.globalData.zymConfirm
     })
     if (app.globalData.zymConfirm){
       that.setData({
+        // that.setData({
+        //   // 'qyInformation.login_time': res.data.login_time,
+        //   logindialog: false,
+        'qyInformation.corporateName': wx.getStorageSync('corporateName'),
+        'qyInformation.nsrsbh': wx.getStorageSync('nsrsbh'),
+          // 'qyInformation.out_time': res.data.out_time,
+          // 'qyInformation.phone': res.data.phone,
+          // 'qyInformation.poster': res.data.poster,
+          // 'dataCategories': res.data.type,
+          // 'zymConfirm': true,
+        // })
+        
+        // app.globalData.zymConfirm = true
+        // wx.setStorageSync('dataCategories', that.data.dataCategories);
+        // wx.setStorageSync('nsrsbh', that.data.qyInformation.nsrsbh);
+        // wx.setStorageSync('zymConfirm', app.globalData.zymConfirm);
         dataCategories: wx.getStorageSync('dataCategories')
       })
+      // wx.showToast({
+      //   title: "注：由于您是使用微信登录或未登录，当前展示示例数据",
+      //   icon: "none",
+      //   duration: 3e3
+      // });
+    }else{
+      app.Tips({
+        title: "注：由于您是使用微信登录或未登录，当前展示示例数据",
+      });
     }
     that.zymConfirmNav()
   }

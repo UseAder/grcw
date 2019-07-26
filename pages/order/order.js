@@ -159,7 +159,7 @@ Page({
   */
   getOrderList: function () {
     var that = this,uid=that.data.uid;
-    util.request(api.GetOrder, { uid: 2}, 'post'
+    util.request(api.GetOrder, { uid: uid}, 'post'
     ).then(function (res) {
       that.setData({
         'orderList': res

@@ -43,6 +43,12 @@ Page({
       url: "/pages/address-select/index"
     })
   },
+  // 消息模板
+  goxiaoximoban: function () {
+    wx.navigateTo({
+      url: '/pages/xiaoximoban/xiaoximoban'
+    })
+  },
   // 购物车
   tax: function(a) {
     wx.navigateTo({

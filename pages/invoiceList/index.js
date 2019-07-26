@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    invoiceList:[],
+    invoiceList: [{ gfdwmc: '杭州xx有限公司', kprq: "2019-06-01 00:00:00", jshj: "656", sehj: "876", jehj: "908" }, { gfdwmc: '杭州xx有限公司', kprq: "2019-06-01 00:00:00", jshj: "656", sehj: "876", jehj: "908" }],
     qySelectByNsrsbhData: {//企业信息
       nsrsbh: '',
       qyid: '',
@@ -40,6 +40,7 @@ Page({
         "kjnd": that.data.qySelectByNsrsbhData.kjnd,
         "kjqj": that.data.qySelectByNsrsbhData.kjqj
       }, "get").then(function (res) {
+        if(res.code!=0)return
         that.setData({
           invoiceList: res.result
         })
@@ -50,6 +51,7 @@ Page({
         "kjnd": that.data.qySelectByNsrsbhData.kjnd,
         "kjqj": that.data.qySelectByNsrsbhData.kjqj
       }, "get").then(function (res) {
+        if (res.code != 0) return
         that.setData({
           invoiceList: res.result
         })

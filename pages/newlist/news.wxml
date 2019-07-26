@@ -4,6 +4,6 @@
         <image src="{{item.img}}"></image>
     </navigator>
 </view>
-<view class='loadingicon acea-row row-center-wrapper'>
+<view class='loadingicon acea-row row-center-wrapper' wx:if="{{newsList.length>2}}">
     <text class='loading iconfont icon-jiazai' hidden='{{loading==false}}'></text>{{loadTitle}}
   </view>

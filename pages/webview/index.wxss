@@ -1,0 +1,40 @@
+.web-bg{
+  padding: 0 20rpx;
+}
+
+.personal-data {margin-top:15rpx;background-color:#fff;padding: 30rpx 80rpx;}
+/* .personal-data .list .item{padding:30rpx 30rpx 30rpx 36rpx;border-bottom:1rpx solid #f2f2f2;font-size:32rpx;color:#999999;} */
+.personal-data .list .item{
+  height: 84rpx;
+    line-height: 84rpx;
+    border: 1px solid #cccccc;
+    border-radius: 12rpx;
+    display: flex;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+.personal-data .list .item .item-name{
+  border-right: 1px solid #ccc;
+    display: block;
+    width: 168rpx;
+    line-height: 84rpx;
+    text-align: center;
+    background: #eeeeee;
+    color: #666666;
+}
+.personal-data .list .item .input{flex:1;color:#333;padding-left: 20rpx;}
+
+.personal-data .list .item .pictrue{width:120rpx;height:120rpx;}
+.personal-data .list .item .pictrue image{width:100%;height:100%;border-radius:50%;}
+
+.personal-data .list .item .input .id{width:365rpx;}
+.personal-data .modifyBnt{    border: none;
+    height: 84rpx;
+    line-height: 84rpx;
+    border-radius: 12rpx;
+    width: 100%;
+    color: #ffffff;
+    font-size: 32rpx;
+    background: linear-gradient(#ff6b4e, #ff8c4e);
+
+}

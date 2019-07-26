@@ -7,10 +7,11 @@
     </view>
   </view>
 </view>
-<swiper current="{{status}}" duration="300" bindchange="swiperTab" class="swiper-item" style="height:{{aheight}}rpx">
+<swiper current="{{status}}" duration="300" bindchange="swiperTab" class="swiper-item" style="height:{{aheight}}rpx;min-height:100vh">
   <!-- 全部 -->
   <swiper-item wx:for="{{mxzData}}" wx:for-item='item' wx:key>
-    <view class='list_box' wx:for="{{item.children}}" wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
+  <view></view>
+    <view class='list_box' wx:for="{{item.children}}"  wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
       <view class='list'>
         <view class='list_name_box all'>
           <view class='data-title data-data'>

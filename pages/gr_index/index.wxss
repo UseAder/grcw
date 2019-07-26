@@ -342,9 +342,16 @@
   }
 
   .content-bottom-con .bottom-con-image {
-      width: 55px;
-      height: 50px;
+     width:160rpx;
+     height: 160rpx;
+      display: flex;
+      align-items: center;justify-content: center;
       margin-top: 10px;
+  }
+   .content-bottom-con .bottom-con-image image{
+      width:105rpx;
+      /* height: 55px;
+      margin-top: 10px; */
   }
 
   .content .content-swiper .content-swiper-item .content-item-banner {
@@ -390,12 +397,15 @@
   padding: 0 12.5rpx;
 }
 .content-bottom-con {
-      height: 100%;
+      height: 260rpx;
       width:160rpx;margin: 0 12.5rpx;
       background-color: #f8f8f8;
       border-radius: 4px;
       text-align: center;
-      display: inline-block;
+      display: inline-flex;
+  }
+  .content-bottom-link{
+    width: 100%;
   }
 /*  */
   .scroll_box{

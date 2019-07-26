@@ -1,11 +1,9 @@
 
 
 //倒计时；
-var time = function (timeStamp,dataTime) {
-  var interval = null, totalSecond = (timeStamp - Date.parse(new Date())) / 1000 ;
-  if (dataTime){
-    totalSecond = dataTime
-  }
+var time = function (timeStamp) {
+  console.log(interval)
+  var interval = null, totalSecond = timeStamp
   interval = setInterval(function () {
     // 秒数  
     var second = totalSecond;

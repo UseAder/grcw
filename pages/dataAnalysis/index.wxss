@@ -12,6 +12,12 @@ page {
     width: 316rpx;
     height: 316rpx;
 }
+.pie.opacity{
+opacity: 0;
+width:0;overflow: hidden;
+height:0;
+
+}
 .content {
   background: #FF9900;
   position: fixed;top: 0;width: 100%;z-index: 999
@@ -217,6 +223,9 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
     border-radius: 18rpx;
     margin: 0 28rpx 38rpx 28rpx;
     padding: 26rpx 32rpx;
+   height:425rpx;
+
+
 }
 
 .chart {

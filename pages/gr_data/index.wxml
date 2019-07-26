@@ -23,8 +23,17 @@
   </view> -->
   <!-- 数据展示页 -->
   <!-- <view class='data-home' wx:else> -->
-   <view class='data-home-login' bindtap='open_login' wx:if="{{!zymConfirm}}">未登录</view>
-  <view class='data-home-login' wx:else>已登录</view>  
+  <!-- <image cal>
+  </image> -->
+   <view class='data-home-login' bindtap='open_login' wx:if="{{!zymConfirm}}">  
+   立刻查询
+</view>
+  <view class='data-home-login' wx:else bindtap='delete_login'>已登录</view>  
+  <view class='gr_gsxx'>
+  <view>公司名称：{{qyInformation.corporateName}}</view>
+  <view>纳税人识别号：{{qyInformation.nsrsbh}}</view>
+  
+  </view>
   <image src='/images/data/data_hg.png' mode='widthFix'></image>
   <view class='data-Categories J-flex-w '>
     <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
@@ -48,7 +57,9 @@
       <image class="login_logo" src="/images/personal/login_logo.png"></image>
       <view class="login_account">
         <image class="account_logo"  mode='widthFix' src="/images/personal/login_account.png"></image>
-        <input bindinput="getCorporateName" placeholder="请输入公司名称" value="{{corporateName}}"></input>
+        <input bindinput="getCorporateName" placeholder="请输入需要查询的公司全称" value="{{corporateName}}"></input>
+      </view>
+      <view class='yz-xx'>{{phoneText}}
       </view>
       <view class='pwd-content flex'>
         <view class="pwd_account">

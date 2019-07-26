@@ -11,7 +11,7 @@
       <image wx:else class="avatar" src="/images/personal/head_icon.png"></image>
       <view class="info">
         <text class="name" wx:if="{{userInfo.username}}">{{userInfo.username}}</text>
-                  <text class="level" wx:if="{{userInfo.username=='Hi,游客'}}">点击去登录</text>
+        <text class="level" wx:if="{{userInfo.username=='Hi,游客'}}">点击去登录</text>
 
         <!-- <view wx:else>
           <text class="name">{{userInfo.username}}</text>
@@ -68,7 +68,12 @@
           <text class="txt">购物车</text>
         </view>
       </view>
-
+      <!-- <view bindtap="goxiaoximoban" class="item">
+        <view class="a">
+          <image src="/images/personal/address.png" mode='widthFix'></image>
+          <text class="txt">消息模板</text>
+        </view>
+      </view> -->
     </view>
     <view class="company_logo">
       <view class='zxun'>

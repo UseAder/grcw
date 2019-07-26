@@ -101,6 +101,7 @@ let isRefreshing = true;
 
 function request(url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
+    showLoading('加载中...')
     wx.request({
       url: url,
       data: data,
@@ -109,7 +110,7 @@ function request(url, data = {}, method = "GET") {
         'Content-Type': 'application/json',
         },
       success: function (res) {
-        console.log(res)
+        hideLoading();
         if (res.statusCode == 200) {
           console.log(res.data)
           if (res.data.msg == "未登录") {
@@ -123,7 +124,6 @@ function request(url, data = {}, method = "GET") {
             }).then((userInfo) => {
               //登录远程服务器
               request(api.WxLogin, { code: code }, 'POST').then(res => {
-                console.log(555)
                 var user = {}
                 user.openid = res.openid
                 user.username = userInfo.userInfo.nickName
@@ -162,6 +162,7 @@ function request(url, data = {}, method = "GET") {
         }
       },
       fail: function (err) {
+        hideLoading();
         reject(err)
         console.log("failed")
       }
@@ -173,6 +174,7 @@ function request(url, data = {}, method = "GET") {
  */
 function requestGUOran(url, data = {}, method = "GET") {
   return new Promise(function (resolve, reject) {
+    showLoading('加载中...')
     wx.request({
       url: url,
       data: data,
@@ -182,6 +184,8 @@ function requestGUOran(url, data = {}, method = "GET") {
         'appCode': '6a537e1f938a4e5d8edbeabb106f40b2'
       },
       success: function (res) {
+        hideLoading();
+
         if (res.statusCode == 200) {
             resolve(res.data);
         } else {
@@ -189,6 +193,8 @@ function requestGUOran(url, data = {}, method = "GET") {
         }
       },
       fail: function (err) {
+        hideLoading();
+
         reject(err)
         console.log("failed")
       }
@@ -397,7 +403,32 @@ function getUserInfo() {
     })
   });
 }
+function showLoading(message) {
+  if (wx.showLoading) {
+    // 基础库 1.1.0 微信6.5.6版本开始支持，低版本需做兼容处理
+    wx.showLoading({
+      title: message,
+      mask: true
+    });
+  } else {
+    // 低版本采用Toast兼容处理并将时间设为20秒以免自动消失
+    wx.showToast({
+      title: message,
+      icon: 'loading',
+      mask: true,
+      duration: 20000
+    });
+  }
+}
 
+function hideLoading() {
+  if (wx.hideLoading) {
+    // 基础库 1.1.0 微信6.5.6版本开始支持，低版本需做兼容处理
+    wx.hideLoading();
+  } else {
+    wx.hideToast();
+  }
+}
 module.exports = {
   formatTime,
   formatTimeTwo,
@@ -412,7 +443,9 @@ module.exports = {
   get_wxml,
   Tips,
   SplitArray, 
-  initChart
+  initChart,
+  showLoading,
+  hideLoading
 }
 
 

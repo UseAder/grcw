@@ -1,0 +1,21 @@
+
+<view class='web-bg'>
+<image src='/images/data/data_bg.png' mode='widthFix'></image>
+</view>
+<form bindsubmit="formSubmit">
+  <view class='personal-data'>
+    <view class='list'>
+        
+        <view class='item acea-row row-between-wrapper'>
+          <view class='item-name'>用户名</view>
+          <view class='input'><input type='text' name='nickname' value='{{userInfo.nickname}}' placeholder='如：王先生' placeholder-style="color:#CCCCCC"></input></view>
+        </view>
+        <view class='item acea-row row-between-wrapper J-borderN'>
+          <view class='item-name'>手机号码</view>
+          <view class='input'><input type='text' name='phone' value='{{userInfo.phone}}' placeholder='输入联系方式获取免费咨询' placeholder-style="color:#CCCCCC"></input></view>
+        </view>
+    </view>
+    <button class='modifyBnt' formType="submit">立即获取</button>
+  </view>
+</form>
+

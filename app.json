@@ -1,22 +1,23 @@
 {
   "pages": [
-    "pages/gr_data/index",
-    
-                "pages/gr_ucenter/index",
-                "pages/logistics/logistics",
-            "pages/order/order",
-                "pages/auth/wxlogin/wxlogin",
+                "pages/gr_index/index",
                 
-            "pages/orderDetail/orderDetail",
+        "pages/gr_data/index",
         
+                "pages/mxzlist/index",
+                
+            "pages/webview/index",
             
-    
+        "pages/gr_ucenter/index",
         
-        
+          "pages/xiaoximoban/xiaoximoban",
+          
+    "pages/logistics/logistics",
+    "pages/order/order",
+    "pages/auth/wxlogin/wxlogin",
+    "pages/orderDetail/orderDetail",
     "pages/payResult/payResult",
     "pages/dataAnalysis/index",
-    "pages/gr_index/index",
-    "pages/mxzlist/index",
     "pages/invoiceDetaile/index",
     "pages/invoiceList/index",
     "pages/data/index",
@@ -43,8 +44,8 @@
     "list": [
       {
         "pagePath": "pages/gr_index/index",
-        "iconPath": "images/gr_01.png",
-        "selectedIconPath": "images/gr_02.png",
+        "iconPath": "images/gr.png",
+        "selectedIconPath": "images/gr_27.png",
         "text": "首页"
       },
       {
@@ -57,7 +58,7 @@
         "pagePath": "pages/gr_data/index",
         "iconPath": "images/gr_05.png",
         "selectedIconPath": "images/gr_06.png",
-        "text": "数据"
+        "text": "查账"
       },
       {
         "pagePath": "pages/gr_ucenter/index",

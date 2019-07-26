@@ -36,7 +36,7 @@ App({
     this.globalData.zymConfirm = wx.getStorageSync('zymConfirm');
     var dataTime = wx.getStorageSync('dataTime')
     if (dataTime && Number(dataTime) >= 0){
-      wxh.time(null, dataTime)
+      wxh.time(dataTime)
     }
     util.checkLogin().then(res => {
       console.log('app login');

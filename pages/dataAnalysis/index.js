@@ -3,43 +3,134 @@ const util = require("../../utils/util.js");
 const utilAata = require("../../utils/dataName.js");
 const api = require("../../config/api.js");
 import * as echarts from '../../components/ec-canvas/echarts';
-// var chart =[]
-// var chart1 = []
-function initChart(canvas, width, height, data) {//这里多加一个参数
-  var chart = echarts.init(canvas, null, {
+var chart0 = null
+var chart1 = null
+
+
+function initChart1(canvas, width, height) { //这里多加一个参数
+  chart1 = echarts.init(canvas, null, {
     width: width,
     height: height
   })
-  canvas.setChart(chart);
+  canvas.setChart(chart1);
   var option = {
-    series: [
-      {
-        name: '访问来源',
-        type: 'pie',
-        radius: ['60%', '70%'],
-        animationType: 'scale',
-        silent: true,
-        labelLine: {
-          normal: {
+    title: {
+      show: 'true',
+      x: 'center',
+      y: 52,
+      text: '累计金额',
+      subtext: 111,
+      animationType: 'scale',
+
+      textStyle: {
+        baseline: 'top',
+        color: '#717882',
+        fontSize: 13,
+      },
+      subtextStyle: {
+        baseline: 'top',
+        color: '#000000',
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
+    },
+    backgroundColor: "#ffffff",
+    color: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
+    series: [{
+      name: '123',
+      type: 'pie',
+      itemStyle: {
+        normal: {
+          label: {
+            show: false
+          },
+          labelLine: {
             show: false
           }
-        },
-        data: data,
-        color: ["#666", "#179B16"]
-      }
-    ]
+        }
+      },
+      radius: ['55%', '100%'],
+      data: [{
+        value: 10,
+        name: '流动资产合计'
+      }, {
+        value: 1,
+        name: '非流动资产合计'
+      }],
+
+    }]
   }
-  chart.setOption(option);
-  return chart;
+
+  chart1.setOption(option);
+  return chart1;
+}
+
+function initChart0(canvas, width, height) { //这里多加一个参数
+  chart0 = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  })
+  canvas.setChart(chart0);
+  var option = {
+    title: {
+      show: 'true',
+      x: 'center',
+      y: 52,
+      text: '累计金额',
+      subtext: 111,
+      animationType: 'scale',
+
+      textStyle: {
+        baseline: 'top',
+        color: '#717882',
+        fontSize: 13,
+      },
+      subtextStyle: {
+        baseline: 'top',
+        color: '#000000',
+        fontSize: 18,
+        fontWeight: 'bold'
+      }
+    },
+    backgroundColor: "#ffffff",
+    color: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
+    series: [{
+      name: '123',
+      type: 'pie',
+      itemStyle: {
+        normal: {
+          label: {
+            show: false
+          },
+          labelLine: {
+            show: false
+          }
+        }
+      },
+      radius: ['55%', '100%'],
+      data: [{
+        value: 10,
+        name: '流动资产合计'
+      }, {
+        value: 1,
+        name: '非流动资产合计'
+      }],
+
+    }]
+  }
+  chart0.setOption(option);
+  return chart0;
 }
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    loading: false,
     lbkzList: [{
-      name: '资产', data: [{
+      name: '资产',
+      ec: {},
+      data: [{
         value: 10,
         name: '流动资产合计'
       }, {
@@ -47,26 +138,33 @@ Page({
         name: '非流动资产合计'
       }]
     },
-    { name: '负债和所有者权益(或股东权益)', data: [{ value: 10, name: '负债合计' }, { value: 10, name: '所有者权益(或股东权益)' }] },
-    { name: '纳税', data: [{ value: 10 }, { value: 7 }] }],
+    {
+      name: '负债和所有者权益(或股东权益)',
+      ec: {},
+      data: [{
+        value: 10,
+        name: '负债合计'
+      }, {
+        value: 10,
+        name: '所有者权益(或股东权益)'
+      }]
+    },
+    ],
 
-    qySelectByNsrsbhData: {//企业信息
+    qySelectByNsrsbhData: { //企业信息
       nsrsbh: '',
       qyid: '',
       kjnd: '',
       kjqj: ''
     },
-    dataTime: {start_date: '2018-09',end_date: ''},//时间
-    ec: {
-      onInit: initChart
-    },
-    // eca: {
-    //   onInit: initChart
-    // },
+    dataTime: {
+      start_date: '2018-09',
+      end_date: ''
+    }, //时间
     colors: ["#7C8DFF", "#FDE683", "#10D98F", "#356AF4", "#FE5153"],
-    scrollLeft:0,//设置横向滚动条位置
+    scrollLeft: 0, //设置横向滚动条位置
     dataName: {}, //*资产负债表表·余额表·利润表  明细账   数据
-    laobanData:{},//*老板看账
+    laobanData: {}, //*老板看账
     dataWages: [], //*工资  数据
     dataInvoiceList: { //*发票清单 销项发票·进项发票·费用发票  数据
       xxfpData: {},
@@ -101,7 +199,13 @@ Page({
     }, {
       function_title: "工资",
       function_id: 13,
-    }]//类别
+    }] //类别
+  },
+  echartInit0(e) {
+    initChart0(e.detail.canvas, e.detail.width, e.detail.height);
+  },
+  echartInit1(e) {
+    initChart1(e.detail.canvas, e.detail.width, e.detail.height);
   },
   // 日期时间改变 重新搜索数据
   bindDateChange: function (e) {
@@ -112,32 +216,72 @@ Page({
       'qySelectByNsrsbhData.kjnd': picker_date[0],
       'qySelectByNsrsbhData.kjqj': picker_date[1]
     })
-    that.dataList()
+    if (app.globalData.zymConfirm) {
+      that.dataList()
+    } else {
+      app.Tips({
+        title: "注：由于您是使用微信登录或未登录，当前展示示例数据",
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onShow:function(){
+  onShow: function () {
 
   },
   onLoad: function (options) {
 
     // 第一步 获取纳税人识别号
     var that = this
-    console.log(wx.getStorageSync('dataCategories'))
-    that.setData({
-      'qySelectByNsrsbhData.nsrsbh': '91330103MA27X5AC26',
-      //  'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh')
-      // categories:wx.getStorageSync('dataCategories'),
-      classifyViewId: options.classifyViewId
-    })
-    var currentIndex = options.currentIndex
-    if (currentIndex > 3) {
+    // app.globalData.pieLoad=options.classifyViewId
+    if (app.globalData.zymConfirm) {
       that.setData({
-        scrollLeft:(currentIndex-3) * 177.5
-      });
+        'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh'),
+        categories: wx.getStorageSync('dataCategories'),
+        pieLoad: options.classifyViewId
+      })
+    } else {
+      that.setData({
+        // 'qySelectByNsrsbhData.nsrsbh': '91330103MA27X5AC26',
+        'qySelectByNsrsbhData.nsrsbh': '',
+
+        pieLoad: options.classifyViewId,
+        'dataName': utilAata.DataName,
+        'laobanData': utilAata.LaobanData,
+        'dataNssb.list': utilAata.DataNssb.list,
+        'dataNssb.total': utilAata.DataNssb.total,
+        'dataInvoiceList': utilAata.DataInvoiceList,
+        'dataWages': utilAata.DataWages
+      })
+      // var total = 0, result=[];
+      // for (var i in result) {
+      //   if (res.result[i].kkMoney != null) {
+      //     total += Number(res.result[i].kkMoney)
+      //   }
+      // }
+      // that.setData({
+      //   'dataNssb.list': res.result,
+      //   'dataNssb.total': total.toFixed(2)
+      // })
     }
-    that.endDate()// 获取当前时间作为时间picker的结束时间
+    //     if (app.globalData.zymConfirm){
+    //  that.setData({
+    //       // 'qySelectByNsrsbhData.nsrsbh': '91330103MA27X5AC26',
+    //       'qySelectByNsrsbhData.nsrsbh': wx.getStorageSync('nsrsbh'),
+    //       categories: wx.getStorageSync('dataCategories'),
+    //       // classifyViewId: 
+    //       pieLoad: options.classifyViewId
+    //     })
+    //     }
+
+    // var currentIndex = options.currentIndex
+    // if (currentIndex > 3) {
+    //   that.setData({
+    // scrollLeft:(currentIndex-3) * 177.5
+    //   });
+    // }
+    that.endDate() // 获取当前时间作为时间picker的结束时间
     // 第二步 通过纳税人识别号获取企业信息91330109MA2CDE721G
     if (that.data.qySelectByNsrsbhData.nsrsbh) {
       that.dataQySelectByNsrsbh()
@@ -147,24 +291,23 @@ Page({
     // this.echartsComponnet3 = this.selectComponent('#mychart-dom-pie2');
   },
   getData: function () {
-  	/**
-  	 * 此处模拟操作：
-  	 * 获取数据json
-  	 */
     /**
-  	 * 此处模拟操作：
-  	 * 循环更新各个图表数据
-  	 */
-    var that=this
+     * 此处模拟操作：
+     * 获取数据json
+     */
+    /**
+     * 此处模拟操作：
+     * 循环更新各个图表数据
+     */
+    var that = this
     if (!Chart[0]) {
       that.init_echarts(1); //初始化图表
-      console.log(1)
     } else {
       that.setOptionx(1, app.globalData.pieCanvasHeight); //更新数据
-      console.log(2)
 
-          }
-    if (!Chart[1]) {
+
+    }
+    if (!chart1) {
       that.init_echarts(2); //初始化图表
     } else {
       that.setOptionx(2, app.globalData.pieCanvasHeight); //更新数据
@@ -179,34 +322,177 @@ Page({
         width: width,
         height: height
       });
-        app.globalData.pieCanvasHeight=height
+      app.globalData.pieCanvasHeight = height
       this.setOptionx(i, height);
       // 注意这里一定要返回 chart 实例，否则会影响事件处理等
       return Chart[i - 1];
     });
   },
-  setOptionx: function (i, height) {
-    var that=this
-    console.log(Chart[i - 1])
-    Chart[i - 1].clear();  // 清除
-    console.log(Chart[i - 1])
+  // setOptionx: function (i, height) {
+  //   var that=this
+  //   console.log(Chart[i - 1])
+  //   Chart[i - 1].clear();  // 清除
+  //   console.log(Chart[i - 1])
 
-    Chart[i - 1].setOption(that.getOption(i, height));  //获取新数据
-    // console.log()
+  //   Chart[i - 1].setOption(that.getOption(i, height));  //获取新数据
+  //   // console.log()
+  // },
+  // getOption: function (i,height) {
+  //   console.log(2.2)
+  //   var totlePrice = 0, that = this, lbkzList = that.data.lbkzList[i-1].data
+  //   for (var j in lbkzList){
+  //     totlePrice += lbkzList[j].value*1
+  //   }
+  //   var option = {
+  //     title: {
+  //       show: 'true',
+  //       x: 'center',
+  //       y: height / 2 - 23,
+  //       text: '累计金额',
+  //       subtext: totlePrice.toFixed(2),
+  //       textStyle: {
+  //         baseline: 'top',
+  //         color: '#717882',
+  //         fontSize: 13,
+  //       },
+  //       subtextStyle: {
+  //         baseline: 'top',
+  //         color: '#000000',
+  //         fontSize: 18,
+  //         fontWeight: 'bold'
+  //       }
+  //     },
+  //     backgroundColor: "#ffffff",
+  //     color: that.data.colors,
+  //     series: [{
+  //       name: '123',
+  //       type: 'pie',
+  //       itemStyle: {
+  //         normal: {
+  //           label: {
+  //             show: false
+  //           },
+  //           labelLine: {
+  //             show: false
+  //           }
+  //         }
+  //       },
+  //       radius: ['55%', '100%'],
+  //       data: lbkzList
+
+  //     }]
+  //   }
+  //   console.log(option)
+  //   return option;
+  // },
+  //onload中 获取当前时间作为时间picker的结束时间
+  endDate: function () {
+    var that = this
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    //获取年份  
+    var Y = date.getFullYear();
+    //获取月份  
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth()) : date.getMonth());
+    // var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(); 
+    that.setData({
+      'dataTime.end_date': Y + '-' + M,
+      'qySelectByNsrsbhData.kjnd': Y,
+      'qySelectByNsrsbhData.kjqj': M
+    })
+    // this.echartsComponnet = this.selectComponent('#mychart-dom-pie');
+
   },
-  getOption: function (i,height) {
-    console.log(2.2)
-    var totlePrice = 0, that = this, lbkzList = that.data.lbkzList[i-1].data
-    for (var j in lbkzList){
-      totlePrice += lbkzList[j].value*1
+  // 第二步 通过纳税人识别号获取企业信息
+  dataQySelectByNsrsbh: function () {
+    var that = this
+    util.requestGUOran(api.DataQySelectByNsrsbh, {
+      nsrsbh: that.data.qySelectByNsrsbhData.nsrsbh
+    }, "GET").then(function (res) {
+      that.setData({
+        'qySelectByNsrsbhData.qyid': res.result[0].qyid,
+        dataName: utilAata.DataName,
+        laobanData: utilAata.LaobanData
+
+      })
+      // 第三步 1.通过纳税人识别号获取纳税申报
+      that.dataList()
+    })
+  },
+  // 第三步 数据加载集合
+  dataList: function () {
+    var that = this
+    that.DataTaxSelectTaxReportByNsrsbh() //纳税申报表
+    that.DataQyselectFullKjbb() //会计报表
+    that.DataQyselectFullmxb() //明细表
+    that.Fpmx()
+    that.DataQyselectPersonalTaxSheet() //查询个税申报明细 工资
+
+    // that.DataQyzcpzSelectSbxx() //社保信息 暂时不用
+  },
+  //canvas 老板看帐
+  LaoBanKz: function () {
+    var that = this
+    that.setData({
+      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1],
+      'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
+      'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1],
+      'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
+    })
+    // var option = {
+    //   series: [
+    //     {
+    //       name: '访问来源',
+    //       type: 'pie',
+    //       radius: ['60%', '70%'],
+    //       animationType: 'scale',
+    //       silent: true,
+    //       labelLine: {
+    //         normal: {
+    //           show: false
+    //         }
+    //       },
+    //       data: [{
+    //         value: 1,
+    //         name: '流动资产合计'
+    //       }, {
+    //         value: 9,
+    //         name: '非流动资产合计'
+    //       }],
+    //       color: ["#666", "#179B16"]
+    //     }
+    //   ]
+    // }
+
+
+    chart0.setOption(that.getOption(0));
+    chart1.setOption(that.getOption(1));
+
+    // console.log(chart)
+    // chart.setOption(option)
+    // app.globalData.lbkzList = that.data.lbkzList
+    // console.log(app.globalData.lbkzList)
+  },
+
+  //  Chart[i - 1].setOption(that.getOption(i, height));  //获取新数据
+  //     // console.log()
+  //   },
+  getOption: function (i) {
+    var totlePrice = 0,
+      that = this,
+      lbkzList = that.data.lbkzList[i].data
+    for (var j in lbkzList) {
+      totlePrice += lbkzList[j].value * 1
     }
     var option = {
       title: {
         show: 'true',
         x: 'center',
-        y: height / 2 - 23,
+        y: 52,
         text: '累计金额',
         subtext: totlePrice.toFixed(2),
+        animationType: 'scale',
+
         textStyle: {
           baseline: 'top',
           color: '#717882',
@@ -239,92 +525,9 @@ Page({
 
       }]
     }
-    console.log(option)
     return option;
   },
-  //onload中 获取当前时间作为时间picker的结束时间
-  endDate: function () {
-    var that = this
-    var timestamp = Date.parse(new Date());
-    var date = new Date(timestamp);
-    //获取年份  
-    var Y = date.getFullYear();
-    //获取月份  
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth()) : date.getMonth());
-    // var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(); 
-    that.setData({
-      'dataTime.end_date': Y + '-' + M,
-      'qySelectByNsrsbhData.kjnd': Y,
-      'qySelectByNsrsbhData.kjqj': M
-    })
-    // this.echartsComponnet = this.selectComponent('#mychart-dom-pie');
 
-  },
-  // 第二步 通过纳税人识别号获取企业信息
-  dataQySelectByNsrsbh: function () {
-    var that = this
-    util.requestGUOran(api.DataQySelectByNsrsbh, {
-      nsrsbh: that.data.qySelectByNsrsbhData.nsrsbh
-    }, "GET"
-    ).then(function (res) {
-      that.setData({
-        'qySelectByNsrsbhData.qyid': res.result[0].qyid,
-        dataName: utilAata.DataName,
-        laobanData: utilAata.LaobanData
-
-      })
-      // 第三步 1.通过纳税人识别号获取纳税申报
-      that.dataList()
-    })
-  },
-  // 第三步 数据加载集合
-  dataList: function () {
-    var that = this
-    that.DataTaxSelectTaxReportByNsrsbh()//纳税申报表
-    that.DataQyselectFullKjbb()//会计报表
-    that.DataQyselectFullmxb()//明细表
-    that.Fpmx()
-    that.DataQyselectPersonalTaxSheet()//查询个税申报明细 工资
-    // that.DataQyzcpzSelectSbxx() //社保信息 暂时不用
-  },
-  //canvas 老板看帐
-  LaoBanKz: function () {
-    var that = this
-    that.setData({
-      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1],
-      'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
-      'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1],
-      'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
-    })
-    var option = {
-      series: [
-        {
-          name: '访问来源',
-          type: 'pie',
-          radius: ['60%', '70%'],
-          animationType: 'scale',
-          silent: true,
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-          data: [{
-            value: 1,
-            name: '流动资产合计'
-          }, {
-            value: 9,
-            name: '非流动资产合计'
-          }],
-          color: ["#666", "#179B16"]
-        }
-      ]
-    }
-    console.log(chart)
-    // chart.setOption(option)
-    // app.globalData.lbkzList = that.data.lbkzList
-    // console.log(app.globalData.lbkzList)
-  },
 
   // 第三步 1.通过纳税人识别号获取--纳税申报表()
   DataTaxSelectTaxReportByNsrsbh: function () {
@@ -345,6 +548,7 @@ Page({
         'dataNssb.list': res.result,
         'dataNssb.total': total.toFixed(2)
       })
+      console.log(that.data.dataNssb)
     })
   },
   // 第三步 2.会计报表"资产负债表", "利润表", "现金流量表"
@@ -440,31 +644,32 @@ Page({
         "laobanData.zcfzZmkName": laobanDataZcfz,
         "laobanData.lrbZmkName": laobanDataLrb
       })
-      console.log(that.data.laobanData)
-      that.LaoBanKz()//老板看账
+      that.LaoBanKz() //老板看账
     })
   },
   // 第三步 3.明细账
   DataQyselectFullmxb: function () {
     var that = this
-    util.requestGUOran(api.DataQyselectFullmxb, {
-      "qyidList": that.data.qySelectByNsrsbhData.qyid,
-      "kjnd": that.data.qySelectByNsrsbhData.kjnd,
-      "kjqj": that.data.qySelectByNsrsbhData.kjqj
-    }, "get").then(function (res) {
-      var mxbList = res.result
-      var mxbZmkName = that.data.dataName.mxbZmkName
-      for (var j in mxbZmkName) {
-        for (var item in mxbList) {
-          if (mxbZmkName[j].kmlx == mxbList[item].kmlx) {
-            mxbZmkName[j].children.push(mxbList[item])
-          }
-        }
-      }
-      that.setData({
-        "dataName.mxbZmkName": mxbZmkName,
-      })
-    })
+    // util.requestGUOran(api.DataQyselectFullmxb, {
+    //   "qyidList": that.data.qySelectByNsrsbhData.qyid,
+    //   "kjnd": that.data.qySelectByNsrsbhData.kjnd,
+    //   "kjqj": that.data.qySelectByNsrsbhData.kjqj
+    // }, "get").then(function (res) {
+    //   var mxbList = res.result
+      // var mxbZmkName = that.data.dataName.mxbZmkName
+    //   for (var j in mxbZmkName) {
+    //     for (var item in mxbList) {
+    //       if (mxbZmkName[j].kmlx == mxbList[item].kmlx) {
+    //         mxbZmkName[j].children.push(mxbList[item])
+    // }
+    // }
+    // }
+    // that.setData({
+      // "dataName.mxbZmkName": mxbZmkName,
+      // loading: true
+
+    // })
+    // })
   },
   // 第三步 4.发票清单
   Fpmx: function () {
@@ -486,6 +691,7 @@ Page({
         'dataInvoiceList.xxfpData.jshj': jshj.toFixed(2),
         'dataInvoiceList.xxfpData.sehj': sehj.toFixed(2)
       })
+      console.log()
     })
     util.requestGUOran(api.DataQyselectEntryInvoice, {
       "qyidList": that.data.qySelectByNsrsbhData.qyid,
@@ -517,6 +723,7 @@ Page({
       that.setData({
         dataWages: res.result
       })
+
     })
   },
   // 社保信息暂时不用
@@ -658,23 +865,74 @@ Page({
       classifyViewId: index,
       toView: id
     });
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+    }
+    // chart0.setOption(that.getOption(0));
+    // chart1.setOption(that.getOption(1));
   },
   // 跳转发票清单
   goDataAnalysis: function (e) {
-    var loadJudge = e.currentTarget.dataset.loadjudge, that = this;
+    var loadJudge = e.currentTarget.dataset.loadjudge,
+      that = this;
     app.Tips('/pages/invoiceList/index?loadJudge=' + loadJudge + '&qySelectByNsrsbhData=' + JSON.stringify(that.data.qySelectByNsrsbhData))
   },
   // 跳转明细
   goMxzlist: function (e) {
-    var kmlx = e.currentTarget.dataset.kmlx
-    app.Tips('/pages/mxzlist/index?mxzData=' + JSON.stringify(this.data.dataName.mxbZmkName) + '&kmlx=' + kmlx)
+    var that=this,kmlx = e.currentTarget.dataset.kmlx
+    console.log(kmlx)
+    // if (this.data.loading)
+      app.Tips('/pages/mxzlist/index?qySelectByNsrsbhData=' + JSON.stringify(that.data.qySelectByNsrsbhData) + '&kmlx=' + kmlx)
   },
   // onHide:function(){
   //   this.setData({
   //     lbkzList:''
   //   })
   // },
+
+  handleCanvarToImg(that) {
+    console.log(1)
+    wx.canvasToTempFilePath({
+      x: 0,
+      y: 0,
+      width: 260,
+      height: 180,
+      canvasId: 'mychart-pie',
+      success: function (res) {
+        console.log(res)
+        that.setData({ radarImg: res.tempFilePath });
+      }
+    });
+
+  },
   onReady() {
+    var that = this,
+      currentIndex = that.data.pieLoad
+    var Index = 0
+    console.log(that.data.categories)
+    for (var i in that.data.categories) {
+      if (currentIndex == that.data.categories[i].function_id) {
+        Index = i
+      }
+    }
+    that.setData({
+      classifyViewId: currentIndex,
+    });
+    if (Index > 3) {
+      that.setData({
+        scrollLeft: (Index - 3) * 177.5
+      });
+    }
+
+
+    // var Index=tah.data
+    //   that.setData({
+    //     classifyViewId: currentIndex,
+    //     scrollLeft: currentIndex* 177.5
+    //   });
+    // // }
     // var option = {
     //   series: [
     //     {
@@ -698,8 +956,13 @@ Page({
     // chart.setOption(option);
     // this.setData({
     //   lbkzList: app.globalData.lbkzList,
-
     // })
-  },
+  }, onPageScroll: function (e) {
+    if (this.data.classifyViewId == 6) {
+      console.log(e)
+      this.setData({
+        scrollTop: e.scrollTop
+      })
+    }
+  }
 })
-

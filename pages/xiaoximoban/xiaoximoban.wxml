@@ -1,0 +1,8 @@
+ 
+       <button catchtap='appkey'>appkey_token</button>
+<form bindsubmit="testSubmit"  report-submit="true"  class='formid'>
+<button form-type="submit" >发送模板消息</button>
+</form>
+ <!-- <form bind:submit="testSubmit" report-submit="true" class='formid'>
+      <button formType="submit">发送模板消息</button>
+ </form> -->
