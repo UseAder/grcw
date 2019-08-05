@@ -1,33 +1,56 @@
+<wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<movable-area-view></movable-area-view>
+
+<button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <view class="index_container">
   <view class="search">
-    <swiper autoplay="true" class="banner" duration="1000" interval="3000" indicatordots='false'>
+    <swiper autoplay="true" class="banner" duration="1000" interval="4000" indicatordots='false'>
       <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
-        <navigator>
-          <image backgroundSize="cover" src="{{item.img_url}}"></image>
+        <navigator class='navigator' url="{{item.url}}" hover-class="navigator-hover" open-type="reLaunch">
+          <image backgroundSize="cover" src="{{tools.sub(ImageUrl+item.img_url)}}"></image>
         </navigator>
       </swiper-item>
     </swiper>
-    <!-- <view class="input">
-      <icon size="18" type="search"></icon>
-      <input bindblur="searchSubmit" bindfocus="searchStatus" bindinput="inputKeyword" class="search_input" placeholder="请输入商标或公司名称" value="{{search}}" placeholder-style='color:#B5B4B4'></input>
-    </view> -->
+
     <view class="clearfix"></view>
   </view>
   <view class="menu">
-    <view class="publish">
+    <view class="nav_inpitPosition topnavAbsolute" >
+      <view class="input" bindtap='inputKeyword'>
+        <icon size="18" type="search"></icon>
+        <view class='input_btn'>
+          查询
+        </view>
+        <view class="search_input">请输入您注册的公司名称</view>
+      </view>
+    </view>
+    <view class="nav_inpitPosition topnavFixed" style="top:{{height}}px;" hidden="{{!nvabarData.color}}">
+      <view class="input" bindtap='inputKeyword'>
+        <icon size="18" type="search"></icon>
+        <view class='input_btn'>
+          查询
+        </view>
+        <view class="search_input">请输入您注册的公司名称</view>
+      </view>
+    </view>
+    <view class="publish" id='publish'>
       <navigator url="/pages/gr_mall/index?id={{item.function_id}}" hover-class='none' open-type="reLaunch" class="item" data-category="1" data-check="{{item.cs_channel_url}}" wx:for="{{channel}}" wx:for-index="index" wx:for-item="item" wx:key>
-        <image src="{{item.function_url}}"></image>
+        <image src="{{tools.sub(ImageUrl+item.function_url)}}"></image>
         <text>{{item.function_title}}</text>
       </navigator>
     </view>
   </view>
   <view class="news">
     <view class="notice">
-      <view class="tit">
+      <navigator class="tit" url="/pages/newlist/news" hover-class="none">
+        <!-- <view class="tit"> -->
         <text class="red">果</text>
         <text class="green">然</text>
         <text class="normal">快报</text>
-      </view>
+        <!-- </view> -->
+      </navigator>
       <swiper autoplay="true" duration="1000" interval='5000' circular>
         <swiper-item wx:for="{{news}}" wx:key="newsRecommendList">
           <navigator hover-class='none' class="new_item" url="../newlist/news">
@@ -43,41 +66,91 @@
       </navigator>
     </view>
   </view>
-  <view class=" content">
+  <view class="content">
     <scroll-view class="content-scroll-list" scrollX="true">
       <view bindtap="swithNav" class="content-scroll-item {{currentTab==index?'active':''}}" data-current="{{index}}" wx:for="{{copenCompany}}" data-index="{{index}}" wx:key>{{item.type_name}}
         <view class="scroll-item-line" wx:if="{{currentTab==index}}"></view>
       </view>
     </scroll-view>
-    <swiper style="height:{{swiper_height + 0}}rpx;min-height:290rpx" bindchange="switchTab" class="content-swiper" current="{{currentTab}}">
+    <swiper style="height:{{swiper_height}}px;min-height:240rpx" bindchange="switchTab" class="content-swiper" current="{{currentTab}}">
       <swiper-item class="content-swiper-item " wx:for="{{copenCompany}}" wx:key>
         <view class="content-item-top column-list{{index}}">
-          <view class="content-top-con" bindtap='goLink' wx:for="{{item.list}}" wx:key>
-            <view bindtap="goLink " class="content-top-link ">
+          <view class="content-top-con" wx:for="{{item.list}}" wx:key>
+            <navigator class="content-top-link" url='{{item.list_url}}' open-type='reLaunch'>
               <view class="top-con-name ">{{item.list_name}}</view>
               <view class="top-con-des ">{{item.list_title}}</view>
               <text class="top-con-mon ">{{item.list_remarks}}</text>
-              <image class="top-con-image " src="{{item.list_icon}} "></image>
-            </view>
+              <image class="top-con-image " src="{{tools.sub(ImageUrl+item.list_icon)}} "></image>
+           </navigator> 
           </view>
           <view class="content-top-con content-top-con-kong" wx:if="{{item.list==''}}"></view>
         </view>
       </swiper-item>
     </swiper>
   </view>
-  <!-- <view class="shangbiao"> -->
   <view class="scroll_box">
     <scroll-view scroll-x style="width:auto;overflow:hidden;" class="scroll-view_x content-item-bottom">
-      <view class="content-bottom-con" wx:for="{{brand}}" wx:key>
-        <view bindtap="goLink" class="content-bottom-link">
-          <text class="bottom-con-name">热门商标</text>
-          <text class="bottom-con-des">{{item.tra_title}}</text>
-          <view class="bottom-con-image">
-           <image  mode='widthFix' src="{{item.tra_logo}}"></image>
+      <view class="content-bottom-con" wx:for="{{goods}}" wx:key>
+        <navigator class='navigator' url="/pages/goods/goods?id={{item.goods_id}}" hover-class="navigator-hover">
+          <view class="content-bottom-link">
+            <text class="bottom-con-name">{{item.goods_name}}</text>
+            <text class="bottom-con-des j_text">{{item.goods_title}}</text>
+            <view class="bottom-con-image">
+              <image mode='widthFix' src="{{tools.sub(ImageUrl+item.goods_brand)}}"></image>
+            </view>
           </view>
-         
-        </view>
+        </navigator>
       </view>
     </scroll-view>
   </view>
+
+  <view class='content_gr'>
+    <!-- <view class='desc'>杭州一站式服务平台领跑者</view> -->
+  </view>
+  <view class="content-item-line">
+    <!-- <view class='content_gr'>果然财务</view>  -->
+
+    <view class="item-line-text">杭州一站式服务平台领跑者</view>
+  </view>
+
+  <view class="content-item-banner" wx:if="{{poster_banner&&poster_banner.length>0}}">
+    <swiper autoplay="true" class="banner" duration="1000" interval="3000" indicatordots='false'>
+      <swiper-item wx:for="{{poster_banner}}" wx:key="{{item.id}}">
+        <navigator class='navigator' url="{{item.url}}" hover-class="navigator-hover">
+          <image backgroundSize="cover" src="{{tools.sub(ImageUrl+item.img)}}"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>
+
+<view class="attr-pop" wx:if="{{logindialog}}">
+  <view bindtap="closePopupTap" class="popup-mask"></view>
+  <view class="popup-contents" >
+    <view class="login">
+      <image class="login_logo" src="/images/personal/login_logo.png"></image>
+      <view class="login_account">
+        <image class="account_logo" mode='widthFix' src="/images/personal/login_account.png"></image>
+        <input bindinput="getCorporateName" placeholder="请输入您需要查询的公司全称" value="{{corporateName}}"></input>
+      </view>
+      <view class='yz-xx'>
+      </view>
+      <view class='pwd-content flex'>
+        <view class="pwd_account" style='width:100%;'>
+          <image class="account_logo" mode='widthFix' src="/images/personal/login_pwd.png"></image>
+          <input value='{{corporatePhone}}' bindinput='getCorporatePhone' type="number" style='width:100%' placeholder="请输入您的手机号码"></input>
+        </view>
+      </view>
+      <view bindtap="save" wx:if="{{saveDisplay}}" class="bt">立刻获取</view>
+      
+      <view wx:else class="bt" bindtap='handleContact'>立刻获取<view class="contacts_logo">
+        <contact-button sessionFrom="webapp" size="32" type="default-light" wx:for="{{12}}"></contact-button>
+      </view>
+    </view>
+    <view bindtap="close_login" class="close_container">
+      <image class="close" src="/images/personal/close.png"></image>
+    </view>
+  </view>
+</view>
+
 </view>

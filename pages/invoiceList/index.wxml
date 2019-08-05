@@ -1,4 +1,5 @@
-
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <wxs src="../../wxs/subutil.wxs" module="tools" />
 <view class='list_item'>
   <view class='list_name_box item' wx:for="{{invoiceList}}" data-index='{{index}}' bindtap='goInvoiceDetaile' wx:key>

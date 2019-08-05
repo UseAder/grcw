@@ -4,17 +4,24 @@ page {
 
 .list-news image {
     width: 100%;
-    height: 150px;
+    height: 150px;border-radius: 6rpx;
 }
 
 .list-news .item {
     padding: 0 12px;
+    position: relative;
     margin-bottom: 5px;
     margin-top: 10px;min-height:170rpx
 }
 
 .list-news .h5 {
     font-size: 16px;
-    line-height: 20px;
-    text-align: center;
+color:#fff;
+margin:auto;
+width:89%;
+left:48rpx;
+bottom:28rpx;
+position:absolute;
+z-index:1;
+
 }

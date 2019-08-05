@@ -1,7 +1,8 @@
-<!--pages/my/order/order.wxml-->
+<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" /><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <view class="none"></view>
 <view class="container">
-  <view class="swiper-tab">
+  <view class="swiper-tab" style='top:{{height}}px'>
     <view class="swiper-tab-item {{status==item.status?'active ':''}}" wx:for="{{orderNav}}" data-status="{{item.status}}" data-type="{{item.type}}" bindtap="statusClick" wx:key>
       <text>{{item.title}}</text>
     </view>
@@ -14,9 +15,9 @@
       <view class="order-number">订单编号：{{item.order_sn}}</view>
       <view class="order-status">{{item.status}}</view>
       <view class='goodsInfoList'>
-      <block wx:for="{{item.list}}" wx:key="index" wx:for-item="itemx">
-         <view class='item'  bindtap="toOrderDetails" data-order_sn="{{item.order_sn}}" >
-          <image src="{{itemx.goods_brand}}" class="order-img"></image>
+        <block wx:for="{{item.list}}" wx:key="index" wx:for-item="itemx">
+          <view class='item' bindtap="toOrderDetails" data-order_sn="{{item.order_sn}}">
+            <image src="{{tools.sub(ImageUrl+itemx.goods_brand)}}" class="order-img"></image>
             <view class="order-name">
               <view>{{itemx.goods_name}}</view>
               <view>x{{itemx.goods_num}}</view>
@@ -24,11 +25,11 @@
             <!-- <view class="order-name">{{itemx.goods_name}}</view>
           <view class="order-quantity"> x{{itemx.goods_num}}</view> -->
 
-        </view>
-      <view class="line1"></view>
+          </view>
+          <view class="line1"></view>
 
-      </block>
-     
+        </block>
+
       </view>
 
       <view class="payable" wx:if="{{item.order_status==0}}">应付：¥{{item.pay_price}}</view>

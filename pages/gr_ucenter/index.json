@@ -1,4 +1,8 @@
 {
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "个人中心"
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

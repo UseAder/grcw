@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "优狐科技小程序",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
+}

@@ -1,0 +1,25 @@
+.content_gr{
+  position: absolute;top: 0;z-index: 10;left: 0;right: 0;margin: auto;
+}
+.contact {
+  box-shadow:0 0  2px #888888;
+    position: relative;
+    background: #fff;
+    z-index: 1;border-radius: 50%;
+    padding: 20rpx;width:40rpx;
+height:40rpx;
+}
+.contact image{
+width:40rpx;
+height:40rpx;
+}
+.contacts_container{
+ position:absolute;
+width:100%;
+height:100%;
+display: flex;
+align-items: center;justify-content: center;
+top:0; left:0;
+opacity:0;
+
+}

@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "商城"
+  "navigationBarTitleText": "商城",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

@@ -1,3 +1,6 @@
 {
-  "navigationStyle": "custom"
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

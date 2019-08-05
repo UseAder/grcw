@@ -1,4 +1,8 @@
 {
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "填写订单信息"
+  "navigationBarTitleText": "填写订单信息",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

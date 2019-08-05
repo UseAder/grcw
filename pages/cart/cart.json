@@ -1,5 +1,9 @@
 {
   "backgroundColor": "#f4f4f4",
   "enablePullDownRefresh": false,
-  "navigationBarTitleText": "购物车"
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

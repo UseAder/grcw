@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "物流信息"
+  "navigationBarTitleText": "物流信息",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

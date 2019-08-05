@@ -1,4 +1,5 @@
-
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='web-bg'>
 <image src='/images/data/data_bg.png' mode='widthFix'></image>
 </view>
@@ -7,15 +8,16 @@
     <view class='list'>
         
         <view class='item acea-row row-between-wrapper'>
-          <view class='item-name'>用户名</view>
-          <view class='input'><input type='text' name='nickname' value='{{userInfo.nickname}}' placeholder='如：王先生' placeholder-style="color:#CCCCCC"></input></view>
+          <view class='item-name'>注册公司</view>
+          <view class='input'><input type='text' name='nickname' value="{{corporateName}}" bindinput="getCorporateName" placeholder='如：杭州xx优狐科技有限公司' placeholder-style="color:#CCCCCC"></input></view>
         </view>
         <view class='item acea-row row-between-wrapper J-borderN'>
           <view class='item-name'>手机号码</view>
-          <view class='input'><input type='text' name='phone' value='{{userInfo.phone}}' placeholder='输入联系方式获取免费咨询' placeholder-style="color:#CCCCCC"></input></view>
+          <view class='input'><input type='text' name='phone' value='{{corporatePhone}}' bindinput='getCorporatePhone' type="number" placeholder='输入联系方式获取免费咨询' placeholder-style="color:#CCCCCC"></input></view>
         </view>
     </view>
-    <button class='modifyBnt' formType="submit">立即获取</button>
+    <!-- <button class='modifyBnt' formType="submit">立即获取</button> -->
+    <button open-type="{{saveDisplay?'':'contact'}}" class='modifyBnt' formType="submit">进入客服会话</button>
   </view>
 </form>
 

@@ -1,9 +1,11 @@
 var NewApiRootUrl = 'https://gr.ufcoux.com/Really/public/index.php/api/'
 var NewApiRootUrlGUORAN = 'https://openapi.yunzhangfang.com/open/api/';
-// var NewApiRootUrl = 'http://192.168.124.15/Really/public/index.php/api/';
+// var NewApiRootUrl = 'http://192.168.124.17/Really/public/index.php/api/';
+var ImageUrl = 'https://gr-oss.oss-cn-beijing.aliyuncs.com'
 // var UploadFileUrl = 'https://image.poempz.com/';
 
 module.exports = {
+  ImageUrl, //微信换取code
   WxLogin: NewApiRootUrl + 'Login/', //微信换取code
   WxLoginlogin: NewApiRootUrl + 'Login/login', //微信换取code
   LoginPhone: NewApiRootUrl + 'Login/phone', //当前电话是否存在接口
@@ -45,6 +47,9 @@ module.exports = {
   GetOrder: NewApiRootUrl + 'User/order',//用户订单列表
   OrderDelete: NewApiRootUrl + 'User/false_delete', //取消订单
 
+
+  DemoDemo: NewApiRootUrl + 'Demo/demo', //查询所有代账公司下的企业列表
+  MessageAdd: NewApiRootUrl + 'Demo/message_add', //提交接口
 
 
   DataQySelectByGsid: NewApiRootUrlGUORAN + 'data/qy/selectByGsid', //查询所有代账公司下的企业列表

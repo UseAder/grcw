@@ -1,4 +1,6 @@
-<view class="container">
+<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view><view class="container">
     <view class="order-info">
         <view class="item-a">下单时间：{{orderInfo.update_time}}</view>
         <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
@@ -12,7 +14,7 @@
         <view class="goods">
             <view class="item" wx:for="{{orderGoods}}" wx:key="{{item.id}}">
                 <view class="img">
-                    <image src="{{item.goods_brand}}"></image>
+                    <image src="{{tools.sub(ImageUrl+item.goods_brand)}}"></image>
                 </view>
                 <view class="info">
                     <view class="t">

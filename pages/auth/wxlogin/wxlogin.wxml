@@ -1,11 +1,9 @@
-<!--pages/auth/wxlogin/wxlogin.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='wxlogin'>
-
-
 <image src="/images/gr_02.png" class='logo'></image>
 <view class='slogon'>果然财务</view>
 <!-- <image src='../../../static/images/denglu_07.png' class='hot_product'/> -->
-
 <view class='wxlogin_container'>
 <view class='wxlogin_inner'>
 <!-- <image src='../../../static/images/denglu_11.png'></image> -->

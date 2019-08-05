@@ -1,0 +1,224 @@
+.top {
+    background: #0090FF;
+    width: 100%;
+    text-align: center;
+}
+
+.title {
+    font-size: 19px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding-top: 64px;
+}
+
+.sologan {
+    font-size: 19px;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    padding-top: 52px;
+}
+
+.tip {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+    color: white;
+}
+
+.call {
+    width: 85px;
+    height: 31px;
+    background: white;
+    border-radius: 5px;
+    margin: 0 auto;
+    text-align: center;
+    color: #0090FF;
+    line-height: 31px;
+    margin-top: 30px;
+}
+
+.top image {
+    margin-top: 15px;
+    height: 175px;
+    width: 90%;
+    margin-bottom: -5px;
+}
+
+.center_title {
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+}
+
+.center_desc {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+}
+
+.centertip {
+    margin-top: 21px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #9F9F9F;
+}
+
+.menu {
+    padding-top: 26px;
+    padding-bottom: 28px;
+    position: relative;
+    background: #fff;
+}
+
+.menu swiper {
+    height: 150rpx;
+}
+
+.menu .dots {
+    position: absolute;
+    width: 66px;
+    left: 50%;
+    text-align: center;
+    bottom: 13px;
+    margin-left: -33px;
+}
+
+.menu .dots .dot {
+    display: inline-block;
+    width: 14px;
+    height: 2px;
+    margin: 0 4px;
+    background: #82e0d6;
+}
+
+.menu .dots .dot.active {
+    background: #06c1ae;
+}
+
+.publish {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    align-items: left;
+    background: #fff;
+}
+
+.publish .item {
+    width: 25%;
+    height: 150rpx;
+    text-align: center;
+}
+
+.publish .item image {
+    display: inline-block;
+    width: 90rpx;
+    height: 90rpx;
+}
+
+.publish .item text {
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 25px;
+    color: #000000;
+}
+
+.publish .item.active text {
+    color: #06c1ae;
+}
+
+.centercall {
+    width: 85px;
+    height: 31px;
+    background: #0090FF;
+    border-radius: 5px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    line-height: 31px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+.goods-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-sizing: content-box;
+    padding: 24rpx;
+    margin-top: 10px;
+}
+
+.goods-box {
+    width: 170px;
+    background-color: #fff;
+    margin-bottom: 24rpx;
+}
+
+.goods-box .img-box {
+    width: 170px;
+    height: 150px;
+}
+
+.goods-box .img-box image {
+    width: 170px;
+    height: 150px;
+}
+
+.group_head {
+    position: relative;
+}
+
+.group_text {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.group_text .text1 {
+    border-top: solid white 1px;
+    border-left: solid white 1px;
+    border-right: solid white 1px;
+    color: white;
+    font-size: 50rpx;
+}
+
+.group_text .text2 {
+    color: white;
+    font-size: 24rpx;
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
+    border-bottom: solid white 1px;
+    border-left: solid white 1px;
+    border-right: solid white 1px;
+}
+
+.company_logo {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    margin-top: 90px;
+    bottom: 40px;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.company_logo image {
+    width: 95px;
+    height: 40px;
+    margin: 0 auto;
+}

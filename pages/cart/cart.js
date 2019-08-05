@@ -7,6 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '购物车', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
+    ImageUrl: api.ImageUrl,
+
     cartCount: 0, //已选择
     cartList: [],
     isAllSelect: false, //全选
@@ -16,23 +24,35 @@ Page({
 
   goDetails: function (e) {
     wx.navigateTo({
-      url: '/pages/goods-details/index?id=' + e.currentTarget.dataset.id
+      url: '/pages/goods/goods?id=' + e.currentTarget.dataset.id
     })
   },
 
   // 删除
   subDel: function (e) {
     var deleteId = e.currentTarget.dataset.id, index = e.currentTarget.dataset.index, that = this
-    util.request(api.CartDelete, { cart_id: deleteId }, "POST"
-    ).then(function (res) {
-      if (res.code == 200) {
-        that.data.cartList.splice(index, 1);
-        that.setData({ cartList: that.data.cartList });
-        app.Tips({ title: '删除成功', icon: 'success' });
-      } else {
-        app.Tips({ title: '删除失败', icon: 'none' });
+    wx.showModal({
+      title: '系统提醒',
+      content: '确定要删除此商品吗？',
+      success: function (res) {
+        if (res.confirm) {
+          util.request(api.CartDelete, { cart_id: deleteId }, "POST"
+          ).then(function (res) {
+            if (res.code == 200) {
+              that.data.cartList.splice(index, 1);
+              that.setData({ cartList: that.data.cartList });
+              app.Tips({ title: '删除成功', icon: 'success' });
+            } else {
+              app.Tips({ title: '删除失败', icon: 'none' });
+            }
+          })
+        } else if (res.cancel) {
+          return false;
+        }
       }
     })
+   
+   
   },
   // 下单
   subOrder: function (event) {
@@ -209,5 +229,12 @@ Page({
       selectCountPrice: 0.00,
       cartCount: 0,
     });
-  }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '杭州注册公司代理',
+      desc: '杭州注册公司代理',
+      path: '/pages/gr_index/index'
+    }
+  },
 })

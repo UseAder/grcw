@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "商品详情"
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

@@ -1,4 +1,5 @@
-<view class='border-t'>
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view><view class='border-t'>
 </view>
 <view class='details'>
   <view class='logo'>

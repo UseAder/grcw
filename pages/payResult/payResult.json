@@ -1,4 +1,8 @@
 {
   "navigationBarTitleText": "付款结果",
-  "navigationBarBackgroundColor": "#fafafa"
+  "navigationBarBackgroundColor": "#fafafa",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

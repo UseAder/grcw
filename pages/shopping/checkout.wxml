@@ -1,3 +1,6 @@
+<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='margin-top: {{height}}px'></view>
 <view class="container">
   <view class="address-box">
     <view class='J-Envelope-border'></view>
@@ -39,11 +42,11 @@
 
   <view class="goods-items">
     <view class='goods-items-title'>
-      包裹1
+      商品明细
     </view>
     <view class="item" wx:for="{{checkedGoodsList}}" wx:key>
       <view class="img">
-        <image src="{{item.goods_brand}}"></image>
+        <image src="{{tools.sub(ImageUrl+item.goods_brand)}}"></image>
       </view>
       <view class="info">
         <view class="t ">

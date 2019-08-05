@@ -1,7 +1,8 @@
-<!--pages/my/order/order.wxml-->
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view><!--pages/my/order/order.wxml-->
 <view class="none"></view>
 <view class="container">
-  <view class="swiper-tab">
+  <view class="swiper-tab" style='top:{{height}}px'>
     <view class="swiper-tab-item {{status==index?'active ':''}}" wx:for="{{mxzData}}" data-status="{{index}}" bindtap="statusClick" wx:key>
       <text>{{item.name}}</text>
     </view>

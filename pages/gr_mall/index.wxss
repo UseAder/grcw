@@ -6,11 +6,12 @@
   height: 100%;
   box-sizing: border-box;
   border-right: 1rpx solid #EDEDED;
+  border-top:1px solid  #EDEDED;
+
 }
 
 .classify-container {
   width: 180rpx;
-  height: 100vh;
   box-sizing: border-box;
   border-right: 1rpx solid #EDEDED;
 }
@@ -90,7 +91,7 @@
 
 .goods-container .goods .pic {
   width: 130rpx;
-  height: 119rpx;
+  height: 130rpx;
   border-radius: 3rpx;
 }
 

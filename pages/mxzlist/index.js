@@ -4,6 +4,12 @@ const utilAata = require("../../utils/dataName.js");
 const api = require("../../config/api.js");
 Page({
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '明细账', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
     mxzData: [
       { name: '资产', children: [{ kmmc: '库存现金(测试)', jf0: '1111', df0: '11', qmDf: '111', bqJf: '23213', bqDf: '313123'}] },
       { name: '负债', children: [{ kmmc: '短期借款(测试)', jf0: '2303', df0: '45', qmDf: '313', bqJf: '23213', bqDf: '313123' }]  },
@@ -116,8 +122,11 @@ Page({
     });
     })
   },
- 
-
-
-
+  onShareAppMessage: function() {
+    return {
+      title: '杭州注册公司代理',
+      desc: '杭州注册公司代理',
+      path: '/pages/gr_index/index'
+    }
+  },
 })

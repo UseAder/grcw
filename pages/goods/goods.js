@@ -7,6 +7,14 @@ var user = require('../../services/user.js');
 Page({
 
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '商品详情', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
+    ImageUrl: api.ImageUrl,
+
     userInfo: {
       username: app.globalData.userInfo.username,
       photo: app.globalData.userInfo.photo
@@ -27,9 +35,11 @@ Page({
     util.request(api.GoodsDetails, {
       id: that.data.id
     }, "POST").then(function (res) {
+     var goods=res
+      goods.goods_img=goods.goods_img.split(',')
+      console.log(goods.goods_img)
       that.setData({
-        goods: res,
-
+        goods: goods
       }), t.wxParse("goodsDetail", "html", res.goods_parameter, that);
 
     })
@@ -115,12 +125,21 @@ Page({
       saveData.uid = wx.getStorageSync('uid')
       saveData.number = that.data.number
       saveData.gid = that.data.id
+      console.log(saveData)
       util.request(api.CartAdd, saveData, "POST").then(function (res) {
-        app.Tips({
-          title: '添加购物车成功',
-          icon: 'success'
-        });
-        that.getCartLength()
+        if(res.code==200){
+          app.Tips({
+            title: '添加购物车成功',
+            icon: 'success'
+          });
+          that.getCartLength()
+        }else{
+          app.Tips({
+            title: res.msg,
+            icon: 'none'
+          });
+        }
+       
 
       })
     }
@@ -154,7 +173,19 @@ Page({
       that.setData({
         userInfo: app.globalData.userInfo,
       })
+    } else {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.employIdCallback = openid => {
+        if (openid != '') {
+          console.log(1.3)
+          that.setData({
+            userInfo: app.globalData.userInfo,
+          })
+        }
+      }
     }
     that.getCartLength()
-  }
+  }, onShareAppMessage: function () { }
+
 });

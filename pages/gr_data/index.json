@@ -2,6 +2,8 @@
   "enablePullDownRefresh": false,
   "navigationBarTitleText": "果然数据",
   "usingComponents": {
-    "userInfo-window": "/components/userInfo-window/index"
+    "userInfo-window": "/components/userInfo-window/index",
+      "nav-bar": "/components/navbar/index",
+      "movable-area-view": "/components/movable-area/index"
   }
 }

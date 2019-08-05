@@ -4,6 +4,13 @@ const api = require('../../config/api.js');
 
 Page({
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '果然快报', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
+    ImageUrl: api.ImageUrl,
     newsList: [],
     goodsList: [],
     id: null,
@@ -15,18 +22,18 @@ Page({
   },
   onLoad: function () {
     // 页面初始化 
-    this.pageNews()
+    this.pageNewsPage()
   },
   //分类商品
-  pageNews: function () {
-    var that = this;
-    util.request(api.PageNews)
-      .then(function (res) {
-        that.setData({
-          newsList: res,
-        });
-      });
-  },
+  // pageNews: function () {
+  //   var that = this;
+  //   util.request(api.PageNews)
+  //     .then(function (res) {
+  //       that.setData({
+  //         newsList: res,
+  //       });
+  //     });
+  // },
   //分类商品
   pageNewsPage: function () {
     var that = this;
@@ -70,5 +77,8 @@ Page({
    */
   onReachBottom: function () {
     this.pageNewsPage();
+  },
+  onShareAppMessage: function () {
+
   },
 })

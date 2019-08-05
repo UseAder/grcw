@@ -2,8 +2,11 @@
   "navigationBarBackgroundColor": "#FF9900",
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
-"navigationBarTitleText": "数据分析",
-"usingComponents": {
-  "ec-canvas": "/components/ec-canvas/ec-canvas"
-}
+  "disableScroll": true,
+  "navigationBarTitleText": "数据分析",
+  "usingComponents": {
+    "ec-canvas": "/components/ec-canvas/ec-canvas",
+      "nav-bar": "/components/navbar/index",
+      "movable-area-view": "/components/movable-area/index"
+  }
 }

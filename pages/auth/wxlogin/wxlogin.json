@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "用户授权"
+  "navigationBarTitleText": "用户授权",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index"
+  }
 }

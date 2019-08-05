@@ -1,4 +1,9 @@
-<view class="content-container">
+<wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<movable-area-view></movable-area-view>
+<button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
+<view class='nav-barheight' style='height: {{height}}px'></view>
+<view class="content-container" style='height:{{windowHeight-height}}px'>
   <scroll-view class="classify-container" scroll-y="true" scroll-with-animation="true">
     <view class="classify J-flex_sba {{classifyViewId==classify.function_id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" wx:key data-id="b{{classify.function_id}}" data-index="{{classify.function_id}}" bindtap="tapClassify">
       <view class="name {{classifyViewId==classify.function_id?'active':''}}">{{classify.function_title}}</view>
@@ -8,25 +13,19 @@
     <block wx:for="{{goodsList}}" wx:key='index'>
       <view id="b{{item.function_id}}" class="goodsList-height" hidden='{{item.function_id!=classifyViewId}}'>
         <view class="image">
-          <image src="{{item.function_img}}">
+          <image src="{{tools.sub(ImageUrl+item.function_img)}}">
           </image>
         </view>
-         <view class="content-title-line">
-                  <text></text>
-                    {{item.function_title}}
-                    <text></text>
-            </view>
+        <view class="content-title-line">
+          <text></text> {{item.function_title}}
+          <text></text>
+        </view>
         <view class='flex-goods'>
-         
-         
-          
-           <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
-              <image class="pic" src="{{item.goods_brand}}">
-              </image>
-              <view class="name ellipsis">{{item.goods_name}}</view>
+          <view bindtap="toDetailsTap" class="goods" wx:for="{{item.list}}" wx:key wx:for-item="item" data-id='{{item.goods_id}}'>
+             <image class="pic" src="{{tools.sub(ImageUrl+item.goods_brand)}}">
+          </image>
+            <view class="name ellipsis">{{item.goods_name}}</view>
           </view>
-         
-        
         </view>
       </view>
     </block>

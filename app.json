@@ -1,29 +1,25 @@
 {
   "pages": [
-                "pages/gr_index/index",
-                
-        "pages/gr_data/index",
+    "pages/gr_index/index",
+    
+        "pages/gr_mall/index",
         
-                "pages/mxzlist/index",
-                
-            "pages/webview/index",
-            
-        "pages/gr_ucenter/index",
-        
-          "pages/xiaoximoban/xiaoximoban",
-          
+    "pages/gr_data/index",
+    "pages/brand/brand",
+    "pages/webview/index",
+    "pages/mxzlist/index",
+    "pages/dataAnalysis/index",
+    "pages/invoiceDetaile/index",
+    "pages/invoiceList/index",
+    "pages/gr_ucenter/index",
+    "pages/xiaoximoban/xiaoximoban",
     "pages/logistics/logistics",
     "pages/order/order",
     "pages/auth/wxlogin/wxlogin",
     "pages/orderDetail/orderDetail",
     "pages/payResult/payResult",
-    "pages/dataAnalysis/index",
-    "pages/invoiceDetaile/index",
-    "pages/invoiceList/index",
-    "pages/data/index",
     "pages/cart/cart",
     "pages/shopping/checkout",
-    "pages/gr_mall/index",
     "pages/address-select/index",
     "pages/address-add/index",
     "pages/goods/goods",
@@ -34,7 +30,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "果然财务",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#7F8389",

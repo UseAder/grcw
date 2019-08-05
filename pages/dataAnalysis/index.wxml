@@ -1,197 +1,201 @@
-<view class=" content">
-  <scroll-view class="content-scroll-list"  scroll-into-view="b{{classifyViewId}}" scroll-x="true" scroll-with-animation="true" scroll-left="{{scrollLeft}}">
-    <view class="content-scroll-item {{classifyViewId==classify.function_id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" data-id="b{{classify.function_id}}" data-index="{{classify.function_id}}" bindtap="swithNav" wx:key>
-      <view class="name {{classifyViewId==classify.function_id?'active':''}}">{{classify.function_title}}</view>
-    </view>
-  </scroll-view>
-</view>
-
-<view class="content-view">
-  <view class='debt'>
-    <view class="date data_time">
-      <picker mode="date" fields="month" value="{{qySelectByNsrsbhData.kjnd+'-'+qySelectByNsrsbhData.kjqj}}" start="{{dataTime.start_date}}" end="{{dataTime.end_date}}" class="date" bindchange="bindDateChange" selectable="false">
-        <view class='ss'>{{qySelectByNsrsbhData.kjnd+'年'+qySelectByNsrsbhData.kjqj+'月'}}
-          <image src="/images/data/bottom_arrow.png" /> </view>
-      </picker>
-    </view>
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'>
+</nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
+<view class='sss'>
+  <view class="content">
+    <scroll-view class="content-scroll-list" scroll-into-view="b{{classifyViewId}}" scroll-x="true" scroll-with-animation="true" scroll-left="{{scrollLeft}}">
+      <view class="content-scroll-item {{classifyViewId==classify.id?'active':''}}" wx:for="{{categories}}" wx:for-item="classify" data-id="b{{classify.id}}" data-index="{{classify.id}}" bindtap="swithNav" wx:key>
+        <view class="name {{classifyViewId==classify.id?'active':''}}">{{classify.title}}</view>
+      </view>
+    </scroll-view>
   </view>
 
-  <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true">
-    <view id="b6" class="goodsList-height" hidden='{{6!=classifyViewId}}'>
-      <view class="data-chart" wx:for="{{lbkzList}}" wx:key>
-      <!-- <view class="data-chart" wx:for="{{lbkzList}}" wx:key>  -->
-        <view class="data-chart-head">
-          <view>
-            <view class="title">
-              {{item.name}} </view>
-          </view>
-          <view class="date-picker j-bold">
-             （元）
-          </view>
-        </view>
-        <view class="chart">
-          <view class='pie {{index==0&&scrollTop>120||index==1&&scrollTop>390?"opacity":""}}'>
-                   <!-- <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ ec }}" ></ec-canvas> -->
+  <view class="content-view">
 
-            <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{item.ec}}" bind:init="echartInit{{index}}" ></ec-canvas>
-             <!-- <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{ eca }}" tuData="{{item.data}}" wx:if="{{!radarImg}}"></ec-canvas> -->
-            <!-- <image wx:else src="{{radarImg}}" style="width: 260px; height: 180px;" /> -->
-          </view>
-          <view class="mark">
-            <view class="mark-li {{idx!=chartTitles.length-1?'bottom':''}}" wx:for="{{item.data}}" wx:for-index="idx" wx:key>
-              <view class="mark-dot" style="background-color: {{colors[idx]}}"></view>
-              <view class="">{{item.name}}</view>
-            </view>
-          </view>
+
+    <!-- <scroll-view class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true" > -->
+
+    <scroll-view id='viewTop' class="goods-container {{isStopBodyScroll ? 'scroll-lock' : ''}} " scroll-into-view="{{toView}}" scroll-y="true" style="height:{{windowHeight-viewTop}}px">
+      <view class='debt'>
+        <view class="date data_time">
+          <picker mode="date" fields="month" value="{{qySelectByNsrsbhData.kjnd+'-'+qySelectByNsrsbhData.kjqj}}" start="{{dataTime.start_date}}" end="{{dataTime.end_date}}" class="date" bindchange="bindDateChange" selectable="false">
+            <view class='ss'>{{qySelectByNsrsbhData.kjnd+'年'+qySelectByNsrsbhData.kjqj+'月'}}
+              <image src="/images/data/bottom_arrow.png" /> </view>
+          </picker>
         </view>
       </view>
-       <view class="data-detail">
-            <view class="title">数据明细</view>
-            <view class="detail-li" wx:for="{{laobanData.zcfzZmkName}}" wx:key>
-                <view class="title">{{item.name}}</view>
-                <view class="fee">{{item.cols[1]}}</view>
+      <view id="b1" class="goodsList-height" hidden='{{1!=classifyViewId}}'>
+        <view class="data-chart" wx:for="{{lbkzList}}" wx:key>
+          <!-- <view class="data-chart" wx:for="{{lbkzList}}" wx:key>  -->
+          <view class="data-chart-head">
+            <view>
+              <view class="title">
+                {{item.name}} </view>
             </view>
-            <view class="detail-li" wx:for="{{laobanData.lrbZmkName}}" wx:key>
-                <view class="title">{{item.name}}</view>
-                <view class="fee">{{item.cols[1]}}</view>
+            <view class="date-picker j-bold">
+              （元）
             </view>
-        </view>
-
-    </view>
-    <view id="b7" class="goodsList-height" hidden='{{7!=classifyViewId}}'>
-      <!-- 纳税申报 -->
-      <view class='list_box'>
-        <view class='list'>
-          <view class='list_item_box'>
-            <view class='list_item' wx:for='{{dataNssb.list}}' wx:if="{{item.kkMoney&&item.kkMoney!=0}}" wx:key>
-              <view class='list_name_box '>
-                <view class="data-title  data-data">
-                  <view class="left">{{item.szmc}}</view>
-                  <view class="right">{{item.kkMoney?item.kkMoney:0}}</view>
-                </view>
-              </view>
+          </view>
+          <view class="chart">
+            <view class='pie {{index==0&&scrollTop>120||index==1&&scrollTop>390?"opacity":""}}'>
+              <ec-canvas id="mychart-dom-pie{{index}}" canvas-id="mychart-pie" ec="{{item.ec}}" bind:init="echartInit{{index}}"></ec-canvas>
             </view>
-            <view class='list_item' wx:if="{{dataNssb.total>0}}">
-              <view class='list_name_box '>
-                <view class="data-title  data-data j-bold">
-                  <view class="left">合计</view>
-                  <view class="right">{{dataNssb.total}}{{dataNssb.list.length}}</view>
-                </view>
+            <view class="mark">
+              <view class="mark-li {{idx!=chartTitles.length-1?'bottom':''}}" wx:for="{{item.data}}" wx:for-index="idx" wx:key>
+                <view class="mark-dot" style="background-color: {{colors[idx]}}"></view>
+                <view class="">{{item.name}}</view>
               </view>
             </view>
           </view>
         </view>
+        <view class="data-detail">
+          <view class="title">数据明细</view>
+          <view class="detail-li" wx:for="{{laobanData.zcfzZmkName}}" wx:key>
+            <view class="title">{{item.name}}</view>
+            <view class="fee">{{item.cols[1]}}</view>
+          </view>
+          <view class="detail-li" wx:for="{{laobanData.lrbZmkName}}" wx:key>
+            <view class="title">{{item.name}}</view>
+            <view class="fee">{{item.cols[1]}}</view>
+          </view>
+        </view>
+
       </view>
-      <view class='bg-none' wx:if="{{dataNssb.total==0}}">
-        <image src='/images/none.png' mode='widthFix'></image>
-        <view class='title'>亲~ 暂无数据</view>
+      <view id="b2" class="goodsList-height" hidden='{{2!=classifyViewId}}'>
+        <!-- 纳税申报 -->
+        <view class='list_box'>
+          <view class='list'>
+            <view class='list_item_box'>
+              <view class='list_item' wx:for='{{dataNssb.list}}' wx:if="{{item.kkMoney&&item.kkMoney!=0}}" wx:key>
+                <view class='list_name_box '>
+                  <view class="data-title  data-data">
+                    <view class="left">{{item.szmc}}</view>
+                    <view class="right">{{item.kkMoney?item.kkMoney:0}}</view>
+                  </view>
+                </view>
+              </view>
+              <view class='list_item' wx:if="{{dataNssb.total>0}}">
+                <view class='list_name_box '>
+                  <view class="data-title  data-data j-bold">
+                    <view class="left">合计</view>
+                    <view class="right">{{dataNssb.total}}{{dataNssb.list.length}}</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='bg-none' wx:if="{{dataNssb.total==0}}">
+          <image src='/images/none.png' mode='widthFix'></image>
+          <view class='title'>亲~ 暂无数据</view>
+        </view>
       </view>
-    </view>
-    <view id="b8" class="goodsList-height" hidden='{{8!=classifyViewId}}'>
-      <!-- 现金流量表 -->
-      <view class='list_box' wx:for='{{dataName.xjllZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex' wx:key>
-        <view class='list'>
-          <view class='list_name_box all ' catchtap='listTap2' data-parentindex='{{parentIndex}}'>
-            <view class='data-title data-data'>
-              <block wx:if="{{parentItem.name=='加：期初现金余额'}}">
-                <view class="left">五、期初现金余额</view>
-              </block>
-              <block wx:elif="{{parentItem.name=='五、期末现金余额'}}">
-                <view class="left">六、期末现金余额</view>
-              </block>
-              <block wx:elif="{{parentItem.name=='经营活动产生的现金流量净额'}}">
-                <view class="left">一、经营活动产生的现金流量净额</view>
-              </block>
-              <block wx:elif="{{parentItem.name=='投资活动产生的现金流量净额'}}">
-                <view class="left">二、投资活动产生的现金流量净额</view>
-              </block>
-              <block wx:elif="{{parentItem.name=='筹资活动产生的现金流量净额'}}">
-                <view class="left">三、筹资活动产生的现金流量净额</view>
-              </block>
-              <block wx:else>
+      <view id="b3" class="goodsList-height" hidden='{{3!=classifyViewId}}'>
+        <!-- 现金流量表 -->
+        <view class='list_box' wx:for='{{dataName.xjllZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex' wx:key>
+          <view class='list'>
+            <view class='list_name_box all ' catchtap='listTap2' data-parentindex='{{parentIndex}}'>
+              <view class='data-title data-data'>
+                <block wx:if="{{parentItem.name=='加：期初现金余额'}}">
+                  <view class="left">五、期初现金余额</view>
+                </block>
+                <block wx:elif="{{parentItem.name=='五、期末现金余额'}}">
+                  <view class="left">六、期末现金余额</view>
+                </block>
+                <block wx:elif="{{parentItem.name=='经营活动产生的现金流量净额'}}">
+                  <view class="left">一、经营活动产生的现金流量净额</view>
+                </block>
+                <block wx:elif="{{parentItem.name=='投资活动产生的现金流量净额'}}">
+                  <view class="left">二、投资活动产生的现金流量净额</view>
+                </block>
+                <block wx:elif="{{parentItem.name=='筹资活动产生的现金流量净额'}}">
+                  <view class="left">三、筹资活动产生的现金流量净额</view>
+                </block>
+                <block wx:else>
+                  <view class="left">{{parentItem.name}}</view>
+                </block>
+                <image src='/images/data/bottom_arrow1.png' class='icon_down {{parentItem.show&&"icon_down_rotate"}}' wx:if="{{parentItem.children&&parentItem.children.length>0}}"></image>
+              </view>
+              <view class='data-fee data-data' wx:if="{{parentItem.cols[0]}}">
+                <view class="left">{{parentItem.cols[1]}}</view>
+                <view class="right">{{parentItem.cols[0]}}</view>
+              </view>
+              <view class="data-type data-data" wx:if="{{parentItem.cols[0]}}">
+                <view class="left">本月金额</view>
+                <view class="right">本年累计金额</view>
+              </view>
+            </view>
+            <view class='list_item_box' wx:if='{{parentItem.show}}'>
+              <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap2' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
+                <view class='list_name_box item'>
+                  <view class='data-title data-data'>
+                    <view class="left">{{item.name}}</view>
+                    <image src='/images/data/bottom_arrow.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{(item.cols[0]!='0.00'||item.cols[1]!='0.00')&&item.ziChildren}}"></image>
+                  </view>
+                  <view class='data-fee data-data'>
+                    <view class="left">{{item.cols[1]}}</view>
+                    <view class="right">{{item.cols[0]}}</view>
+                  </view>
+                  <view class="data-type data-data">
+                    <view class="left">本月金额</view>
+                    <view class="right">本年累计金额</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view id="b4" class="goodsList-height" hidden='{{4!=classifyViewId}}'>
+        <!-- 资产负债表 -->
+        <view class='list_box' wx:for='{{dataName.zcfzZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
+          <view class='list'>
+            <view class='list_name_box all' catchtap='listTap' data-parentindex='{{parentIndex}}'>
+              <view class='data-title data-data'>
                 <view class="left">{{parentItem.name}}</view>
-              </block>
-              <image src='/images/data/bottom_arrow1.png' class='icon_down {{parentItem.show&&"icon_down_rotate"}}' wx:if="{{parentItem.children&&parentItem.children.length>0}}"></image>
-            </view>
-            <view class='data-fee data-data' wx:if="{{parentItem.cols[0]}}">
-              <view class="left">{{parentItem.cols[1]}}</view>
-              <view class="right">{{parentItem.cols[0]}}</view>
-            </view>
-            <view class="data-type data-data" wx:if="{{parentItem.cols[0]}}">
-              <view class="left">本月金额</view>
-              <view class="right">本年累计金额</view>
-            </view>
-          </view>
-          <view class='list_item_box' wx:if='{{parentItem.show}}'>
-            <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap2' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
-              <view class='list_name_box item'>
-                <view class='data-title data-data'>
-                  <view class="left">{{item.name}}</view>
-                  <image src='/images/data/bottom_arrow.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{(item.cols[0]!='0.00'||item.cols[1]!='0.00')&&item.ziChildren}}"></image>
-                </view>
-                <view class='data-fee data-data'>
-                  <view class="left">{{item.cols[1]}}</view>
-                  <view class="right">{{item.cols[0]}}</view>
-                </view>
-                <view class="data-type data-data">
-                  <view class="left">本月金额</view>
-                  <view class="right">本年累计金额</view>
-                </view>
+                <image src='/images/data/bottom_arrow1.png' class='icon_down {{parentItem.show&&"icon_down_rotate"}}' wx:if="{{parentItem.children&&parentItem.children.length>0}}"></image>
+              </view>
+              <view class='data-fee data-data'>
+                <view class="left">{{parentItem.cols[0]}}</view>
+                <view class="right">{{parentItem.cols[1]}}</view>
+              </view>
+              <view class="data-type data-data">
+                <view class="left">年初余额</view>
+                <view class="right">期末余额</view>
               </view>
             </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view id="b9" class="goodsList-height" hidden='{{9!=classifyViewId}}'>
-      <!-- 资产负债表 -->
-      <view class='list_box' wx:for='{{dataName.zcfzZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
-        <view class='list'>
-          <view class='list_name_box all' catchtap='listTap' data-parentindex='{{parentIndex}}'>
-            <view class='data-title data-data'>
-              <view class="left">{{parentItem.name}}</view>
-              <image src='/images/data/bottom_arrow1.png' class='icon_down {{parentItem.show&&"icon_down_rotate"}}' wx:if="{{parentItem.children&&parentItem.children.length>0}}"></image>
-            </view>
-            <view class='data-fee data-data'>
-              <view class="left">{{parentItem.cols[0]}}</view>
-              <view class="right">{{parentItem.cols[1]}}</view>
-            </view>
-            <view class="data-type data-data">
-              <view class="left">年初余额</view>
-              <view class="right">期末余额</view>
-            </view>
-          </view>
-          <view class='list_item_box' wx:if='{{parentItem.show}}'>
-            <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
-              <view class='list_name_box item'>
-                <view class='data-title data-data'>
-                  <view class="left">{{item.name}}</view>
-                  <image src='/images/data/bottom_arrow1.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{(item.cols[0]!='0.00'||item.cols[1]!='0.00')&&item.ziChildren}}"></image>
+            <view class='list_item_box' wx:if='{{parentItem.show}}'>
+              <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
+                <view class='list_name_box item'>
+                  <view class='data-title data-data'>
+                    <view class="left">{{item.name}}</view>
+                    <image src='/images/data/bottom_arrow1.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{(item.cols[0]!='0.00'||item.cols[1]!='0.00')&&item.ziChildren}}"></image>
+                  </view>
+                  <view class='data-fee data-data'>
+                    <view class="left">{{item.cols[0]}}</view>
+                    <view class="right">{{item.cols[1]}}</view>
+                  </view>
+                  <view class="data-type data-data">
+                    <view class="left">年初余额</view>
+                    <view class="right">期末余额</view>
+                  </view>
                 </view>
-                <view class='data-fee data-data'>
-                  <view class="left">{{item.cols[0]}}</view>
-                  <view class="right">{{item.cols[1]}}</view>
-                </view>
-                <view class="data-type data-data">
-                  <view class="left">年初余额</view>
-                  <view class="right">期末余额</view>
-                </view>
-              </view>
-              <view class='other_box' wx:if='{{item.show}}'>
+                <view class='other_box' wx:if='{{item.show}}'>
 
-                <view class='list_item' wx:for='{{item.ziChildren}}' wx:key='this' catchtap='listItemTap' data-ziIndex='{{index}}' data-index='{{index}}' data-parentindex='{{parentIndex}}' data-childIndex='{{childIndex}}' wx:for-item='ziItem' wx:for-index='childIndex'
-                  wx:if="{{ziItem.cols[0]!='0.00'||ziItem.cols[1]!='0.00'}}">
-                  <view class='list_name_box ziItem'>
-                    <view class='data-title data-data'>
-                      <view class="left">{{ziItem.name}}</view>
-                    </view>
-                    <view class='data-fee data-data'>
-                      <view class="left">{{ziItem.cols[0]}}</view>
-                      <view class="right">{{ziItem.cols[1]}}</view>
-                    </view>
-                    <view class="data-type data-data">
-                      <view class="left">年初余额</view>
-                      <view class="right">期末余额</view>
+                  <view class='list_item' wx:for='{{item.ziChildren}}' wx:key='this' catchtap='listItemTap' data-ziIndex='{{index}}' data-index='{{index}}' data-parentindex='{{parentIndex}}' data-childIndex='{{childIndex}}' wx:for-item='ziItem' wx:for-index='childIndex'
+                    wx:if="{{ziItem.cols[0]!='0.00'||ziItem.cols[1]!='0.00'}}">
+                    <view class='list_name_box ziItem'>
+                      <view class='data-title data-data'>
+                        <view class="left">{{ziItem.name}}</view>
+                      </view>
+                      <view class='data-fee data-data'>
+                        <view class="left">{{ziItem.cols[0]}}</view>
+                        <view class="right">{{ziItem.cols[1]}}</view>
+                      </view>
+                      <view class="data-type data-data">
+                        <view class="left">年初余额</view>
+                        <view class="right">期末余额</view>
+                      </view>
                     </view>
                   </view>
                 </view>
@@ -200,66 +204,66 @@
           </view>
         </view>
       </view>
-    </view>
-    <view id="b10" class="goodsList-height" hidden='{{10!=classifyViewId}}'>
-      <!-- 明细账 -->
-      <view class='list_box_mxz' >
-        <view class='list' wx:for='{{dataName.mxbZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex' catchtap='goMxzlist' data-kmlx='{{parentItem.kmlx}}'>
-          <view class='mxb_list'>
-          <view class="left">{{parentItem.name}}</view>
-          <view class='iconfont icon-youjiantou-copy'></view>
+      <view id="b5" class="goodsList-height" hidden='{{5!=classifyViewId}}'>
+        <!-- 明细账 -->
+        <view class='list_box_mxz'>
+          <view class='list' wx:for='{{dataName.mxbZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex' catchtap='goMxzlist' data-kmlx='{{parentItem.kmlx}}'>
+            <view class='mxb_list'>
+              <view class="left">{{parentItem.name}}</view>
+              <view class='iconfont icon-youjiantou-copy'></view>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <view id="b11" class="goodsList-height" hidden='{{11!=classifyViewId}}'>
-      <!-- 利润表 -->
-      <view class='list_box' wx:for='{{dataName.lrbZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
-        <view class='list'>
-          <view class='list_name_box all' catchtap='listTap1' data-parentindex='{{parentIndex}}'>
-            <view class='data-title data-data'>
-              <view class="left">{{parentItem.name}}</view>
+      <view id="b6" class="goodsList-height" hidden='{{6!=classifyViewId}}'>
+        <!-- 利润表 -->
+        <view class='list_box' wx:for='{{dataName.lrbZmkName}}' wx:key='this' wx:for-item='parentItem' wx:for-index='parentIndex'>
+          <view class='list'>
+            <view class='list_name_box all' catchtap='listTap1' data-parentindex='{{parentIndex}}'>
+              <view class='data-title data-data'>
+                <view class="left">{{parentItem.name}}</view>
 
-            </view>
-            <view class='data-fee data-data'>
-              <view class="left">{{parentItem.cols[0]}}</view>
-              <view class="right">{{parentItem.cols[1]}}</view>
-            </view>
-            <view class="data-type data-data">
-              <view class="left">本期金额</view>
-              <view class="right">本年累计</view>
-            </view>
-          </view>
-          <view class='list_item_box'>
-            <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap1' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
-              <view class='list_name_box item'>
-                <view class='data-title data-data'>
-                  <view class="left">{{item.name}}</view>
-                  <image src='/images/data/bottom_arrow1.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{item.ziChildren}}"></image>
-                </view>
-                <view class='data-fee data-data'>
-                  <view class="left">{{item.cols[0]}}</view>
-                  <view class="right">{{item.cols[1]}}</view>
-                </view>
-                <view class="data-type data-data">
-                  <view class="left">本期金额</view>
-                  <view class="right">本年累计</view>
-                </view>
               </view>
-              <view class='other_box' wx:if='{{item.show}}'>
+              <view class='data-fee data-data'>
+                <view class="left">{{parentItem.cols[0]}}</view>
+                <view class="right">{{parentItem.cols[1]}}</view>
+              </view>
+              <view class="data-type data-data">
+                <view class="left">本期金额</view>
+                <view class="right">本年累计</view>
+              </view>
+            </view>
+            <view class='list_item_box'>
+              <view class='list_item' wx:for='{{parentItem.children}}' wx:key='this' catchtap='listItemTap1' data-index='{{index}}' wx:for-index='index' data-parentindex='{{parentIndex}}'>
+                <view class='list_name_box item'>
+                  <view class='data-title data-data'>
+                    <view class="left">{{item.name}}</view>
+                    <image src='/images/data/bottom_arrow1.png' class='icon_down {{item.show&&"icon_down_rotate"}}' wx:if="{{item.ziChildren}}"></image>
+                  </view>
+                  <view class='data-fee data-data'>
+                    <view class="left">{{item.cols[0]}}</view>
+                    <view class="right">{{item.cols[1]}}</view>
+                  </view>
+                  <view class="data-type data-data">
+                    <view class="left">本期金额</view>
+                    <view class="right">本年累计</view>
+                  </view>
+                </view>
+                <view class='other_box' wx:if='{{item.show}}'>
 
-                <view class='list_item' wx:for='{{item.ziChildren}}' wx:key='this' catchtap='listItemTap1' data-ziIndex='{{index}}' data-index='{{index}}' data-parentindex='{{parentIndex}}' data-childIndex='{{childIndex}}' wx:for-item='ziItem' wx:for-index='childIndex'>
-                  <view class='list_name_box ziItem'>
-                    <view class='data-title data-data'>
-                      <view class="left">{{ziItem.name}}</view>
-                    </view>
-                    <view class='data-fee data-data'>
-                      <view class="left">{{ziItem.cols[0]}}</view>
-                      <view class="right">{{ziItem.cols[1]}}</view>
-                    </view>
-                    <view class="data-type data-data">
-                      <view class="left">本期金额</view>
-                      <view class="right">本年累计</view>
+                  <view class='list_item' wx:for='{{item.ziChildren}}' wx:key='this' catchtap='listItemTap1' data-ziIndex='{{index}}' data-index='{{index}}' data-parentindex='{{parentIndex}}' data-childIndex='{{childIndex}}' wx:for-item='ziItem' wx:for-index='childIndex'>
+                    <view class='list_name_box ziItem'>
+                      <view class='data-title data-data'>
+                        <view class="left">{{ziItem.name}}</view>
+                      </view>
+                      <view class='data-fee data-data'>
+                        <view class="left">{{ziItem.cols[0]}}</view>
+                        <view class="right">{{ziItem.cols[1]}}</view>
+                      </view>
+                      <view class="data-type data-data">
+                        <view class="left">本期金额</view>
+                        <view class="right">本年累计</view>
+                      </view>
                     </view>
                   </view>
                 </view>
@@ -268,55 +272,53 @@
           </view>
         </view>
       </view>
-    </view>
-    <view id="b12" class="goodsList-height" hidden='{{12!=classifyViewId}}'>
-      <view class='list_box'>
-        <view class='list' bindtap='goDataAnalysis' data-loadJudge='true'>
-          <view class='list_name_box all'>
-            <view class='data-title data-data'>
-              <view class="left">销项发票 {{dataInvoiceList.xxfpData.leng?dataInvoiceList.xxfpData.leng:0}} 张</view>
-            </view>
-            <view class='data-fee data-data'>
-              <view class="left">{{dataInvoiceList.xxfpData.jshj?dataInvoiceList.xxfpData.jshj:0}}</view>
-              <view class="right">{{dataInvoiceList.xxfpData.sehj?dataInvoiceList.xxfpData.sehj:0}}</view>
-            </view>
-            <view class="data-type data-data">
-              <view class="left">价税合计</view>
-              <view class="right">税额合计</view>
+      <view id="b7" class="goodsList-height" hidden='{{7!=classifyViewId}}'>
+        <view class='list_box'>
+          <view class='list' bindtap='goDataAnalysis' data-loadJudge='true'>
+            <view class='list_name_box all'>
+              <view class='data-title data-data'>
+                <view class="left">销项发票 {{dataInvoiceList.xxfpData.leng?dataInvoiceList.xxfpData.leng:0}} 张</view>
+              </view>
+              <view class='data-fee data-data'>
+                <view class="left">{{dataInvoiceList.xxfpData.jshj?dataInvoiceList.xxfpData.jshj:0}}</view>
+                <view class="right">{{dataInvoiceList.xxfpData.sehj?dataInvoiceList.xxfpData.sehj:0}}</view>
+              </view>
+              <view class="data-type data-data">
+                <view class="left">价税合计</view>
+                <view class="right">税额合计</view>
+              </view>
             </view>
           </view>
-        </view>
-        <view class='list' bindtap='goDataAnalysis' data-loadJudge='false'>
-          <view class='list_name_box all'>
-            <view class='data-title data-data'>
-              <view class="left">进项发票 {{dataInvoiceList.jxfpData.leng?dataInvoiceList.jxfpData.leng:0}} 张</view>
-            </view>
-            <view class='data-fee data-data'>
-              <view class="left">{{dataInvoiceList.jxfpData.jshj?dataInvoiceList.jxfpData.jshj:0}}</view>
-              <view class="right">{{dataInvoiceList.jxfpData.sehj?dataInvoiceList.jxfpData.sehj:0}}</view>
-            </view>
-            <view class="data-type data-data">
-              <view class="left">价税合计</view>
-              <view class="right">税额合计</view>
+          <view class='list' bindtap='goDataAnalysis' data-loadJudge='false'>
+            <view class='list_name_box all'>
+              <view class='data-title data-data'>
+                <view class="left">进项发票 {{dataInvoiceList.jxfpData.leng?dataInvoiceList.jxfpData.leng:0}} 张</view>
+              </view>
+              <view class='data-fee data-data'>
+                <view class="left">{{dataInvoiceList.jxfpData.jshj?dataInvoiceList.jxfpData.jshj:0}}</view>
+                <view class="right">{{dataInvoiceList.jxfpData.sehj?dataInvoiceList.jxfpData.sehj:0}}</view>
+              </view>
+              <view class="data-type data-data">
+                <view class="left">价税合计</view>
+                <view class="right">税额合计</view>
+              </view>
             </view>
           </view>
         </view>
       </view>
-    </view>
-
-    <!-- 工资 -->
-    <view id="b13" class="goodsList-height" hidden='{{13!=classifyViewId}}'>
-      <view class='list_box'>
-        <view class='list'>
-          <view class='list_name_box' wx:for="{{dataWages}}" wx:key>
-            <view class='data-title data-data'>
-              <view class="left">工资 (元) </view>
-              <view class="right">{{item.zwmc?item.zwmc:''}}</view>
-            </view>
-            <view class='gz-content'>
-              <!-- {{item.mssd?"¥"+dataWages.item:0}} -->{{item.sre?item.sre:0}}
-            </view>
-            <!-- <view class='data-fee data-data'>
+      <!-- 工资 -->
+      <view id="b8" class="goodsList-height" hidden='{{8!=classifyViewId}}'>
+        <view class='list_box'>
+          <view class='list'>
+            <view class='list_name_box' wx:for="{{dataWages}}" wx:key>
+              <view class='data-title data-data'>
+                <view class="left">工资 (元) </view>
+                <view class="right">{{item.zwmc?item.zwmc:''}}</view>
+              </view>
+              <view class='gz-content'>
+                <!-- {{item.mssd?"¥"+dataWages.item:0}} -->{{item.sre?item.sre:0}}
+              </view>
+              <!-- <view class='data-fee data-data'>
               <view class="left">{{item.sre?item.sre:0}}</view>
               <view class="right">{{item.jcfy?item.jcfy:0}}</view>
             </view>
@@ -324,9 +326,10 @@
               <view class="left">本期收入</view>
               <view class="right">减除费用</view>
             </view> -->
+            </view>
           </view>
         </view>
       </view>
-    </view>
-  </scroll-view>
+    </scroll-view>
+  </view>
 </view>

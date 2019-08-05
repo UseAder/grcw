@@ -4,6 +4,12 @@ const api = require('../../config/api.js');
 var e = require("../../lib/wxParse/wxParse.js")
 Page({
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '快报详情', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
     detai: {},
     news: {},
     id: ''
@@ -32,11 +38,7 @@ Page({
     })
 
   },
-  onShareAppMessage: function() {
-    return {
-      title: "快报详情",
-      desc: "快报详情",
-      path: "/pages/newsdetail/news"
-    };
-  }
+  onShareAppMessage: function () {
+    
+  },
 });

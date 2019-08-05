@@ -1,0 +1,10 @@
+<movable-area style="pointer-events: none;height: {{windowHeight-height-60}}px;width: 96%;position:fixed;right:2%;margin:auto;left:2%;top:{{height}}px;z-index:100">
+  <movable-view direction="all" style="pointer-events: auto;height: 80rpx; width: 80rpx; top:100%;left:100%">
+    <view catchtap="toContact" class="contact">
+      <view class="contacts_container">
+        <contact-button sessionFrom="webapp" size="33" type="default-light"></contact-button>
+      </view>
+      <image src="/images/personal/kefu.png"></image>
+    </view>
+  </movable-view>
+</movable-area>

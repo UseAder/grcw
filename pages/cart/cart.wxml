@@ -1,3 +1,6 @@
+<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='shoppingCart'>
   <view wx:if="{{cartList.length > 0}}">
     <view class='list'>
@@ -6,14 +9,14 @@
           <view class='item acea-row row-between-wrapper'>
             <checkbox value="{{item.cart_id}}" checked="{{item.checked}}" />
             <view class='picTxt acea-row row-between-wrapper'>
-              <view catchtap="subDel" data-id='{{item.cart_id}}' data-index='{{item.index}}' class='shanchu iconfont icon-shan_chu'></view>
-              <view class='pictrue' data-id="{{item.cart_id}}" bindtap='goDetails'>
-                <image src='{{item.goods_brand}}'></image>
+              <view catchtap="subDel" data-id='{{item.cart_id}}' data-index='{{index}}' class='shanchu iconfont icon-shan_chu'></view>
+              <view class='pictrue' data-id="{{item.goods_id}}" bindtap='goDetails'>
+                <image src='{{tools.sub(ImageUrl+item.goods_brand)}}'></image>
               </view>
-              <view class='text' data-id="{{item.cart_id}}" bindtap='goDetails'>
+              <view class='text' data-id="{{item.goods_id}}" bindtap='goDetails'>
                 <view class='line1 title'>{{item.goods_name}}</view>
                 
-                <view class='money' data-id="{{item.id}}" bindtap='goDetails'>￥{{item.goods_discount}}</view>
+                <view class='money' data-id="{{item.goods_id}}" bindtap='goDetails'>￥{{item.goods_discount}}</view>
               </view>
               <view class='stepper carnum acea-row row-center-wrapper'>
                 <!-- 减号 -->

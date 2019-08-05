@@ -1,62 +1,68 @@
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<!-- <view class='nav-barheight' style='height: {{height}}px'>
+
+   information:{
+      title:"欢迎光临",
+      company:"果然财务集团财税平台",
+      phone:"17706407642"
+    },</view> -->
 <view class="page">
-  <!-- <view class='data-loge' wx:if="{{!zymConfirm}}">
-    <view class="page__hd">
-      <image mode='widthFix' class="hdImage" src="/images/personal/login_logo.png" style='width:200rpx;'></image>
-    </view>
-    <view class="page__bd">
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <input class="weui-input" placeholder="请输入公司名称" value='{{corporateName}}' bindinput='getCorporateName'/>
+  <view id='gr_data_image' style='background-size: 100% 100%;background-image: url("{{ImageUrl+poster_header.img}}");   background-repeat:no-repeat;'>
+    <view class='data-hg-text' style=''>
+      <view>{{information.title}}
       </view>
-      <view class="weui-cell weui-cell_input weui-cell_vcode">
-        <input class="weui-input  weui-input-te" placeholder="请输入短信验证码"  value='{{code}}' bindinput='getCodeValue' type="number" />
-        <button class="page-vcode-btn" hover-class="button-hover" bindtap="obtainYzm" disabled='{{disabled}}'>{{codename}}</button>
-      </view>
-      <view class="weui-btn-area">
-        <button class="weui-btn " bindtap="save">登录</button>
-        <button class="weui-btn " bindtap="ceshi">查看演示（暂无演示）</button>
-       
+      <view>{{information.company}}
       </view>
     </view>
-    <view class="weui-footer">
-      <view class="weui-footer__text">提示：此模块涉及业务隐私，查看请进行验证。登入后2小时有效</view>
+    <view class='data-phone' data-reply-phone="{{information.phone}}" bindtap="phoneCall">
+      <image src='/images/zuoji.png' mode='widthFix'></image>
+      <view>{{information.phone}}</view>
     </view>
-  </view> -->
-  <!-- 数据展示页 -->
-  <!-- <view class='data-home' wx:else> -->
-  <!-- <image cal>
-  </image> -->
-   <view class='data-home-login' bindtap='open_login' wx:if="{{!zymConfirm}}">  
-   立刻查询
-</view>
-  <view class='data-home-login' wx:else bindtap='delete_login'>已登录</view>  
-  <view class='gr_gsxx'>
-  <view>公司名称：{{qyInformation.corporateName}}</view>
-  <view>纳税人识别号：{{qyInformation.nsrsbh}}</view>
-  
+    <view class='data-home-login' bindtap='open_login' wx:if="{{!zymConfirm}}" style='top:{{height}}px'>
+      立刻查询
+    </view>
+    <view class='data-home-login' wx:else bindtap='delete_login' style='top:{{height}}px'>已登录</view>
+    <view class='gr_gsxx'>
+      <view>公司名称：{{qyInformation.corporateName}}</view>
+      <view>纳税人识别号：{{qyInformation.nsrsbh}}</view>
+    </view>
   </view>
-  <image src='/images/data/data_hg.png' mode='widthFix'></image>
+
   <view class='data-Categories J-flex-w '>
-    <navigator url='/pages/dataAnalysis/index?classifyViewId={{item.function_id}}&currentIndex={{index}}' hover-class='none' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
+    <view bindtap='toDataAnalysis' data-classifyviewid='{{item.id}}' data-currentindex='{{index}}' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
       <view class='images'>
-        <image src='{{item.function_url}}'></image>
+        <image src='{{ImageUrl+item.img_url}}'></image>
       </view>
       <view class='title'>
-        {{item.function_title}}
+        {{item.title}}
       </view>
-    </navigator>
+    </view>
   </view>
-  <view class='data_bg'>
-    <image src='/images/data/data_bg.png' mode='widthFix'></image>
+  <view class="data_bg" wx:if="{{poster_footer&&poster_footer.length>0}}">
+    <swiper autoplay="true" class="banner" duration="2000" interval="6000" indicatordots='false'>
+      <swiper-item wx:for="{{poster_footer}}" wx:key="{{item.id}}">
+        <navigator class='navigator' url="{{item.url}}" hover-class="navigator-hover">
+          <image backgroundSize="cover" src="{{ImageUrl+item.img}}"></image>
+        </navigator>
+      </swiper-item>
+      <swiper-item>
+        <navigator class='navigator' data-reply-phone="17600402407" bindtap="phoneCall" url="" hover-class="navigator-hover">
+          <image backgroundSize="cover" src="/images/data/youhu.png"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
   </view>
 </view>
 <!-- </view> -->
+
+
 <view class="attr-pop" wx:if="{{logindialog}}">
   <view bindtap="closePopupTap" class="popup-mask"></view>
   <view class="popup-contents">
     <view class="login">
       <image class="login_logo" src="/images/personal/login_logo.png"></image>
       <view class="login_account">
-        <image class="account_logo"  mode='widthFix' src="/images/personal/login_account.png"></image>
+        <image class="account_logo" mode='widthFix' src="/images/personal/login_account.png"></image>
         <input bindinput="getCorporateName" placeholder="请输入需要查询的公司全称" value="{{corporateName}}"></input>
       </view>
       <view class='yz-xx'>{{phoneText}}
@@ -70,11 +76,11 @@
       </view>
 
       <view bindtap="save" class="bt">立刻查询</view>
-    </view>
-  </view>
-  <view bindtap="close_login" class="close_container">
+    </view><view bindtap="close_login" class="close_container">
     <image class="close" src="/images/personal/close.png"></image>
   </view>
+  </view>
+  
 </view>
 <!-- <userInfo-window window='{{window}}' bind:onColse="onColse">
 </userInfo-window> -->

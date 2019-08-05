@@ -1,3 +1,6 @@
+<movable-area-view></movable-area-view>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 <button wx:if="{{userInfo.username=='Hi,游客'}}" open-type="getUserInfo" bindgetuserinfo="userInfoHandler" class="wxlogin_bt"></button>
 <view class="mycenter">
 
@@ -87,10 +90,11 @@
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
           <contact-button sessionFrom="webapp" size="30" type="default-light"></contact-button>
         </view>
-
       </view>
-      <!-- <image src="/images/personal/company_logo.png" mode='widthFix'></image> -->
     </view>
 
+    <view bindtap="call" class="company_logo youhu_logo">
+      <image src="/images/company_logo.png"></image>
+    </view>
   </view>
 </view>

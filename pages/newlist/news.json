@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "果然快报"
+  "navigationBarTitleText": "果然快报",
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index",
+    "movable-area-view": "/components/movable-area/index"
+  }
 }

@@ -1,4 +1,5 @@
-<!--pages/logistics/logistics.wxml-->
+<movable-area></movable-area><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view><!--pages/logistics/logistics.wxml-->
 <view class="logistics">
   <view class="top">
     <image src="{{logistic.goods_pic}}" class="top-img"></image>

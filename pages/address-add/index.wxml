@@ -1,9 +1,5 @@
-<import src="../template-returnkey/template-returnkey.wxml" />
-
-  <!-- 返回键 -->
-<template is="template-returnkey" data="{{navigationBarTitleText: parameter.title}}">
-</template>
-
+<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
 
 <form bindsubmit="formSubmit">
   <view class='information'>

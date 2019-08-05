@@ -7,6 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '地址管理', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
     addressList: []
   },
   /**
@@ -45,7 +51,7 @@ Page({
     var value={} 
     value.aid = address.ad_id 
     value.address = address.ad_address 
-    value.city = address.ad_city.join('&');
+    value.city = address.ad_city.join('');
     value.name = address.ad_name
     value.phone = address.ad_phone
     value.is_default = true
@@ -91,12 +97,28 @@ Page({
   delAddress: function (e) {
     var index = e.currentTarget.dataset.index, that = this, address = this.data.addressList[index];
     if (address == undefined) return app.Tips({ title: '您删除的地址不存在!' });
-    util.request(api.AddressDelete, { aid: address.ad_id}, "post"
-    ).then(function (res) {
-      app.Tips({ title: '删除成功', icon: 'success' }, function () {
-        that.data.addressList.splice(index, 1);
-        that.setData({ addressList: that.data.addressList });
-      });
+    wx.showModal({
+      title: '系统提醒',
+      content: '确定要删除此地址吗？',
+      success: function (res) {
+        if (res.confirm) {
+          util.request(api.AddressDelete, { aid: address.ad_id }, "post"
+          ).then(function (res) {
+            app.Tips({ title: '删除成功', icon: 'success' });
+            that.data.addressList.splice(index, 1);
+            that.setData({ addressList: that.data.addressList });
+          })
+        } else if (res.cancel) {
+          return false;
+        }
+      }
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '杭州注册公司代理',
+      desc: '杭州注册公司代理',
+      path: '/pages/gr_index/index'
+    }
   },
 })

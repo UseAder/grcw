@@ -18,9 +18,13 @@ width:0;overflow: hidden;
 height:0;
 
 }
+/* .sss{
+  position: fixed;top: 0;width:100%;height: 600px;z-index: 1000
+} */
 .content {
   background: #FF9900;
-  position: fixed;top: 0;width: 100%;z-index: 999
+  /* position: fixed;top: 0; */
+  width: 100%;z-index: 999
 }
 .gz-content{
   text-align: center;
@@ -80,12 +84,16 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
   flex-flow: wrap;
 }
 .content-view{
- padding-top:160rpx;
-
+ padding-top:50rpx;
+/* position: absolute;top: 100rpx;width: 100%;z-index: 1 */
 
 }
-
-
+.content-view .goods-container{
+  overflow: hidden;
+}
+.debt{
+  height: 102rpx;overflow: hidden;
+}
 /* 测试 */
 .list_box{
   margin:0 25rpx;background: #ffffff;border-radius:18rpx;
@@ -361,19 +369,21 @@ border-radius:3rpx;position:absolute;bottom:6rpx;z-index:99;margin: 0 auto;right
     align-items: center;
 }
 
-.income>.date,
-.debt>.date {
+.content-view .debt .date {
+  
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 10rpx auto;
     margin-bottom: 20rpx;
     width: 207rpx;
-    height: 62rpx;
+        height: 62rpx;
+
     border-radius: 31rpx;
     background-color: white;
 
     font-size: 25rpx;
+    margin-top: 20rpx;
 }
 
 /* .income>.date>image,

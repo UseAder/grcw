@@ -1,0 +1,60 @@
+<movable-area-view></movable-area-view>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view><view>
+    <view class="top">
+        <view class="sologan">打造你的专属小程序 </view>
+        <view class="tip">低成本获客，快速解决线上线下流量转换 </view>
+        <view bindtap="phoneCall" class="call">咨询热线</view>
+        <image src="https://image.poempz.com/uploads/4985250249044023187248.png"></image>
+    </view>
+    <view class="center">
+        <view class="center_title">优狐科技深研新零售领域</view>
+        <view class="center_desc">赋予商家小程序专属能力</view>
+        <view class="centertip">推广容易，成本更低</view>
+        <view>
+            <view class="menu">
+                <swiper autoplay="false" current="{{current}}" duration="1000" interval="3000">
+                    <swiper-item class="publish">
+                        <view class="item">
+                            <view bindtap="navigate" data-category="1" data-url="../list/news">
+                                <image src="{{categorylist[0].image}}"></image>
+                                <text>{{categorylist[0].name}}</text>
+                            </view>
+                        </view>
+                        <view class="item">
+                            <view bindtap="navigate" data-category="2" data-url="../list/info">
+                                <image src="{{categorylist[1].image}}"></image>
+                                <text>{{categorylist[1].name}}</text>
+                            </view>
+                        </view>
+                        <view class="item">
+                            <view bindtap="navigate" data-category="3" data-url="../list/case">
+                                <image src="{{categorylist[2].image}}"></image>
+                                <text>{{categorylist[2].name}}</text>
+                            </view>
+                        </view>
+                        <view class="item">
+                            <view bindtap="navigate" data-category="4" data-url="../list/logs">
+                                <image src="{{categorylist[3].image}}"></image>
+                                <text>{{categorylist[3].name}}</text>
+                            </view>
+                        </view>
+                    </swiper-item>
+                </swiper>
+            </view>
+            <view bindtap="phoneCall" class="centercall">咨询热线</view>
+            <view class="center_desc">他们都在用优狐小程序</view>
+            <view class="centertip">多种入口，花样营销</view>
+            <view class="goods-container">
+                <view bindtap="toDetailsTap" class="goods-box" data-id="{{item.id}}" wx:for="{{examplelist}}" wx:key="{{index}}">
+                    <view class="img-box">
+                        <image class="image" src="{{item.imageurl}}"></image>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view bindtap="phoneCall" class="company_logo">
+    <image src="/images/ufox_49.png"></image>
+</view>

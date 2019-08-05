@@ -3,9 +3,12 @@ const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 Page({
   data: {
-    parameter: {
-      'title': '新增地址'
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '地址管理', //导航栏 中间的标题
     },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,   
     region: ['省', '市', '区'],
     id: '',
     userAddress: {
@@ -28,6 +31,10 @@ Page({
         title: '缺少地址信息，无法修改'
       });
     }
+    this.setData({
+      'nvabarData.title': options.addressDefault ? '修改地址' : '添加地址'
+
+    })
     if (addressDefault.ad_id) {
     this.setData({
       id: addressDefault.ad_id || '',
@@ -36,7 +43,6 @@ Page({
       'userAddress.is_default': addressDefault.is_default,
       'userAddress.address': addressDefault.ad_address,
       region: addressDefault.ad_city ? addressDefault.ad_city : [],
-      'parameter.title': '修改地址' 
     });
     }
   },
@@ -73,7 +79,7 @@ Page({
     });
     value.uid = wx.getStorageSync('uid');
     value.aid = that.data.id;
-    value.city = that.data.region.join('&');
+    value.city = that.data.region.join('');
     value.is_default = that.data.userAddress.is_default ? 1 : 0
     console.log(value)
     if (value.uid)
@@ -97,6 +103,13 @@ Page({
     let pages = getCurrentPages();
     if (pages.length > 1) {
       wx.navigateBack({})
+    }
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '杭州注册公司代理',
+      desc: '杭州注册公司代理',
+      path: '/pages/gr_index/index'
     }
   },
 })

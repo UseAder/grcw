@@ -8,6 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '填写订单信息', //导航栏 中间的标题
+    },
+    // 此页面 页面内容距最顶部的距离
+    height: app.globalData.height * 2 + 20,  
+    ImageUrl: api.ImageUrl,
+
     optionsData: {},
     total: null, //合计
     checkedAddress: {},
@@ -132,17 +140,18 @@ Page({
         });
       },
       'fail': function (res) {
+        console.log(obj.order_sn)
         wx.redirectTo({
           url: '/pages/payResult/payResult?status=false&order=' + obj.order_sn
         })
       }
     })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
-
-  }
+  onShareAppMessage: function () {
+    return {
+      title: '杭州注册公司代理',
+      desc: '杭州注册公司代理',
+      path: '/pages/gr_index/index'
+    }
+  },
 })
