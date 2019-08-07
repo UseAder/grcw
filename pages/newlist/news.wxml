@@ -1,10 +1,13 @@
-<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" /><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='nav-barheight' style='height: {{height}}px'></view><view class="list-news">
-    <navigator class="item" url="/pages/newsdetail/news?id={{item.n_id}}" hover-class="none" wx:for="{{newsList}}" wx:key>
-        <view class="h5">{{item.title}}</view>
-        <image src="{{tools.sub(ImageUrl+item.img)}}" mode='widthFix'></image>
-    </navigator>
+<movable-area-view></movable-area-view>
+<wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view>
+<view class="list-news">
+  <navigator class="item" url="/pages/newsdetail/news?id={{item.n_id}}" hover-class="none" wx:for="{{newsList}}" wx:key>
+    <view class="h5">{{item.title}}</view>
+    <image src="{{tools.sub(ImageUrl+item.img)}}" mode='widthFix'></image>
+  </navigator>
 </view>
 <view class='loadingicon acea-row row-center-wrapper' wx:if="{{newsList.length>2}}">
-    <text class='loading iconfont icon-jiazai' hidden='{{loading==false}}'></text>{{loadTitle}}
-  </view>
+  <text class='loading iconfont icon-jiazai' hidden='{{loading==false}}'></text>{{loadTitle}}
+</view>

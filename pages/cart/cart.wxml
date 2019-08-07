@@ -2,6 +2,7 @@
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='shoppingCart'>
+<button bindtap=''></button>
   <view wx:if="{{cartList.length > 0}}">
     <view class='list'>
       <checkbox-group bindchange="checkboxChange">

@@ -24,6 +24,7 @@ Page({
         id: option.id
       })
     that.pageNewsDetails()
+    
   },
   pageNewsDetails: function() {
     var that = this
@@ -35,6 +36,9 @@ Page({
       })
      
       e.wxParse("newsDetail", "html", res.content, that);
+      // 创建Webview窗口带遮罩层
+    
+
     })
 
   },

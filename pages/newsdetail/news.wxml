@@ -1,11 +1,11 @@
-<movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<view class='nav-barheight' style='height: {{height}}px'></view><view class="title">
-  {{news.title}}
-</view>
-<view class="info">
-    <text>发布时间：{{news.add_time}} </text>
-</view>
-<import src="../../lib/wxParse/wxParse.wxml"></import>
-<view class="detail">
-    <template is="wxParse" data="{{wxParseData:newsDetail.nodes}}"></template>
-</view>
+<!-- <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='nav-barheight' style='height: {{height}}px'></view> -->
+
+<cover-view class="time">
+  <cover-view class="contact">
+      <button open-type="contact" class='modifyBnt' formType="submit" style=""></button>
+      <!-- <cover-image class="image" src="/images/personal/kefu.png"></cover-image> -->
+  </cover-view>
+
+</cover-view>
+  <web-view bindmessage="handleMessage" src="{{news.content}}"></web-view>
