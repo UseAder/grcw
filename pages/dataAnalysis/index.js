@@ -393,12 +393,12 @@ Page({
     var proportion = wx.getStorageSync('proportion')
     var sbTotalPrice = that.data.sbTotalPrice
     that.setData({
-      'lbkzList[0].data[0].value': that.data.dataName.zcfzZmkName[0].children[0].cols[1],
-      'lbkzList[0].data[1].value': that.data.dataName.zcfzZmkName[0].children[1].cols[1],
-      'lbkzList[1].data[0].value': that.data.dataName.zcfzZmkName[1].cols[1],
-      'lbkzList[1].data[1].value': that.data.dataName.zcfzZmkName[2].cols[1],
-      'lbkzList[2].data[0].value': that.data.sbTotalPrice * proportion,
-      'lbkzList[2].data[1].value': that.data.sbTotalPrice * (1 - proportion).toFixed(2),
+      'lbkzList[0].data[0].value': Number(that.data.dataName.zcfzZmkName[0].children[0].cols[1]) ,
+      'lbkzList[0].data[1].value': Number(that.data.dataName.zcfzZmkName[0].children[1].cols[1]),
+        'lbkzList[1].data[0].value': Number(that.data.dataName.zcfzZmkName[1].cols[1]),
+          'lbkzList[1].data[1].value': Number(that.data.dataName.zcfzZmkName[2].cols[1]),
+          'lbkzList[2].data[0].value': Number(that.data.sbTotalPrice * proportion),
+            'lbkzList[2].data[1].value': Number(that.data.sbTotalPrice * (1 - proportion).toFixed(2)),
     })
 
 

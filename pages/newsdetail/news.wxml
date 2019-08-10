@@ -4,7 +4,7 @@
 <cover-view class="time">
   <cover-view class="contact">
       <button open-type="contact" class='modifyBnt' formType="submit" style=""></button>
-      <!-- <cover-image class="image" src="/images/personal/kefu.png"></cover-image> -->
+      <cover-image class="image" src="/images/personal/kefu.png"></cover-image>
   </cover-view>
 
 </cover-view>

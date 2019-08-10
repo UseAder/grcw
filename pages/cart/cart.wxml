@@ -1,8 +1,9 @@
-<movable-area-view></movable-area-view><wxs src="../../wxs/imageUrl.wxs" module="tools" />
+<movable-area-view></movable-area-view>
+<wxs src="../../wxs/imageUrl.wxs" module="tools" />
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='shoppingCart'>
-<button bindtap=''></button>
+  <button bindtap=''></button>
   <view wx:if="{{cartList.length > 0}}">
     <view class='list'>
       <checkbox-group bindchange="checkboxChange">
@@ -16,7 +17,7 @@
               </view>
               <view class='text' data-id="{{item.goods_id}}" bindtap='goDetails'>
                 <view class='line1 title'>{{item.goods_name}}</view>
-                
+
                 <view class='money' data-id="{{item.goods_id}}" bindtap='goDetails'>￥{{item.goods_discount}}</view>
               </view>
               <view class='stepper carnum acea-row row-center-wrapper'>
@@ -35,7 +36,7 @@
   <view class='noCart' wx:if="{{cartList.length == 0}}">
     <navigator url='/pages/gr_mall/index' open-type="reLaunch" hover-class='none' class='pictrue'>
       <image src='/images/noCart-a8fe3f12e5.png'></image>
-       <text>去添加点什么吧</text>
+      <text>去添加点什么吧</text>
     </navigator>
   </view>
   <view style='height:120rpx;'></view>
