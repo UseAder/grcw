@@ -4,7 +4,7 @@ const api = require('../../config/api.js');
 const wxh = require('../../utils/wxh.js');
 
 Page({
-  
+
   data: {
     nvabarData: {
       showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
@@ -23,10 +23,10 @@ Page({
     codename: '获取验证码',
     disabled: false, //验证码发送状态
     zymConfirm: false, //验证成功状态
-    information:{
-      title:"欢迎光临",
-      company:"果然财务集团财税平台",
-      phone:"17706407642"
+    information: {
+      title: "欢迎光临",
+      company: "果然财务集团财税平台",
+      phone: "17706407642"
     },
     qyInformation: { //该企业信息
       login_time: "",
@@ -38,12 +38,15 @@ Page({
     dataCategories: [], //类别
   },
   phoneCall: function(e) {
-    wx.makePhoneCall({
-      phoneNumber: e.currentTarget.dataset.replyPhone,
-      success: function() {
-        console.log("成功拨打电话")
-      },
-    })
+    if (e.currentTarget.dataset.replyPhone == '17600402407') {
+      wx.makePhoneCall({
+        phoneNumber: e.currentTarget.dataset.replyPhone,
+        success: function() {
+          console.log("成功拨打电话")
+        },
+      })
+    }
+
   },
   // 打开登录弹框
 
@@ -98,6 +101,9 @@ Page({
     });
     app.globalData.zymConfirm = false
     wx.setStorageSync('zymConfirm', false);
+    that.setData({
+      logindialog: true,
+    })
     if (that.data.interval) {
       clearInterval(that.data.interval);
       that.setData({
@@ -245,7 +251,7 @@ Page({
           that.setData({
             dataCategories: wx.getStorageSync('dataCategories')
           })
-        }else{
+        } else {
           that.setData({
             dataCategories: res.data.type,
           })
@@ -274,14 +280,18 @@ Page({
     that.setData({
       zymConfirm: app.globalData.zymConfirm
     })
-    console.log(app.globalData.zymConfirm)
     if (app.globalData.zymConfirm) {
       that.setData({
         'qyInformation.corporateName': wx.getStorageSync('corporateName'),
         'qyInformation.nsrsbh': wx.getStorageSync('nsrsbh'),
         dataCategories: wx.getStorageSync('dataCategories')
       })
+    } else {
+      that.setData({
+        logindialog: true,
+      })
     }
+
   },
   onShareAppMessage: function() {}
 

@@ -21,7 +21,7 @@ function initChart2(canvas, width, height) { //这里多加一个参数
       x: 'center',
       y: 52,
       text: '累计金额',
-      subtext: 111,
+      subtext: '--',
       animationType: 'scale',
 
       textStyle: {
@@ -53,10 +53,10 @@ function initChart2(canvas, width, height) { //这里多加一个参数
       },
       radius: ['55%', '100%'],
       data: [{
-        value: 2,
+        value: 10,
         name: '个人'
       }, {
-        value: 8,
+        value: 1,
         name: '企业'
       }],
 
@@ -79,7 +79,7 @@ function initChart1(canvas, width, height) { //这里多加一个参数
       x: 'center',
       y: 52,
       text: '累计金额',
-      subtext: 111,
+      subtext: '--',
       animationType: 'scale',
 
       textStyle: {
@@ -137,7 +137,7 @@ function initChart0(canvas, width, height) { //这里多加一个参数
       x: 'center',
       y: 52,
       text: '累计金额',
-      subtext: 111,
+      subtext: '--',
       animationType: 'scale',
 
       textStyle: {

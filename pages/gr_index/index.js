@@ -17,7 +17,7 @@ Page({
     },
     nvabarData: {
       showCapsule: 0, //是否显示左上角图标   1表示显示    0表示不显示
-      title: '果然财务', //导航栏 中间的标题
+      title: '果然财税', //导航栏 中间的标题
     },
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.height * 2 + 20,

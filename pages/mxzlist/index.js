@@ -11,12 +11,12 @@ Page({
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.height * 2 + 20,   
     mxzData: [
-      { name: '资产', children: [{ kmmc: '库存现金(测试)', jf0: '1111', df0: '11', qmDf: '111', bqJf: '23213', bqDf: '313123'}] },
-      { name: '负债', children: [{ kmmc: '短期借款(测试)', jf0: '2303', df0: '45', qmDf: '313', bqJf: '23213', bqDf: '313123' }]  },
+      { name: '资产', children: [{ kmmc: '库存现金(测试)', jf0: '--', df0: '--', qmDf: '--', bqJf: '--', bqDf: '--'}] },
+      { name: '负债', children: [{ kmmc: '短期借款(测试)', jf0: '--', df0: '--', qmDf: '--', bqJf: '--', bqDf: '--' }]  },
      
-      { name: '权益', children: [{ kmmc: '实收资本(测试)', jf0: '2303', df0: '45', qmDf: '313', bqJf: '23213', bqDf: '313123' }]  },
-      { name: '损益', children: [{ kmmc: '主营业务收入(测试)', jf0: '2303', df0: '45', qmDf: '313', bqJf: '23213', bqDf: '313123' }] },
-      { name: '成本', children: [{ kmmc: '生产成本(测试)', jf0: '2303', df0: '45', qmDf: '313', bqJf: '23213', bqDf: '313123' }] }],
+      { name: '权益', children: [{ kmmc: '实收资本(测试)', jf0: '--', df0: '--', qmDf: '--', bqJf: '--', bqDf: '--' }]  },
+      { name: '损益', children: [{ kmmc: '主营业务收入(测试)', jf0: '--', df0: '--', qmDf: '--', bqJf: '--', bqDf: '--' }] },
+      { name: '成本', children: [{ kmmc: '生产成本(测试)', jf0: '--', df0: '--', qmDf: '--', bqJf: '--', bqDf: '--' }] }],
     status: 0,//当前所在滑块的index
     aheight: 0,
     dataName: {}

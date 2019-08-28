@@ -2,7 +2,7 @@
 <view class='nav-barheight' style='height: {{height}}px'></view>
 <view class='wxlogin'>
 <image src="/images/gr_02.png" class='logo'></image>
-<view class='slogon'>果然财务</view>
+<view class='slogon'>果然财税</view>
 <!-- <image src='../../../static/images/denglu_07.png' class='hot_product'/> -->
 <view class='wxlogin_container'>
 <view class='wxlogin_inner'>

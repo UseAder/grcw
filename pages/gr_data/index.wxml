@@ -1,13 +1,7 @@
 <movable-area-view></movable-area-view><nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<!-- <view class='nav-barheight' style='height: {{height}}px'>
-
-   information:{
-      title:"欢迎光临",
-      company:"果然财务集团财税平台",
-      phone:"17706407642"
-    },</view> -->
+<wxs src="../../wxs/imageUrl.wxs" module="tools" />
 <view class="page">
-  <view id='gr_data_image' style='background-size: 100% 100%;background-image: url("{{ImageUrl+poster_header.img}}");   background-repeat:no-repeat;'>
+  <view id='gr_data_image' style='background-size: 100% 100%;background-image: url("{{tools.sub(ImageUrl+poster_header.img)}}");   background-repeat:no-repeat;'>
     <view class='data-hg-text' style=''>
       <view>{{information.title}}
       </view>
@@ -31,7 +25,7 @@
   <view class='data-Categories J-flex-w '>
     <view bindtap='toDataAnalysis' data-classifyviewid='{{item.id}}' data-currentindex='{{index}}' class='item J-flex-di' wx:for="{{dataCategories}}" wx:key>
       <view class='images'>
-        <image src='{{ImageUrl+item.img_url}}'></image>
+        <image src='{{tools.sub(ImageUrl+item.img_url)}}'></image>
       </view>
       <view class='title'>
         {{item.title}}
@@ -39,21 +33,15 @@
     </view>
   </view>
   <view class="data_bg" wx:if="{{poster_footer&&poster_footer.length>0}}">
-    <swiper autoplay="true" class="banner" duration="2000" interval="6000" indicatordots='false'>
+    <swiper autoplay="true" circular='true' class="banner" duration="2000" interval="5000" indicatordots='false'>
       <swiper-item wx:for="{{poster_footer}}" wx:key="{{item.id}}">
-        <navigator class='navigator' url="{{item.url}}" hover-class="navigator-hover">
-          <image backgroundSize="cover" src="{{ImageUrl+item.img}}"></image>
-        </navigator>
-      </swiper-item>
-      <swiper-item>
-        <navigator class='navigator' data-reply-phone="17600402407" bindtap="phoneCall" url="" hover-class="navigator-hover">
-          <image backgroundSize="cover" src="/images/data/youhu.png"></image>
+        <navigator class='navigator'  bindtap="phoneCall" data-reply-phone='{{item.url}}'  url="{{item.url}}" hover-class="navigator-hover">
+          <image backgroundSize="cover" src="{{tools.sub(ImageUrl+item.img)}}"></image>
         </navigator>
       </swiper-item>
     </swiper>
   </view>
 </view>
-<!-- </view> -->
 
 
 <view class="attr-pop" wx:if="{{logindialog}}">

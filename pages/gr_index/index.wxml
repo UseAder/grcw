@@ -6,14 +6,13 @@
 <view class='nav-barheight' style='height: {{height}}px'></view>
 <view class="index_container">
   <view class="search">
-    <swiper autoplay="true" class="banner" duration="1000" interval="4000" indicatordots='false'>
+    <swiper autoplay="true" circular="true" class="banner" duration="1000" interval="4000" indicatordots='false'>
       <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
         <navigator class='navigator' url="{{item.url}}" hover-class="navigator-hover" open-type="reLaunch">
           <image backgroundSize="cover" src="{{tools.sub(ImageUrl+item.img_url)}}"></image>
         </navigator>
       </swiper-item>
     </swiper>
-
     <view class="clearfix"></view>
   </view>
   <view class="menu">

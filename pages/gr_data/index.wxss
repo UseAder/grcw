@@ -42,11 +42,11 @@ color: #fff;font-weight: 500;font-size: 21rpx;line-height: 32rpx;text-shadow:0px
   top: 10rpx;
   color: #ecc935;
   background: #fff;
-  border-radius: 25rpx;
+  border-radius: 29rpx;
   text-align: center;
   font-size: 24rpx;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 58rpx;
+  line-height: 58rpx;
   width: 170rpx;
 }
 

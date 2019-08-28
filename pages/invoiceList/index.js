@@ -14,7 +14,7 @@ Page({
     },
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.height * 2 + 20,   
-    invoiceList: [{ gfdwmc: '杭州xx有限公司', kprq: "2019-06-01 00:00:00", jshj: "656", sehj: "876", jehj: "908" }, { gfdwmc: '杭州xx有限公司', kprq: "2019-06-01 00:00:00", jshj: "656", sehj: "876", jehj: "908" }],
+    invoiceList: [{ gfdwmc: '杭州xx有限公司', kprq: "-- -- --", jshj: "--", sehj: "--", jehj: "--" }, { gfdwmc: '杭州xx有限公司', kprq: "-- -- -- ", jshj: "--", sehj: "--", jehj: "--" }],
     qySelectByNsrsbhData: {//企业信息
       nsrsbh: '',
       qyid: '',
