@@ -140,7 +140,6 @@ Page({
         });
       },
       'fail': function (res) {
-        console.log(obj.order_sn)
         wx.redirectTo({
           url: '/pages/payResult/payResult?status=false&order=' + obj.order_sn
         })

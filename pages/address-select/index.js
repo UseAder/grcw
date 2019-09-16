@@ -41,7 +41,6 @@ Page({
    * 设置默认地址（1）
    */
   radioChange: function (e) {
-    console.log(e.detail)
     var index = parseInt(e.detail.value), that = this;;
     var address = this.data.addressList[index];
     if (address == undefined) return app.Tips({
@@ -59,7 +58,6 @@ Page({
     
     util.request(api.AddressPut, value, "POST"
     ).then(function (res) {
-      console.log(res)
       for (var i = 0, len = that.data.addressList.length; i < len; i++) {
         if (i == index) that.data.addressList[i].is_default = true;
         else that.data.addressList[i].is_default = false;

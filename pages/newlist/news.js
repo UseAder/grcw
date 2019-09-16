@@ -47,7 +47,6 @@ Page({
         var list = res|| [];
         var loadend = list == ''
         that.data.newsList = util.SplitArray(list, that.data.newsList);
-        console.log(that.data.newsList)
         that.setData({
           newsList: that.data.newsList,
             page: that.data.page + 1,

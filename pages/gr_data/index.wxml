@@ -33,7 +33,7 @@
     </view>
   </view>
   <view class="data_bg" wx:if="{{poster_footer&&poster_footer.length>0}}">
-    <swiper autoplay="true" circular='true' class="banner" duration="2000" interval="5000" indicatordots='false'>
+    <swiper autoplay="true"  class="banner" duration="2000" interval="5000" indicatordots='false'>
       <swiper-item wx:for="{{poster_footer}}" wx:key="{{item.id}}">
         <navigator class='navigator'  bindtap="phoneCall" data-reply-phone='{{item.url}}'  url="{{item.url}}" hover-class="navigator-hover">
           <image backgroundSize="cover" src="{{tools.sub(ImageUrl+item.img)}}"></image>

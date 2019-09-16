@@ -85,7 +85,6 @@ Page({
   userInfoHandler: function () {
     var that = this
     user.loginByWeixin().then((res) => {
-      console.log(res.data)
       if (res.code == 200) {
         that.setData({
           userInfo: res.data
@@ -104,7 +103,6 @@ Page({
       // 所以此处加入 callback 以防止这种情况
       app.employIdCallback = openid => {
         if (openid != '') {
-          console.log(1.3)
           that.setData({
             userInfo: app.globalData.userInfo,
           })

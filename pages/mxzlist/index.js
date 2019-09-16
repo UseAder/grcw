@@ -37,23 +37,6 @@ Page({
       dataName: utilAata.DataName
     })
     that.DataQyselectFullmxb()
-    // var mxbList = mxzData
-    // var mxbZmkName = that.data.dataName.mxbZmkName
-    // for (var j in mxbZmkName) {
-    //   for (var item in mxbList) {
-    //     if (mxbZmkName[j].kmlx == mxbList[item].kmlx) {
-    //       mxbZmkName[j].children.push(mxbList[item])
-    //     }
-    //   }
-    // }
-    // that.setData({
-      // mxzData: mxbZmkName,
-    //   status: options.kmlx-1
-    // })
-    // console.log(options.kmlx)
-    // that.setData({
-    //   aheight: that.data.mxzData[0].children.length * 400
-    // });
   },
   /**
    * 切换类型

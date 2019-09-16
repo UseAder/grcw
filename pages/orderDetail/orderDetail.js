@@ -31,12 +31,8 @@ Page({
     util.request(api.OrderDetail, {
       order_sn: that.data.order.order_sn,
     },'POST').then(function (res) {
-        console.log(res.data);
       var orderInfo = res.order
       orderInfo.update_time=util.formatTimeTwo(orderInfo.update_time,'Y-M-D h:m:s')
-      // if (orderInfo.order_status==0){
-
-      // }
         that.setData({
           orderInfo: orderInfo,
           orderGoods: res.goods,
@@ -88,7 +84,6 @@ Page({
      * 去订单详情  立即付款
     */
   payOrder(e) {
-    console.log()
     let that = this
     var order_sn = that.data.order.order_sn;
     var openid = app.globalData.openid

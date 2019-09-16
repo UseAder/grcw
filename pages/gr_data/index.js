@@ -112,12 +112,6 @@ Page({
     }
 
   },
-  // inputAccount: function (e) {
-  //   console.log(e.detail.value)
-  // this.setData({
-  //   account: e.detail.value
-  // });
-  // },
   // 获取输入框公司名称 
   getCorporateName: function(e) {
     this.setData({
@@ -137,7 +131,6 @@ Page({
     util.request(api.LoginPhone, {
       company: corporateName
     }, "POST").then(function(res) {
-      console.log(res)
       if (res.code == 300) {
         app.Tips({
           title: res.msg
@@ -265,7 +258,6 @@ Page({
     query.select('#gr_data_image').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function(res) {
-      console.log(res[0])
       that.setData({
         imgHeight: res[0].height // #the-id节点的上边界坐标
       })

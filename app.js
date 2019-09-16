@@ -52,14 +52,12 @@ App({
     });
     wx.getSystemInfo({
       success: (res) => {
-        console.log(res)
         this.globalData.height = res.statusBarHeight,
           this.globalData.windowHeight = res.windowHeight
       }
     })
   }
   ,onLoad:function(options){
-    console.log(options)
     if (options.scene == 1007 || options.scene == 1008) {
       this.globalData.share = true
     } else {

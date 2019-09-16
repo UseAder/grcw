@@ -23,7 +23,6 @@ Page({
     }
   }, 
   onLoad:function(options){
-    console.log(options)
     var that=this
     var qySelectByNsrsbhData = JSON.parse(options.qySelectByNsrsbhData) 
     that.setData({
@@ -67,8 +66,6 @@ Page({
   goInvoiceDetaile: function (e) {
     var Index = e.currentTarget.dataset.index, that = this
     let detaileData = JSON.stringify(that.data.invoiceList[Index]);
-    console.log(detaileData)
-    // console.log(e)
     app.Tips('/pages/invoiceDetaile/index?detaileData=' + detaileData)
   },
 

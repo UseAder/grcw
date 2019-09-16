@@ -24,7 +24,6 @@ Page({
    */
   onLoad: function (options) {
     let addressDefault = {}
-    console.log(options)
     if (options.addressDefault) {
       addressDefault = JSON.parse(options.addressDefault);
       if (!addressDefault.ad_id) return app.Tips({
@@ -81,7 +80,6 @@ Page({
     value.aid = that.data.id;
     value.city = that.data.region.join('');
     value.is_default = that.data.userAddress.is_default ? 1 : 0
-    console.log(value)
     if (value.uid)
       util.request(api.AddressPut, value, "POST").then(function (res) {
         app.Tips({ title: '修改成功', icon: 'success' });

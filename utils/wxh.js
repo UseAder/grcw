@@ -9,13 +9,9 @@ var time = function (timeStamp, that) {
     let newTime = new Date().getTime()
     let out_time = wx.getStorageSync('out_time')
     wx.setStorageSync('dataTime', totalSecond);
-    // console.log(newTime / 1000)
-    // console.log(out_time)
-
     if (newTime / 1000 > out_time) {
       totalSecond = 0
     }
-    // console.log(totalSecond)
     if (totalSecond <= 0) {
       clearInterval(interval);
       wx.showToast({

@@ -261,7 +261,6 @@ Page({
     initChart0(e.detail.canvas, e.detail.width, e.detail.height);
   },
   echartInit1(e) {
-    console.log(1)
     initChart1(e.detail.canvas, e.detail.width, e.detail.height);
   },
   echartInit2(e) {
@@ -289,14 +288,11 @@ Page({
    */
   onShow: function () {
     var that=this
-    console.log(that.data.lbkzList)
-    console.log(that.data.sbTotalPrice)
   },
   /**
  * 生命周期函数--监听页面卸载
  */
   onLoad: function (options) {
-    console.log(options)
     // 第一步 获取纳税人识别号
 
     var that = this
@@ -321,7 +317,6 @@ Page({
         'dataInvoiceList': utilAata1.DataInvoiceList,
         'dataWages': utilAata1.DataWages
       })
-      console.log(that.data.laobanData)
     }
   },
  viewTop:function(){
@@ -329,7 +324,6 @@ Page({
 
    wx.getSystemInfo({
      success: (res) => {
-       console.log(res)
        that.setData({
          windowHeight: res.windowHeight
        })
@@ -340,7 +334,6 @@ Page({
    query.select('#viewTop').boundingClientRect()
    query.selectViewport().scrollOffset()
    query.exec(function (res) {
-     console.log(res[0].top)
      that.setData({
        viewTop: res[0].top       // #the-id节点的上边界坐标
      })
@@ -478,7 +471,6 @@ Page({
         'dataNssb.list': res.result,
         'dataNssb.total': total.toFixed(2)
       })
-      console.log(that.data.dataNssb)
     })
   },
   // 第三步 2.会计报表"资产负债表", "利润表", "现金流量表"
@@ -598,7 +590,6 @@ Page({
         'dataInvoiceList.xxfpData.jshj': jshj.toFixed(2),
         'dataInvoiceList.xxfpData.sehj': sehj.toFixed(2)
       })
-      console.log()
     })
     util.requestGUOran(api.DataQyselectEntryInvoice, {
       "qyidList": that.data.qySelectByNsrsbhData.qyid,
@@ -793,12 +784,10 @@ Page({
   goMxzlist: function (e) {
     var that = this,
       kmlx = e.currentTarget.dataset.kmlx
-    console.log(kmlx)
-    // if (this.data.loading)
+
     app.Tips('/pages/mxzlist/index?qySelectByNsrsbhData=' + JSON.stringify(that.data.qySelectByNsrsbhData) + '&kmlx=' + kmlx)
   },
   handleCanvarToImg(that) {
-    console.log(1)
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
@@ -806,7 +795,6 @@ Page({
       height: 180,
       canvasId: 'mychart-pie',
       success: function (res) {
-        console.log(res)
         that.setData({
           radarImg: res.tempFilePath
         });
@@ -821,7 +809,6 @@ Page({
     if (app.globalData.zymConfirm) {
       that.dataQySelectByNsrsbh()
     }
-    console.log(that.data.categories)
     for (var i in that.data.categories) {
       if (currentIndex == that.data.categories[i].id) {
         Index = i
@@ -838,7 +825,6 @@ Page({
   },
   onPageScroll: function (e) {
     if (this.data.classifyViewId == 2) {
-      console.log(e)
       this.setData({
         scrollTop: e.scrollTop
       })

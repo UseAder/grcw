@@ -48,7 +48,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options)
     this.setData({
       status: options.type
     })
@@ -162,9 +161,6 @@ Page({
    * 去订单详情  立即付款
    */
   payOrder(e) {
-    console.log(e)
-    console.log(app.globalData.openid)
-
     let that = this
     var order_sn = e.currentTarget.dataset.order_sn;
     var openid = app.globalData.openid

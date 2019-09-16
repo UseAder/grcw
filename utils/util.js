@@ -15,7 +15,6 @@ const formatTime = date => {
 
 function initChart(echartsComponnet,data) {
   var that = this
-  console.log(echartsComponnet)
   echartsComponnet.init((canvas, width, height) => {
     const chart = echarts.init(canvas, null, {
       width: width,
@@ -112,10 +111,7 @@ function request(url, data = {}, method = "GET") {
       success: function (res) {
         hideLoading();
         if (res.statusCode == 200) {
-          console.log(res.data)
           if (res.data.msg == "未登录") {
-            console.log(res.data)
-            console.log(res.data.msg)
             //需要登录后才可以操作
             let code = null;
             return login().then((res) => {
@@ -379,7 +375,6 @@ function getUserInfo() {
     wx.getUserInfo({
       withCredentials: true,
       success: function (res) {
-        console.log(res)
         resolve(res);
       },
       fail: function (err) {

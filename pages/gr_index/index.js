@@ -84,7 +84,6 @@ Page({
     // 判断是否已经授权
     wx.getSystemInfo({
       success: function(res) {
-        console.log(res)
         that.setData({
           windowHeight: res.windowHeight
         });
@@ -95,7 +94,6 @@ Page({
     query.select('#publish').boundingClientRect()
     query.selectViewport().scrollOffset()
     query.exec(function (res) {
-      console.log(res[0])
       that.setData({
         publishHeight: res[0].top // #the-id节点的上边界坐标
       })
@@ -216,7 +214,6 @@ Page({
   userInfoHandler: function () {
     var that = this
     user.loginByWeixin().then((res) => {
-      console.log(res.data)
       if (res.code == 200) {
         that.setData({
           userInfo: res.data
